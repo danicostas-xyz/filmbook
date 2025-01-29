@@ -10,418 +10,232 @@
           "texto": "Una película surrealista y compleja, pero fascinante.",
           "usuarioID": "usuarioID1",
           "fecha": "2025-01-28",
+          "peliculaID": "peliculaID1",
+          "peliculaTitulo": "Inland Empire",
           "valoracion": 5
         },
         "comentarioID2": {
           "texto": "Una de las obras más extrañas de Lynch.",
           "usuarioID": "usuarioID2",
           "fecha": "2025-01-29",
+          "peliculaID": "peliculaID1",
+          "peliculaTitulo": "Inland Empire",
           "valoracion": 4
         }
       }
     },
     "peliculaID2": {
       "titulo": "Mulholland Drive",
-      "calificacion": 8.0,
+      "calificacion": 8.8,
       "directorID": "directorID1",
-      "generos": ["Drama", "Misterio", "Thriller"],
+      "generos": ["Drama", "Misterio", "Suspenso"],
       "comentarios": {
-        "comentarioID3": {
-          "texto": "Una obra maestra de Lynch, llena de giros inesperados.",
+        "comentarioID1": {
+          "texto": "Una obra maestra llena de misterio y simbolismo.",
           "usuarioID": "usuarioID3",
-          "fecha": "2025-01-30",
+          "fecha": "2025-01-28",
+          "peliculaID": "peliculaID2",
+          "peliculaTitulo": "Mulholland Drive",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Lynch nunca decepciona, esta película es un enigma cautivador.",
+          "usuarioID": "usuarioID4",
+          "fecha": "2025-01-29",
+          "peliculaID": "peliculaID2",
+          "peliculaTitulo": "Mulholland Drive",
           "valoracion": 5
         }
       }
     },
     "peliculaID3": {
-      "titulo": "Alien: El octavo pasajero",
-      "calificacion": 8.5,
-      "directorID": "directorID2",
-      "generos": ["Ciencia Ficción", "Horror", "Suspenso"],
+      "titulo": "Eraserhead",
+      "calificacion": 7.3,
+      "directorID": "directorID1",
+      "generos": ["Terror", "Experimental"],
       "comentarios": {
-        "comentarioID4": {
-          "texto": "Una de las mejores películas de ciencia ficción de todos los tiempos.",
-          "usuarioID": "usuarioID2",
-          "fecha": "2025-01-31",
-          "valoracion": 5
+        "comentarioID1": {
+          "texto": "Una película inquietante y visualmente impactante.",
+          "usuarioID": "usuarioID5",
+          "fecha": "2025-01-28",
+          "peliculaID": "peliculaID3",
+          "peliculaTitulo": "Eraserhead",
+          "valoracion": 4
+        },
+        "comentarioID2": {
+          "texto": "Una experiencia visual perturbadora que desafía el sentido común.",
+          "usuarioID": "usuarioID6",
+          "fecha": "2025-01-29",
+          "peliculaID": "peliculaID3",
+          "peliculaTitulo": "Eraserhead",
+          "valoracion": 4
         }
       }
     },
     "peliculaID4": {
-      "titulo": "Aliens: El regreso",
-      "calificacion": 8.3,
-      "directorID": "directorID2",
-      "generos": ["Ciencia Ficción", "Acción", "Horror"],
+      "titulo": "The Elephant Man",
+      "calificacion": 8.2,
+      "directorID": "directorID1",
+      "generos": ["Drama", "Biografía"],
       "comentarios": {
-        "comentarioID5": {
-          "texto": "Una secuela brillante, con mucha acción y tensión.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-01",
-          "valoracion": 4
+        "comentarioID1": {
+          "texto": "Una historia conmovedora y trágica, con una actuación sobresaliente.",
+          "usuarioID": "usuarioID7",
+          "fecha": "2025-01-28",
+          "peliculaID": "peliculaID4",
+          "peliculaTitulo": "The Elephant Man",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Un retrato increíblemente humano de la difícil vida de John Merrick.",
+          "usuarioID": "usuarioID8",
+          "fecha": "2025-01-29",
+          "peliculaID": "peliculaID4",
+          "peliculaTitulo": "The Elephant Man",
+          "valoracion": 5
         }
       }
     },
     "peliculaID5": {
-      "titulo": "Alien 3",
-      "calificacion": 6.5,
-      "directorID": "directorID2",
-      "generos": ["Ciencia Ficción", "Horror", "Suspenso"],
+      "titulo": "Blue Velvet",
+      "calificacion": 8.5,
+      "directorID": "directorID1",
+      "generos": ["Crimen", "Drama", "Misterio"],
       "comentarios": {
-        "comentarioID6": {
-          "texto": "Aunque no tan buena como las anteriores, sigue siendo interesante.",
-          "usuarioID": "usuarioID3",
-          "fecha": "2025-02-02",
-          "valoracion": 3
+        "comentarioID1": {
+          "texto": "Una obra maestra del cine noir, intrigante y perturbadora.",
+          "usuarioID": "usuarioID9",
+          "fecha": "2025-01-28",
+          "peliculaID": "peliculaID5",
+          "peliculaTitulo": "Blue Velvet",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "El contraste entre la apariencia tranquila y la corrupción oculta es brillante.",
+          "usuarioID": "usuarioID10",
+          "fecha": "2025-01-29",
+          "peliculaID": "peliculaID5",
+          "peliculaTitulo": "Blue Velvet",
+          "valoracion": 5
         }
       }
     },
     "peliculaID6": {
-      "titulo": "Alien: Covenant",
-      "calificacion": 7.0,
+      "titulo": "Blade Runner",
+      "calificacion": 8.7,
       "directorID": "directorID2",
-      "generos": ["Ciencia Ficción", "Horror", "Suspenso"],
+      "generos": ["Ciencia ficción", "Drama"],
       "comentarios": {
-        "comentarioID7": {
-          "texto": "Una película entretenida, pero no al nivel de las originales.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-03",
+        "comentarioID1": {
+          "texto": "Un clásico de la ciencia ficción con una atmósfera increíble.",
+          "usuarioID": "usuarioID11",
+          "fecha": "2025-02-01",
+          "peliculaID": "peliculaID6",
+          "peliculaTitulo": "Blade Runner",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Una película visualmente impresionante con una historia profunda.",
+          "usuarioID": "usuarioID12",
+          "fecha": "2025-02-02",
+          "peliculaID": "peliculaID6",
+          "peliculaTitulo": "Blade Runner",
           "valoracion": 4
         }
       }
     },
-      "peliculaID7": {
-    "titulo": "Eraserhead",
-    "calificacion": 10.0,
-    "directorID": "directorID1",
-    "generos": ["Misterio", "Horror"],
-    "comentarios": {
-      "comentarioID7": {
-        "texto": "La mejor película de la historia.",
-        "usuarioID": "usuarioID1",
-        "fecha": "2025-02-03",
-        "valoracion": 5
-      }
-    }
-  },
-   "peliculaID8": {
-      "titulo": "2001: Odisea en el espacio",
-      "calificacion": 8.3,
+    "peliculaID7": {
+      "titulo": "2001: A Space Odyssey",
+      "calificacion": 8.8,
       "directorID": "directorID3",
-      "generos": ["Ciencia Ficción", "Aventura"],
+      "generos": ["Ciencia ficción", "Aventura"],
       "comentarios": {
-        "comentarioID8": {
-          "texto": "Una obra maestra visual y filosófica.",
-          "usuarioID": "usuarioID2",
+        "comentarioID1": {
+          "texto": "Una obra maestra del cine que redefine la ciencia ficción.",
+          "usuarioID": "usuarioID13",
+          "fecha": "2025-02-03",
+          "peliculaID": "peliculaID7",
+          "peliculaTitulo": "2001: A Space Odyssey",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Una experiencia visual y filosófica única.",
+          "usuarioID": "usuarioID14",
           "fecha": "2025-02-04",
+          "peliculaID": "peliculaID7",
+          "peliculaTitulo": "2001: A Space Odyssey",
+          "valoracion": 5
+        }
+      }
+    },
+    "peliculaID8": {
+      "titulo": "Pulp Fiction",
+      "calificacion": 8.9,
+      "directorID": "directorID4",
+      "generos": ["Crimen", "Drama"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una película icónica con diálogos memorables.",
+          "usuarioID": "usuarioID15",
+          "fecha": "2025-02-05",
+          "peliculaID": "peliculaID8",
+          "peliculaTitulo": "Pulp Fiction",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Tarantino en su mejor momento, una obra maestra.",
+          "usuarioID": "usuarioID16",
+          "fecha": "2025-02-06",
+          "peliculaID": "peliculaID8",
+          "peliculaTitulo": "Pulp Fiction",
           "valoracion": 5
         }
       }
     },
     "peliculaID9": {
-      "titulo": "La Naranja Mecánica",
-      "calificacion": 8.4,
-      "directorID": "directorID3",
-      "generos": ["Drama", "Crimen", "Ciencia Ficción"],
+      "titulo": "Inception",
+      "calificacion": 8.8,
+      "directorID": "directorID5",
+      "generos": ["Ciencia ficción", "Acción"],
       "comentarios": {
-        "comentarioID9": {
-          "texto": "Una crítica social profunda y perturbadora.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-05",
-          "valoracion": 4
+        "comentarioID1": {
+          "texto": "Una película que te hace pensar y cuestionar la realidad.",
+          "usuarioID": "usuarioID17",
+          "fecha": "2025-02-07",
+          "peliculaID": "peliculaID9",
+          "peliculaTitulo": "Inception",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Nolan nos lleva a un viaje mental increíble.",
+          "usuarioID": "usuarioID18",
+          "fecha": "2025-02-08",
+          "peliculaID": "peliculaID9",
+          "peliculaTitulo": "Inception",
+          "valoracion": 5
         }
       }
     },
     "peliculaID10": {
-      "titulo": "El Resplandor",
-      "calificacion": 8.9,
-      "directorID": "directorID3",
-      "generos": ["Horror", "Misterio", "Suspenso"],
-      "comentarios": {
-        "comentarioID10": {
-          "texto": "Una de las películas más inquietantes de todos los tiempos.",
-          "usuarioID": "usuarioID3",
-          "fecha": "2025-02-06",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID11": {
-      "titulo": "Barry Lyndon",
-      "calificacion": 8.1,
-      "directorID": "directorID3",
-      "generos": ["Drama", "Histórico"],
-      "comentarios": {
-        "comentarioID11": {
-          "texto": "Una obra de arte visualmente impresionante.",
-          "usuarioID": "usuarioID2",
-          "fecha": "2025-02-07",
-          "valoracion": 4
-        }
-      }
-    },
-    "peliculaID12": {
-      "titulo": "Spirited Away",
-      "calificacion": 8.6,
-      "directorID": "directorID7",
-      "generos": ["Animación", "Aventura", "Fantástico"],
-      "comentarios": {
-        "comentarioID12": {
-          "texto": "Una historia mágica y profundamente emocional.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-08",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID13": {
-      "titulo": "Psycho",
+      "titulo": "The Departed",
       "calificacion": 8.5,
-      "directorID": "directorID8",
-      "generos": ["Terror", "Suspenso"],
+      "directorID": "directorID6",
+      "generos": ["Crimen", "Drama", "Thriller"],
       "comentarios": {
-        "comentarioID13": {
-          "texto": "El clásico de Hitchcock, con tensión constante.",
-          "usuarioID": "usuarioID3",
+        "comentarioID1": {
+          "texto": "Un thriller intenso con giros inesperados.",
+          "usuarioID": "usuarioID19",
           "fecha": "2025-02-09",
+          "peliculaID": "peliculaID10",
+          "peliculaTitulo": "The Departed",
           "valoracion": 5
-        }
-      }
-    },
-    "peliculaID14": {
-      "titulo": "The Grand Budapest Hotel",
-      "calificacion": 8.7,
-      "directorID": "directorID9",
-      "generos": ["Comedia", "Drama"],
-      "comentarios": {
-        "comentarioID14": {
-          "texto": "Una película colorida y llena de humor excéntrico.",
-          "usuarioID": "usuarioID2",
+        },
+        "comentarioID2": {
+          "texto": "Scorsese en su mejor forma, una película emocionante.",
+          "usuarioID": "usuarioID20",
           "fecha": "2025-02-10",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID15": {
-      "titulo": "La Dolce Vita",
-      "calificacion": 8.2,
-      "directorID": "directorID10",
-      "generos": ["Drama", "Comedia"],
-      "comentarios": {
-        "comentarioID15": {
-          "texto": "Un clásico italiano lleno de reflexión sobre la vida.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-11",
-          "valoracion": 5
-        }
-      }
-    },    
-    "peliculaID16": {
-      "titulo": "The Shining",
-      "calificacion": 8.9,
-      "directorID": "directorID3",
-      "generos": ["Terror", "Suspenso", "Psicológico"],
-      "comentarios": {
-        "comentarioID16": {
-          "texto": "Una película aterradora y llena de tensión psicológica.",
-          "usuarioID": "usuarioID3",
-          "fecha": "2025-02-12",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID17": {
-      "titulo": "A Clockwork Orange",
-      "calificacion": 8.6,
-      "directorID": "directorID3",
-      "generos": ["Ciencia Ficción", "Drama", "Crimen"],
-      "comentarios": {
-        "comentarioID17": {
-          "texto": "Una experiencia visualmente impactante y filosóficamente provocativa.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-13",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID18": {
-      "titulo": "Blade Runner",
-      "calificacion": 8.7,
-      "directorID": "directorID2",
-      "generos": ["Ciencia Ficción", "Drama", "Misterio"],
-      "comentarios": {
-        "comentarioID18": {
-          "texto": "Una obra maestra visual y filosófica sobre la humanidad.",
-          "usuarioID": "usuarioID2",
-          "fecha": "2025-02-14",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID19": {
-      "titulo": "Gladiator",
-      "calificacion": 8.5,
-      "directorID": "directorID2",
-      "generos": ["Acción", "Drama", "Histórico"],
-      "comentarios": {
-        "comentarioID19": {
-          "texto": "Una historia épica de venganza y honor.",
-          "usuarioID": "usuarioID3",
-          "fecha": "2025-02-15",
-          "valoracion": 4
-        }
-      }
-    },
-    "peliculaID20": {
-      "titulo": "The Martian",
-      "calificacion": 7.9,
-      "directorID": "directorID2",
-      "generos": ["Ciencia Ficción", "Aventura", "Drama"],
-      "comentarios": {
-        "comentarioID20": {
-          "texto": "Una película emocionante con una gran actuación de Matt Damon.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-16",
-          "valoracion": 4
-        }
-      }
-    },
-    "peliculaID21": {
-      "titulo": "The Social Network",
-      "calificacion": 8.0,
-      "directorID": "directorID5",
-      "generos": ["Drama", "Biografía"],
-      "comentarios": {
-        "comentarioID21": {
-          "texto": "Una historia fascinante sobre la creación de Facebook.",
-          "usuarioID": "usuarioID2",
-          "fecha": "2025-02-17",
-          "valoracion": 4
-        }
-      }
-    },
-    "peliculaID22": {
-      "titulo": "Dunkirk",
-      "calificacion": 8.2,
-      "directorID": "directorID5",
-      "generos": ["Acción", "Drama", "Historia"],
-      "comentarios": {
-        "comentarioID22": {
-          "texto": "Una experiencia cinematográfica intensa y conmovedora.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-18",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID23": {
-      "titulo": "Interstellar",
-      "calificacion": 8.6,
-      "directorID": "directorID5",
-      "generos": ["Ciencia Ficción", "Drama", "Aventura"],
-      "comentarios": {
-        "comentarioID23": {
-          "texto": "Un viaje épico y emocional a través del espacio y el tiempo.",
-          "usuarioID": "usuarioID2",
-          "fecha": "2025-02-19",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID24": {
-      "titulo": "Se7en",
-      "calificacion": 8.9,
-      "directorID": "directorID6",
-      "generos": ["Crimen", "Drama", "Suspenso"],
-      "comentarios": {
-        "comentarioID24": {
-          "texto": "Un thriller psicológico oscuro y atrapante.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-20",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID25": {
-      "titulo": "Fight Club",
-      "calificacion": 8.8,
-      "directorID": "directorID6",
-      "generos": ["Drama", "Psicológico"],
-      "comentarios": {
-        "comentarioID25": {
-          "texto": "Una crítica al consumismo y la identidad, con giros impactantes.",
-          "usuarioID": "usuarioID3",
-          "fecha": "2025-02-21",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID26": {
-      "titulo": "The Matrix",
-      "calificacion": 8.7,
-      "directorID": "directorID7",
-      "generos": ["Acción", "Ciencia Ficción", "Thriller"],
-      "comentarios": {
-        "comentarioID26": {
-          "texto": "Una de las películas más influyentes de ciencia ficción.",
-          "usuarioID": "usuarioID2",
-          "fecha": "2025-02-22",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID27": {
-      "titulo": "Princess Mononoke",
-      "calificacion": 8.4,
-      "directorID": "directorID7",
-      "generos": ["Animación", "Aventura", "Drama"],
-      "comentarios": {
-        "comentarioID27": {
-          "texto": "Una historia profunda sobre la naturaleza y la humanidad.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-23",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID28": {
-      "titulo": "Howl's Moving Castle",
-      "calificacion": 8.3,
-      "directorID": "directorID7",
-      "generos": ["Animación", "Aventura", "Fantasía"],
-      "comentarios": {
-        "comentarioID28": {
-          "texto": "Una historia mágica y visualmente hermosa.",
-          "usuarioID": "usuarioID3",
-          "fecha": "2025-02-24",
-          "valoracion": 4
-        }
-      }
-    },
-    "peliculaID29": {
-      "titulo": "Rear Window",
-      "calificacion": 8.6,
-      "directorID": "directorID8",
-      "generos": ["Crimen", "Misterio", "Suspenso"],
-      "comentarios": {
-        "comentarioID29": {
-          "texto": "Un thriller clásico de Hitchcock, lleno de suspenso.",
-          "usuarioID": "usuarioID2",
-          "fecha": "2025-02-25",
-          "valoracion": 5
-        }
-      }
-    },
-    "peliculaID30": {
-      "titulo": "Vertigo",
-      "calificacion": 8.7,
-      "directorID": "directorID8",
-      "generos": ["Suspenso", "Misterio", "Romance"],
-      "comentarios": {
-        "comentarioID30": {
-          "texto": "Una de las mejores películas de Hitchcock, con una gran atmósfera.",
-          "usuarioID": "usuarioID1",
-          "fecha": "2025-02-26",
+          "peliculaID": "peliculaID10",
+          "peliculaTitulo": "The Departed",
           "valoracion": 5
         }
       }
@@ -432,45 +246,14 @@
       "nombre": "Dani",
       "username": "lafargue69",
       "listas": {
-        "favoritos": {
-          "peliculas": ["peliculaID7", "peliculaID2"]
-        },
-        "pendientes": {
-          "peliculas": ["peliculaID3", "peliculaID4"]
-        }
-      },
-      "comentarios": {
-        "comentarioID1": {
-          "texto": "Una película surrealista y compleja, pero fascinante.",
-          "peliculaID": "peliculaID1",
-          "peliculaTitulo": "Inland Empire",
-          "fecha": "2025-01-28",
-          "valoracion": 5
-        },
-        "comentarioID4": {
-          "texto": "Una de las mejores películas de ciencia ficción de todos los tiempos.",
-          "peliculaID": "peliculaID3",
-          "peliculaTitulo": "Alien: El octavo pasajero",
-          "fecha": "2025-01-31",
-          "valoracion": 5
-        }
-      }
-    },
-    "usuarioID2": {
-      "nombre": "Andrés",
-      "username": "yolmi",
-      "listas": {
-        "favoritos": {
-          "peliculas": ["peliculaID3"]
-        },
-        "pendientes": {
-          "peliculas": ["peliculaID1", "peliculaID5"]
-        }
+        "favoritos": ["peliculaID3"],
+        "pendientes": ["peliculaID6", "peliculaID7"]
       },
       "comentarios": {
         "comentarioID2": {
           "texto": "Una de las obras más extrañas de Lynch.",
           "peliculaID": "peliculaID1",
+          "usuarioID": "usuarioID1",
           "peliculaTitulo": "Inland Empire",
           "fecha": "2025-01-29",
           "valoracion": 4
@@ -479,120 +262,153 @@
           "texto": "Una obra maestra de Lynch, llena de giros inesperados.",
           "peliculaID": "peliculaID2",
           "peliculaTitulo": "Mulholland Drive",
+          "usuarioID": "usuarioID1",
           "fecha": "2025-01-30",
           "valoracion": 5
         },
         "comentarioID5": {
-          "texto": "Una secuela brillante, con mucha acción y tensión.",
+          "texto": "La mejor película de la historia.",
+          "peliculaID": "peliculaID3",
+          "peliculaTitulo": "Eraserhead",
+          "usuarioID": "usuarioID1",
+          "fecha": "2025-02-01",
+          "valoracion": 5
+        }
+      }
+    },
+    "usuarioID2": {
+      "nombre": "Andrés",
+      "username": "yolmi",
+      "listas": {
+        "favoritos": ["peliculaID3"],
+        "pendientes": ["peliculaID1", "peliculaID5"]
+      },
+      "comentarios": {
+        "comentarioID2": {
+          "texto": "Una de las obras más extrañas de Lynch.",
+          "peliculaID": "peliculaID1",
+          "usuarioID": "usuarioID2",
+          "peliculaTitulo": "Inland Empire",
+          "fecha": "2025-01-29",
+          "valoracion": 4
+        },
+        "comentarioID3": {
+          "texto": "Una obra maestra de Lynch, llena de giros inesperados.",
+          "peliculaID": "peliculaID2",
+          "peliculaTitulo": "Mulholland Drive",
+          "usuarioID": "usuarioID2",
+          "fecha": "2025-01-30",
+          "valoracion": 5
+        },
+        "comentarioID5": {
+          "texto": "Una historia conmovedora y trágica, con una actuación sobresaliente.",
           "peliculaID": "peliculaID4",
-          "peliculaTitulo": "Aliens: El regreso",
+          "peliculaTitulo": "The Elephant Man",
+          "usuarioID": "usuarioID2",
           "fecha": "2025-02-01",
           "valoracion": 4
         }
       }
     },
     "usuarioID3": {
-      "nombre": "María",
-      "username": "maria90",
+      "nombre": "Carlos",
+      "username": "carlossito",
       "listas": {
-        "favoritos": {
-          "peliculas": ["peliculaID2"]
-        },
-        "pendientes": {
-          "peliculas": ["peliculaID3", "peliculaID6"]
-        }
+        "favoritos": ["peliculaID2", "peliculaID5"],
+        "pendientes": ["peliculaID1", "peliculaID4"]
       },
       "comentarios": {
-        "comentarioID6": {
-          "texto": "Aunque no tan buena como las anteriores, sigue siendo interesante.",
-          "peliculaID": "peliculaID5",
-          "peliculaTitulo": "Alien 3",
-          "fecha": "2025-02-02",
-          "valoracion": 3
-        },
-        "comentarioID7": {
-          "texto": "Una película entretenida, pero no al nivel de las originales.",
-          "peliculaID": "peliculaID6",
-          "peliculaTitulo": "Alien: Covenant",
-          "fecha": "2025-02-03",
+        "comentarioID1": {
+          "texto": "Una película increíblemente inquietante, como todo el cine de Lynch.",
+          "peliculaID": "peliculaID1",
+          "usuarioID": "usuarioID3",
+          "peliculaTitulo": "Inland Empire",
+          "fecha": "2025-01-28",
           "valoracion": 4
+        },
+        "comentarioID2": {
+          "texto": "Un viaje psicológico muy interesante, pero algo largo.",
+          "peliculaID": "peliculaID2",
+          "usuarioID": "usuarioID3",
+          "peliculaTitulo": "Mulholland Drive",
+          "fecha": "2025-01-30",
+          "valoracion": 4
+        },
+        "comentarioID4": {
+          "texto": "Una historia conmovedora con una dirección espectacular.",
+          "peliculaID": "peliculaID4",
+          "usuarioID": "usuarioID3",
+          "peliculaTitulo": "The Elephant Man",
+          "fecha": "2025-02-01",
+          "valoracion": 5
         }
       }
     },
     "usuarioID4": {
       "nombre": "Laura",
-      "username": "laura_smith",
+      "username": "lauritaX",
       "listas": {
-        "favoritos": {
-          "peliculas": ["peliculaID18", "peliculaID7"]
-        },
-        "pendientes": {
-          "peliculas": ["peliculaID19", "peliculaID23"]
-        }
+        "favoritos": ["peliculaID1"],
+        "pendientes": ["peliculaID3", "peliculaID4"]
       },
       "comentarios": {
-        "comentarioID31": {
-          "texto": "Una de las películas más profundas sobre la humanidad.",
-          "peliculaID": "peliculaID18",
-          "peliculaTitulo": "Blade Runner",
-          "fecha": "2025-02-15",
+        "comentarioID1": {
+          "texto": "Una película profunda y extraña, pero no para todos los gustos.",
+          "peliculaID": "peliculaID1",
+          "usuarioID": "usuarioID4",
+          "peliculaTitulo": "Inland Empire",
+          "fecha": "2025-01-29",
+          "valoracion": 3
+        },
+        "comentarioID2": {
+          "texto": "El misterio y la tensión son impresionantes, como siempre con Lynch.",
+          "peliculaID": "peliculaID2",
+          "usuarioID": "usuarioID4",
+          "peliculaTitulo": "Mulholland Drive",
+          "fecha": "2025-01-30",
           "valoracion": 5
+        },
+        "comentarioID3": {
+          "texto": "Una película de terror única, que te deja pensando después de verla.",
+          "peliculaID": "peliculaID3",
+          "usuarioID": "usuarioID4",
+          "peliculaTitulo": "Eraserhead",
+          "fecha": "2025-02-01",
+          "valoracion": 4
         }
       }
     },
     "usuarioID5": {
-      "nombre": "Carlos",
-      "username": "carlossoul",
+      "nombre": "Javier",
+      "username": "javii89",
       "listas": {
-        "favoritos": {
-          "peliculas": ["peliculaID24", "peliculaID23"]
-        },
-        "pendientes": {
-          "peliculas": ["peliculaID5", "peliculaID22"]
-        }
+        "favoritos": ["peliculaID4", "peliculaID5"],
+        "pendientes": ["peliculaID1", "peliculaID3"]
       },
       "comentarios": {
-        "comentarioID32": {
-          "texto": "Una experiencia cinematográfica única y poderosa.",
-          "peliculaID": "peliculaID24",
-          "peliculaTitulo": "Se7en",
-          "fecha": "2025-02-20",
+        "comentarioID1": {
+          "texto": "Una historia conmovedora y trágica, con una actuación sobresaliente.",
+          "peliculaID": "peliculaID4",
+          "usuarioID": "usuarioID5",
+          "peliculaTitulo": "The Elephant Man",
+          "fecha": "2025-01-31",
           "valoracion": 5
         },
-        "comentarioID33": {
-          "texto": "Una historia impresionante sobre sacrificio y amor.",
-          "peliculaID": "peliculaID23",
-          "peliculaTitulo": "Interstellar",
-          "fecha": "2025-02-19",
-          "valoracion": 5
-        }
-      }
-    },
-    "usuarioID6": {
-      "nombre": "Beatriz",
-      "username": "bebe_fan",
-      "listas": {
-        "favoritos": {
-          "peliculas": ["peliculaID25", "peliculaID14"]
+        "comentarioID2": {
+          "texto": "Una trama intrigante y muy bien ejecutada.",
+          "peliculaID": "peliculaID5",
+          "usuarioID": "usuarioID5",
+          "peliculaTitulo": "Blue Velvet",
+          "fecha": "2025-01-30",
+          "valoracion": 4
         },
-        "pendientes": {
-          "peliculas": ["peliculaID28", "peliculaID19"]
-        }
-      },
-      "comentarios": {
-        "comentarioID34": {
-          "texto": "Una película impactante que hace reflexionar sobre la vida moderna.",
-          "peliculaID": "peliculaID25",
-          "peliculaTitulo": "Fight Club",
-          "fecha": "2025-02-21",
-          "valoracion": 5
-        },
-        "comentarioID35": {
-          "texto": "Una comedia visualmente encantadora, llena de detalles.",
-          "peliculaID": "peliculaID14",
-          "peliculaTitulo": "The Grand Budapest Hotel",
-          "fecha": "2025-02-10",
-          "valoracion": 5
+        "comentarioID3": {
+          "texto": "Una película inquietante y visualmente impactante.",
+          "peliculaID": "peliculaID3",
+          "usuarioID": "usuarioID5",
+          "peliculaTitulo": "Eraserhead",
+          "fecha": "2025-02-01",
+          "valoracion": 3
         }
       }
     }
