@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class Application extends AppCompatActivity {
@@ -25,6 +27,35 @@ public class Application extends AppCompatActivity {
         setContentView(R.layout.activity_application);
         Intent intent = getIntent();
         String username = intent.getStringExtra("K_Usuario");
+
+        // Cargar el fragmento inicial
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new ProfileFragment())
+                    .commit();
+        }
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+
+            if (item.getItemId() == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment();
+            } else if (item.getItemId() == R.id.nav_calendar) {
+                selectedFragment = new CalendarFragment();
+            } else if (item.getItemId() == R.id.nav_search) {
+                selectedFragment = new SearchFragment();
+            } else if (item.getItemId() == R.id.nav_friends) {
+                selectedFragment = new FriendsFragment();
+            }
+
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, selectedFragment)
+                        .commit();
+            }
+            return true;
+        });
 
 
         /*// Configurar Toolbar
