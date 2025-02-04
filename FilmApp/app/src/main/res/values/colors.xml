@@ -4,9 +4,11 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray">#D1D1D1</color>
-    <color name="primary">#6200EE</color> <!-- Color principal de la app -->
-    <color name="primaryDark">#3700B3</color> <!-- Color oscuro para la barra de acción -->
-    <color name="accent">#03DAC5</color> <!-- Color de acento para botones o interacciones -->
+    <color name="primaryDark">#1A1A1A</color>
+    <color name="secondaryDark">#FFFFFF</color>
+    <color name="primaryLight">#F1F0EE</color>
+    <color name="secondaryLight">#1A1A1A</color>
+    <color name="accent">#9E2525</color> <!-- Color de acento para botones o interacciones -->
 
     <!-- Colores para la barra de navegación y elementos seleccionados -->
     <color name="drawerBackground">#FFFFFF</color> <!-- Fondo blanco del Navigation Drawer -->

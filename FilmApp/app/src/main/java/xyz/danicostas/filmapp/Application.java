@@ -15,19 +15,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class Aplicacion extends AppCompatActivity {
+public class Application extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aplicacion);
+        setContentView(R.layout.activity_application);
         Intent intent = getIntent();
         String username = intent.getStringExtra("K_Usuario");
 
 
-        // Configurar Toolbar
+        /*// Configurar Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,7 +51,7 @@ public class Aplicacion extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_profile) {
-                    Intent intentPerfil = new Intent(Aplicacion.this, Profile.class);
+                    Intent intentPerfil = new Intent(Application.this, Profile.class);
                     startActivity(intentPerfil);
                     Log.i("Aplicacion", "Profile pulsado");
                 } else if (id == R.id.nav_settings) {
@@ -81,5 +81,6 @@ public class Aplicacion extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }*/
     }
 }

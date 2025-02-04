@@ -29,7 +29,7 @@
             android:name=".RegisterActivity"
             android:exported="false" /> <!-- Actividad principal con menú -->
         <activity
-            android:name=".Aplicacion"
+            android:name=".Application"
             android:exported="true" />
     </application>
 

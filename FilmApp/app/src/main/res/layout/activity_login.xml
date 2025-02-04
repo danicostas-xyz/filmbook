@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Don’t have an account? Register"
-                android:textColor="@color/primary"
+                android:textColor="@color/primaryDark"
                 android:textStyle="italic" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
