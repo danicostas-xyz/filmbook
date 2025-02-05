@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +41,8 @@ public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAd
     @Override
     public void onBindViewHolder(@NonNull FilmListNestedViewHolder holder, int position) {
         Film pelicula = peliculas.get(position);
+
+
         /* holder.txtTitulo.setText(pelicula.getTitulo());
         holder.txtDirector.setText("Dirigida por: " + pelicula.getDirector());*/
     }

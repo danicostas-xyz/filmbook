@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,18 +85,28 @@ public class ProfileFragment extends Fragment {
                 new FilmList(), new FilmList(),new FilmList(),new FilmList(),new FilmList(),new FilmList()
         );
 
+
         listaDeListas.get(0).setContent(listaPeliculas);
+        listaDeListas.get(0).setListName("Favoritas");
         listaDeListas.get(1).setContent(listaPeliculas);
+        listaDeListas.get(1).setListName("Anime");
         listaDeListas.get(2).setContent(listaPeliculas);
+        listaDeListas.get(2).setListName("Pendientes");
         listaDeListas.get(3).setContent(listaPeliculas);
+        listaDeListas.get(3).setListName("Watch List");
         listaDeListas.get(4).setContent(listaPeliculas);
+        listaDeListas.get(4).setListName("Sci-Fi");
         listaDeListas.get(5).setContent(listaPeliculas);
+        listaDeListas.get(5).setListName("Españolas");
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
         RecyclerView recyclerView = view.findViewById(R.id.RVFilmList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         FilmListAdapter adapter = new FilmListAdapter(listaDeListas);
         recyclerView.setAdapter(adapter);
+
+
         return view;
     }
 }

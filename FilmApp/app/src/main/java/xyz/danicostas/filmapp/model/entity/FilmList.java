@@ -1,8 +1,9 @@
 package xyz.danicostas.filmapp.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class FilmList {
+public class FilmList implements Serializable {
     private String listName;
     private List<Film> content;
 
