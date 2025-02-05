@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp;
+package xyz.danicostas.filmapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import xyz.danicostas.filmapp.DatabaseHelper;
+import xyz.danicostas.filmapp.R;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText usernameInput, passwordInput;

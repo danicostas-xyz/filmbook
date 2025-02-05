@@ -1,23 +1,21 @@
-package xyz.danicostas.filmapp;
+package xyz.danicostas.filmapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
-public class Application extends AppCompatActivity {
+import xyz.danicostas.filmapp.fragment.CalendarFragment;
+import xyz.danicostas.filmapp.fragment.FriendsFragment;
+import xyz.danicostas.filmapp.fragment.ProfileFragment;
+import xyz.danicostas.filmapp.R;
+import xyz.danicostas.filmapp.fragment.SearchFragment;
+
+public class ApplicationActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 

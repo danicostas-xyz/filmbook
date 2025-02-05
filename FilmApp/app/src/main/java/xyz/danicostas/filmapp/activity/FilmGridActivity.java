@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp;
+package xyz.danicostas.filmapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -9,10 +9,11 @@ import android.os.Bundle;
 import java.util.Arrays;
 import java.util.List;
 
+import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.model.entity.Film;
 
-public class FilmListDetailGrid extends AppCompatActivity {
+public class FilmGridActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

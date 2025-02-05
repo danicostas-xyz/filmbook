@@ -22,21 +22,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="12dp"
+        android:background="@color/primaryDark"
         app:cardElevation="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvListName">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="113dp"
-            android:layout_height="164dp"
-            android:background="@color/accent"
-            android:clipToOutline="true"
-            android:contentDescription="TODO"
-            android:outlineProvider="background"
-            android:scaleType="fitCenter" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RVNestedList"
+            android:layout_width="wrap_content"
+            android:background="@color/primaryDark"
+            android:layout_height="wrap_content">
+        </androidx.recyclerview.widget.RecyclerView>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

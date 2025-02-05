@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp;
+package xyz.danicostas.filmapp.fragment;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import xyz.danicostas.filmapp.R;
 
 /**
  * A simple {@link Fragment} subclass.

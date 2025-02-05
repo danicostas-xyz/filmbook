@@ -3,9 +3,9 @@
     <string name="navigation_drawer_close">Cerrar menú</string>
 
 
-    <string name="app_name">My Application</string>
+    <string name="app_name">Filmbook</string>
 
-    <string name="toolbar_title">Welcome to FilmApp</string>
+    <string name="toolbar_title">Welcome to Filmbook</string>
 
 
     <string name="nav_home">Home</string>
