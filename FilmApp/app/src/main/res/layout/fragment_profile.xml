@@ -6,10 +6,9 @@
     tools:context=".ProfileFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RVFilmGrid"
+        android:id="@+id/RVFilmList"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_height="wrap_content">
 
     </androidx.recyclerview.widget.RecyclerView>
 

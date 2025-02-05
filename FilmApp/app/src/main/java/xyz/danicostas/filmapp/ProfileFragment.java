@@ -16,7 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import xyz.danicostas.filmapp.adapter.FilmGridAdapter;
+import xyz.danicostas.filmapp.adapter.FilmListAdapter;
 import xyz.danicostas.filmapp.model.entity.Film;
+import xyz.danicostas.filmapp.model.entity.FilmList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,11 +81,21 @@ public class ProfileFragment extends Fragment {
         List<Film> listaPeliculas = Arrays.asList(
                 new Film(),new Film(),new Film(),new Film(), new Film(), new Film(),new Film(), new Film(), new Film(), new Film(), new Film(), new Film(), new Film(),new Film(), new Film()
         );
+        List<FilmList> listaDeListas = Arrays.asList(
+                new FilmList(), new FilmList(),new FilmList(),new FilmList(),new FilmList(),new FilmList()
+        );
+
+        listaDeListas.get(0).setContent(listaPeliculas);
+        listaDeListas.get(1).setContent(listaPeliculas);
+        listaDeListas.get(2).setContent(listaPeliculas);
+        listaDeListas.get(3).setContent(listaPeliculas);
+        listaDeListas.get(4).setContent(listaPeliculas);
+        listaDeListas.get(5).setContent(listaPeliculas);
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.RVFilmGrid);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        FilmGridAdapter adapter = new FilmGridAdapter(listaPeliculas);
+        RecyclerView recyclerView = view.findViewById(R.id.RVFilmList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        FilmListAdapter adapter = new FilmListAdapter(listaDeListas);
         recyclerView.setAdapter(adapter);
         return view;
     }
