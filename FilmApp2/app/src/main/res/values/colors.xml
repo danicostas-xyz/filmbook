@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores básicos -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#D1D1D1</color>
+    <color name="primaryDark">#1A1A1A</color>
+
+    <color name="secondaryDark">#FFFFFF</color>
+    <color name="primaryLight">#F1F0EE</color>
+    <color name="secondaryLight">#1A1A1A</color>
+    <color name="accent">#9E2525</color> <!-- Color de acento para botones o interacciones -->
+
+    <!-- Colores para la barra de navegación y elementos seleccionados -->
+    <color name="drawerBackground">#FFFFFF</color> <!-- Fondo blanco del Navigation Drawer -->
+    <color name="drawerItemSelected">#3700B3</color> <!-- Color de texto de los items seleccionados en el Drawer -->
+    <color name="drawerItemDefault">#000000</color> <!-- Color de los items del Drawer por defecto -->
+
+    <!-- Colores para el encabezado del Drawer -->
+    <color name="headerBackground">#6200EE</color> <!-- Fondo en el encabezado del Drawer -->
+    <color name="headerTextColor">#FFFFFF</color> <!-- Texto en el encabezado del Drawer -->
+
+    <!-- Colores para los íconos -->
+    <color name="iconColor">#FFFFFF</color> <!-- Color de íconos -->
+    <color name="iconColorSelected">#03DAC5</color> <!-- Color de íconos seleccionados -->
+
+    <!-- Colores adicionales -->
+    <color name="buttonColor">#6200EE</color> <!-- Color para los botones principales -->
+    <color name="buttonTextColor">#FFFFFF</color> <!-- Color del texto en los botones -->
+    <color name="backgroundColor">#F5F5F5</color> <!-- Color de fondo para la mayoría de la app -->
+    <color name="cardBackground">#FFFFFF</color> <!-- Fondo para tarjetas o elementos tipo card -->
+    <color name="errorColor">#B00020</color> <!-- Color para mostrar errores -->
+</resources>
