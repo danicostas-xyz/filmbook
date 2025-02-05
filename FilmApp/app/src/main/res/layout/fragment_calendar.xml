@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".CalendarFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CALENDAR FRAGMENT" />
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

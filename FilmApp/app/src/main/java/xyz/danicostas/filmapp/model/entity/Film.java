@@ -6,6 +6,7 @@ import java.util.Map;
 public class Film {
     private String filmTitle;
     private double rating;
+    private String coverUrl;
     private String directorId;
     private List<String> genres;
     private Map<String, Review> reviews;
