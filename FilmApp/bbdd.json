@@ -1,0 +1,458 @@
+{
+  "PELICULAS": {
+    "peliculaID1": {
+      "titulo": "Inland Empire",
+      "calificacion": 7.5,
+      "directorID": "directorID1",
+      "generos": ["Drama", "Misterio", "Suspenso"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una película surrealista y compleja, pero fascinante.",
+          "usuarioID": "usuarioID1",
+          "fecha": "2025-01-28",
+          "peliculaID": "peliculaID1",
+          "peliculaTitulo": "Inland Empire",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Una de las obras más extrañas de Lynch.",
+          "usuarioID": "usuarioID2",
+          "fecha": "2025-01-29",
+          "peliculaID": "peliculaID1",
+          "peliculaTitulo": "Inland Empire",
+          "valoracion": 4
+        }
+      }
+    },
+    "peliculaID2": {
+      "titulo": "Mulholland Drive",
+      "calificacion": 8.8,
+      "directorID": "directorID1",
+      "generos": ["Drama", "Misterio", "Suspenso"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una obra maestra llena de misterio y simbolismo.",
+          "usuarioID": "usuarioID3",
+          "fecha": "2025-01-28",
+          "peliculaID": "peliculaID2",
+          "peliculaTitulo": "Mulholland Drive",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Lynch nunca decepciona, esta película es un enigma cautivador.",
+          "usuarioID": "usuarioID4",
+          "fecha": "2025-01-29",
+          "peliculaID": "peliculaID2",
+          "peliculaTitulo": "Mulholland Drive",
+          "valoracion": 5
+        }
+      }
+    },
+    "peliculaID3": {
+      "titulo": "Eraserhead",
+      "calificacion": 7.3,
+      "directorID": "directorID1",
+      "generos": ["Terror", "Experimental"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una película inquietante y visualmente impactante.",
+          "usuarioID": "usuarioID5",
+          "fecha": "2025-01-28",
+          "peliculaID": "peliculaID3",
+          "peliculaTitulo": "Eraserhead",
+          "valoracion": 4
+        },
+        "comentarioID2": {
+          "texto": "Una experiencia visual perturbadora que desafía el sentido común.",
+          "usuarioID": "usuarioID6",
+          "fecha": "2025-01-29",
+          "peliculaID": "peliculaID3",
+          "peliculaTitulo": "Eraserhead",
+          "valoracion": 4
+        }
+      }
+    },
+    "peliculaID4": {
+      "titulo": "The Elephant Man",
+      "calificacion": 8.2,
+      "directorID": "directorID1",
+      "generos": ["Drama", "Biografía"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una historia conmovedora y trágica, con una actuación sobresaliente.",
+          "usuarioID": "usuarioID7",
+          "fecha": "2025-01-28",
+          "peliculaID": "peliculaID4",
+          "peliculaTitulo": "The Elephant Man",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Un retrato increíblemente humano de la difícil vida de John Merrick.",
+          "usuarioID": "usuarioID8",
+          "fecha": "2025-01-29",
+          "peliculaID": "peliculaID4",
+          "peliculaTitulo": "The Elephant Man",
+          "valoracion": 5
+        }
+      }
+    },
+    "peliculaID5": {
+      "titulo": "Blue Velvet",
+      "calificacion": 8.5,
+      "directorID": "directorID1",
+      "generos": ["Crimen", "Drama", "Misterio"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una obra maestra del cine noir, intrigante y perturbadora.",
+          "usuarioID": "usuarioID9",
+          "fecha": "2025-01-28",
+          "peliculaID": "peliculaID5",
+          "peliculaTitulo": "Blue Velvet",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "El contraste entre la apariencia tranquila y la corrupción oculta es brillante.",
+          "usuarioID": "usuarioID10",
+          "fecha": "2025-01-29",
+          "peliculaID": "peliculaID5",
+          "peliculaTitulo": "Blue Velvet",
+          "valoracion": 5
+        }
+      }
+    },
+    "peliculaID6": {
+      "titulo": "Blade Runner",
+      "calificacion": 8.7,
+      "directorID": "directorID2",
+      "generos": ["Ciencia ficción", "Drama"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Un clásico de la ciencia ficción con una atmósfera increíble.",
+          "usuarioID": "usuarioID11",
+          "fecha": "2025-02-01",
+          "peliculaID": "peliculaID6",
+          "peliculaTitulo": "Blade Runner",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Una película visualmente impresionante con una historia profunda.",
+          "usuarioID": "usuarioID12",
+          "fecha": "2025-02-02",
+          "peliculaID": "peliculaID6",
+          "peliculaTitulo": "Blade Runner",
+          "valoracion": 4
+        }
+      }
+    },
+    "peliculaID7": {
+      "titulo": "2001: A Space Odyssey",
+      "calificacion": 8.8,
+      "directorID": "directorID3",
+      "generos": ["Ciencia ficción", "Aventura"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una obra maestra del cine que redefine la ciencia ficción.",
+          "usuarioID": "usuarioID13",
+          "fecha": "2025-02-03",
+          "peliculaID": "peliculaID7",
+          "peliculaTitulo": "2001: A Space Odyssey",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Una experiencia visual y filosófica única.",
+          "usuarioID": "usuarioID14",
+          "fecha": "2025-02-04",
+          "peliculaID": "peliculaID7",
+          "peliculaTitulo": "2001: A Space Odyssey",
+          "valoracion": 5
+        }
+      }
+    },
+    "peliculaID8": {
+      "titulo": "Pulp Fiction",
+      "calificacion": 8.9,
+      "directorID": "directorID4",
+      "generos": ["Crimen", "Drama"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una película icónica con diálogos memorables.",
+          "usuarioID": "usuarioID15",
+          "fecha": "2025-02-05",
+          "peliculaID": "peliculaID8",
+          "peliculaTitulo": "Pulp Fiction",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Tarantino en su mejor momento, una obra maestra.",
+          "usuarioID": "usuarioID16",
+          "fecha": "2025-02-06",
+          "peliculaID": "peliculaID8",
+          "peliculaTitulo": "Pulp Fiction",
+          "valoracion": 5
+        }
+      }
+    },
+    "peliculaID9": {
+      "titulo": "Inception",
+      "calificacion": 8.8,
+      "directorID": "directorID5",
+      "generos": ["Ciencia ficción", "Acción"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una película que te hace pensar y cuestionar la realidad.",
+          "usuarioID": "usuarioID17",
+          "fecha": "2025-02-07",
+          "peliculaID": "peliculaID9",
+          "peliculaTitulo": "Inception",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Nolan nos lleva a un viaje mental increíble.",
+          "usuarioID": "usuarioID18",
+          "fecha": "2025-02-08",
+          "peliculaID": "peliculaID9",
+          "peliculaTitulo": "Inception",
+          "valoracion": 5
+        }
+      }
+    },
+    "peliculaID10": {
+      "titulo": "The Departed",
+      "calificacion": 8.5,
+      "directorID": "directorID6",
+      "generos": ["Crimen", "Drama", "Thriller"],
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Un thriller intenso con giros inesperados.",
+          "usuarioID": "usuarioID19",
+          "fecha": "2025-02-09",
+          "peliculaID": "peliculaID10",
+          "peliculaTitulo": "The Departed",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Scorsese en su mejor forma, una película emocionante.",
+          "usuarioID": "usuarioID20",
+          "fecha": "2025-02-10",
+          "peliculaID": "peliculaID10",
+          "peliculaTitulo": "The Departed",
+          "valoracion": 5
+        }
+      }
+    }
+  },
+  "USUARIOS": {
+    "usuarioID1": {
+      "nombre": "Dani",
+      "username": "lafargue69",
+      "listas": {
+        "favoritos": ["peliculaID3"],
+        "pendientes": ["peliculaID6", "peliculaID7"]
+      },
+      "comentarios": {
+        "comentarioID2": {
+          "texto": "Una de las obras más extrañas de Lynch.",
+          "peliculaID": "peliculaID1",
+          "usuarioID": "usuarioID1",
+          "peliculaTitulo": "Inland Empire",
+          "fecha": "2025-01-29",
+          "valoracion": 4
+        },
+        "comentarioID3": {
+          "texto": "Una obra maestra de Lynch, llena de giros inesperados.",
+          "peliculaID": "peliculaID2",
+          "peliculaTitulo": "Mulholland Drive",
+          "usuarioID": "usuarioID1",
+          "fecha": "2025-01-30",
+          "valoracion": 5
+        },
+        "comentarioID5": {
+          "texto": "La mejor película de la historia.",
+          "peliculaID": "peliculaID3",
+          "peliculaTitulo": "Eraserhead",
+          "usuarioID": "usuarioID1",
+          "fecha": "2025-02-01",
+          "valoracion": 5
+        }
+      }
+    },
+    "usuarioID2": {
+      "nombre": "Andrés",
+      "username": "yolmi",
+      "listas": {
+        "favoritos": ["peliculaID3"],
+        "pendientes": ["peliculaID1", "peliculaID5"]
+      },
+      "comentarios": {
+        "comentarioID2": {
+          "texto": "Una de las obras más extrañas de Lynch.",
+          "peliculaID": "peliculaID1",
+          "usuarioID": "usuarioID2",
+          "peliculaTitulo": "Inland Empire",
+          "fecha": "2025-01-29",
+          "valoracion": 4
+        },
+        "comentarioID3": {
+          "texto": "Una obra maestra de Lynch, llena de giros inesperados.",
+          "peliculaID": "peliculaID2",
+          "peliculaTitulo": "Mulholland Drive",
+          "usuarioID": "usuarioID2",
+          "fecha": "2025-01-30",
+          "valoracion": 5
+        },
+        "comentarioID5": {
+          "texto": "Una historia conmovedora y trágica, con una actuación sobresaliente.",
+          "peliculaID": "peliculaID4",
+          "peliculaTitulo": "The Elephant Man",
+          "usuarioID": "usuarioID2",
+          "fecha": "2025-02-01",
+          "valoracion": 4
+        }
+      }
+    },
+    "usuarioID3": {
+      "nombre": "Carlos",
+      "username": "carlossito",
+      "listas": {
+        "favoritos": ["peliculaID2", "peliculaID5"],
+        "pendientes": ["peliculaID1", "peliculaID4"]
+      },
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una película increíblemente inquietante, como todo el cine de Lynch.",
+          "peliculaID": "peliculaID1",
+          "usuarioID": "usuarioID3",
+          "peliculaTitulo": "Inland Empire",
+          "fecha": "2025-01-28",
+          "valoracion": 4
+        },
+        "comentarioID2": {
+          "texto": "Un viaje psicológico muy interesante, pero algo largo.",
+          "peliculaID": "peliculaID2",
+          "usuarioID": "usuarioID3",
+          "peliculaTitulo": "Mulholland Drive",
+          "fecha": "2025-01-30",
+          "valoracion": 4
+        },
+        "comentarioID4": {
+          "texto": "Una historia conmovedora con una dirección espectacular.",
+          "peliculaID": "peliculaID4",
+          "usuarioID": "usuarioID3",
+          "peliculaTitulo": "The Elephant Man",
+          "fecha": "2025-02-01",
+          "valoracion": 5
+        }
+      }
+    },
+    "usuarioID4": {
+      "nombre": "Laura",
+      "username": "lauritaX",
+      "listas": {
+        "favoritos": ["peliculaID1"],
+        "pendientes": ["peliculaID3", "peliculaID4"]
+      },
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una película profunda y extraña, pero no para todos los gustos.",
+          "peliculaID": "peliculaID1",
+          "usuarioID": "usuarioID4",
+          "peliculaTitulo": "Inland Empire",
+          "fecha": "2025-01-29",
+          "valoracion": 3
+        },
+        "comentarioID2": {
+          "texto": "El misterio y la tensión son impresionantes, como siempre con Lynch.",
+          "peliculaID": "peliculaID2",
+          "usuarioID": "usuarioID4",
+          "peliculaTitulo": "Mulholland Drive",
+          "fecha": "2025-01-30",
+          "valoracion": 5
+        },
+        "comentarioID3": {
+          "texto": "Una película de terror única, que te deja pensando después de verla.",
+          "peliculaID": "peliculaID3",
+          "usuarioID": "usuarioID4",
+          "peliculaTitulo": "Eraserhead",
+          "fecha": "2025-02-01",
+          "valoracion": 4
+        }
+      }
+    },
+    "usuarioID5": {
+      "nombre": "Javier",
+      "username": "javii89",
+      "listas": {
+        "favoritos": ["peliculaID4", "peliculaID5"],
+        "pendientes": ["peliculaID1", "peliculaID3"]
+      },
+      "comentarios": {
+        "comentarioID1": {
+          "texto": "Una historia conmovedora y trágica, con una actuación sobresaliente.",
+          "peliculaID": "peliculaID4",
+          "usuarioID": "usuarioID5",
+          "peliculaTitulo": "The Elephant Man",
+          "fecha": "2025-01-31",
+          "valoracion": 5
+        },
+        "comentarioID2": {
+          "texto": "Una trama intrigante y muy bien ejecutada.",
+          "peliculaID": "peliculaID5",
+          "usuarioID": "usuarioID5",
+          "peliculaTitulo": "Blue Velvet",
+          "fecha": "2025-01-30",
+          "valoracion": 4
+        },
+        "comentarioID3": {
+          "texto": "Una película inquietante y visualmente impactante.",
+          "peliculaID": "peliculaID3",
+          "usuarioID": "usuarioID5",
+          "peliculaTitulo": "Eraserhead",
+          "fecha": "2025-02-01",
+          "valoracion": 3
+        }
+      }
+    }
+  },
+  "DIRECTORES": {
+    "directorID1": {
+      "nombre": "David Lynch",
+      "nacionalidad": "Estadounidense"
+    },
+    "directorID2": {
+      "nombre": "Ridley Scott",
+      "nacionalidad": "Británico"
+    },
+    "directorID3": {
+      "nombre": "Stanley Kubrick",
+      "nacionalidad": "Estadounidense"
+    },
+    "directorID4": {
+      "nombre": "Quentin Tarantino",
+      "nacionalidad": "Estadounidense"
+    },
+    "directorID5": {
+      "nombre": "Christopher Nolan",
+      "nacionalidad": "Británico"
+    },
+    "directorID6": {
+      "nombre": "Martin Scorsese",
+      "nacionalidad": "Estadounidense"
+    },
+    "directorID7": {
+      "nombre": "Hayao Miyazaki",
+      "nacionalidad": "Japonés"
+    },
+    "directorID8": {
+      "nombre": "Alfred Hitchcock",
+      "nacionalidad": "Británico"
+    },
+    "directorID9": {
+      "nombre": "Wes Anderson",
+      "nacionalidad": "Estadounidense"
+    },
+    "directorID10": {
+      "nombre": "Federico Fellini",
+      "nacionalidad": "Italiano"
+    }
+  }
+}
