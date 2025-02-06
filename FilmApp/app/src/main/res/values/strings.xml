@@ -25,6 +25,12 @@
     <string name="error_generic">Something went wrong. Please try again later.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_greeting">Bienvenido!</string>
+    <string name="user_hint">Usuario</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="login_button">Iniciar Sesión</string>
+    <string name="not_registered_text">No estás registrado? Regístrate</string>
+    <string name="forget_password">Olvidaste la contraseña?</string>
 
 
 </resources>
