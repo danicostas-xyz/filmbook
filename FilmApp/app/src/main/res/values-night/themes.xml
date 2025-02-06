@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/primaryDark</item>
         <item name="colorSecondary">@color/secondaryDark</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="colorButtonNormal">#ffffff</item>
     </style>
     <style name="Theme.Filmbook" parent="Base.Theme.Filmbook" />
 </resources>
