@@ -8,13 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.List;
-
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.adapter.FilmListAdapter;
-import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 
 public class FilmGridActivity extends AppCompatActivity {
