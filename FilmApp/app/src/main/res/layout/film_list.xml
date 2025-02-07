@@ -18,6 +18,16 @@
         android:padding="8dp"
         android:paddingBottom="0dp"/>
 
+    <ImageButton
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_circle"
+        android:src="@drawable/ic_add"
+        app:layout_constraintStart_toEndOf="@+id/tvListName"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="wrap_content"
@@ -48,5 +58,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

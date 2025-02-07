@@ -1,9 +1,10 @@
 package xyz.danicostas.filmapp.model.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Film {
+public class Film implements Serializable {
     private String peliculaID;
     private String titulo;
     private double calificacion;
