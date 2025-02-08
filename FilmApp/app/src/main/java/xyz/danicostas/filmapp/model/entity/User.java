@@ -20,9 +20,10 @@ public class User {
     }
 
 
-    public User(String nombre, String username, List<FilmList> listaPeliculas, Map<String, Comentario> comentarios) {
+    public User(String nombre, String username, String password, List<FilmList> listaPeliculas, Map<String, Comentario> comentarios) {
         this.nombre = nombre;
         this.username = username;
+        this.password = password;
         this.listaPeliculas = listaPeliculas;
         this.comentarios = comentarios;
     }

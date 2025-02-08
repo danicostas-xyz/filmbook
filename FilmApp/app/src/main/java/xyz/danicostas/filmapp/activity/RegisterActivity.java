@@ -73,8 +73,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 ArrayList<FilmList> filmLists = new ArrayList<>();
                                 filmLists.add(filmList);
 
-                                User newUser = new User(email, password, null, null);
+                                User newUser = new User();
+                                newUser.setPassword(password);
                                 newUser.setEmail(email);
+                                newUser.setUsername(username);
                                 newUser.setListaPeliculas(filmLists);
                                 newUser.setComentarios(new HashMap<>());
 
