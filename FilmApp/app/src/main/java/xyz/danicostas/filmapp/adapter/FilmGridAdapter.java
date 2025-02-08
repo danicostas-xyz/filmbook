@@ -15,7 +15,6 @@ import xyz.danicostas.filmapp.model.entity.Film;
 
 public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGridViewHolder> {
     private List<Film> peliculas;
-
     public FilmGridAdapter(List<Film> peliculas) {
         this.peliculas = peliculas;
     }

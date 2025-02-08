@@ -46,9 +46,11 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
         FilmListViewHolder(View itemView) {
             super(itemView);
 
+
             List<Film> listaPeliculas = Arrays.asList(
                     new Film(),new Film(),new Film(),new Film(), new Film(), new Film(),new Film(), new Film(), new Film(), new Film(), new Film(), new Film(), new Film(),new Film(), new Film()
             );
+
 
             tvListTitle = itemView.findViewById(R.id.tvListName);
             layout = itemView.findViewById(R.id.FilmListLayout);
