@@ -12,7 +12,7 @@ public class ApiFilmService {
 
     private ApiFilmService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3")
+                .baseUrl("https://api.themoviedb.org/3/")
                 .addConverterFactory(GsonConverterFactory.create(
                         new GsonBuilder().serializeNulls().create()
                 )).build();
@@ -23,4 +23,9 @@ public class ApiFilmService {
     public static ApiFilmService getInstance() {
         return instance == null ? instance = new ApiFilmService() : instance;
     }
+
+    public TMDBApiService getApi(){
+        return api;
+    }
+
 }

@@ -4,18 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.adapter.FilmListAdapter;
 import xyz.danicostas.filmapp.model.entity.FilmList;
+import xyz.danicostas.filmapp.model.entity.FilmTMDB;
+import xyz.danicostas.filmapp.model.service.ApiFilmService;
+import xyz.danicostas.filmapp.model.service.TMDBApiService;
 
 public class FilmGridActivity extends AppCompatActivity {
-
     private FilmList filmList;
+    ProgressDialog mDefaultDialog;
+    Context c = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +42,63 @@ public class FilmGridActivity extends AppCompatActivity {
         TextView tvFilmListTitle = findViewById(R.id.tvFilmListTitle);
         tvFilmListTitle.setText(filmList.getListName());
 
-        RecyclerView recyclerView = findViewById(R.id.RVFilmGrid);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        FilmGridAdapter adapter = new FilmGridAdapter(filmList.getContent());
-        recyclerView.setAdapter(adapter);
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        obtainTrendingMovies();
+    }
+
+    public void obtainTrendingMovies(){
+        mostrarEspera();
+
+        TMDBApiService api = ApiFilmService.getInstance().getApi();
+
+        Call<List<FilmTMDB>> call = api.getTrendingMovies("50f1837f71c3d1a88f1de905029df6c0");
+
+        call.enqueue(new Callback<List<FilmTMDB>>() {
+
+            @Override
+            public void onResponse(Call<List<FilmTMDB>> call, Response<List<FilmTMDB>> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Success", "Datos traidos del servicio");
+                    //Gracias a Gson, me convierte los json a objetos Usuario
+                    List<FilmTMDB> trendingMovieList = response.body();
+                    Log.d("hey", trendingMovieList.toString());
+
+                    RecyclerView recyclerView = findViewById(R.id.RVFilmGrid);
+                    recyclerView.setLayoutManager(new GridLayoutManager(c, 3));
+                    recyclerView.setAdapter(new FilmGridAdapter(trendingMovieList));
+
+                } else {
+                    Log.d("Error", response.code() + " " + response.message());
+                    return;
+                }
+
+                cancelarEspera();
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.d("Error", t.toString());
+                cancelarEspera();
+            }
+        });
+    }
+
+    public void mostrarEspera() {
+        mDefaultDialog = new ProgressDialog(this);
+        // El valor predeterminado es la forma de círculos pequeños
+        mDefaultDialog.setProgressStyle (android.app.ProgressDialog.STYLE_SPINNER);
+        mDefaultDialog.setMessage("Solicitando datos ...");
+        mDefaultDialog.setCanceledOnTouchOutside(false);// Por defecto true
+        mDefaultDialog.show();
+    }
+
+    public void cancelarEspera(){
+        mDefaultDialog.cancel();
     }
 }

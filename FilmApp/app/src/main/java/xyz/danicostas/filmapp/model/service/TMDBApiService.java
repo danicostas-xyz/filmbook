@@ -10,16 +10,15 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import xyz.danicostas.filmapp.model.entity.FilmTMDB;
 
 public interface TMDBApiService {
 
     // https://api.themoviedb.org/3
-    @Headers({
-            "Authorization: API Key 50f1837f71c3d1a88f1de905029df6c0"
-    })
+
     @GET("trending/all/week")
-    Call<List<FilmTMDB>> getTrendingMovies();
+    Call<List<FilmTMDB>> getTrendingMovies(@Query("api_key") String apiKey);
 
 
     /*@Headers({
