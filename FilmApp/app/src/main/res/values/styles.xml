@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomButtonEditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:width">368dp</item>
+        <item name="android:height">64dp</item>
+        <item name="android:textColor">@color/secondaryDark</item>
+    </style>
+    <style name="CustomEditText" parent="CustomButtonEditText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:background">@drawable/rounded_button_edittext</item>
+    </style>
+    <style name="CustomButton" parent="CustomButtonEditText">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:background">@drawable/rounded_button_no_stroke</item>
+        <item name="backgroundTint">@color/accent</item>
+    </style>
+
+    <style name="h1" parent="">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+    <style name="h2" parent="">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+    <style name="h3" parent="">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+    <style name="textMD" parent="">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="textSM_detail" parent="">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+    <style name="textSM" parent="">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="textXS" parent="">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+</resources>
