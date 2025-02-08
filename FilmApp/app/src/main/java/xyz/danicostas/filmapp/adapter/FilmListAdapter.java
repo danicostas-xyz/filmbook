@@ -79,7 +79,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
             startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
         });
         holder.addMovie.setOnClickListener(v -> {
-            
+
         });
     }
 
