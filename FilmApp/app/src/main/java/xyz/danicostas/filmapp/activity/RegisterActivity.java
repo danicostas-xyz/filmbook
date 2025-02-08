@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.dao.DaoUsuario;
+import xyz.danicostas.filmapp.model.persistence.DaoUsuario;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.User;
 

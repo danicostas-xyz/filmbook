@@ -19,9 +19,6 @@
             android:name=".activity.FilmGridActivity"
             android:exported="false" />
         <activity
-            android:name=".Profile"
-            android:exported="false" /> <!-- Actividad de inicio -->
-        <activity
             android:name=".activity.LoginActivity"
             android:exported="true">
             <intent-filter>
