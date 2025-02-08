@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +15,6 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import xyz.danicostas.filmapp.activity.LoginActivity;
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.dao.DaoUsuario;
 import xyz.danicostas.filmapp.model.entity.FilmList;
@@ -25,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button registerButton;
     private DaoUsuario daoBBDD;
     private FirebaseAuth mAuth;
+    private TextView loginLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +35,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         emailInput = findViewById(R.id.email);
         usernameInput = findViewById(R.id.username);passwordInput = findViewById(R.id.password);
-        registerButton = findViewById(R.id.register);
+        registerButton = findViewById(R.id.btRegister);
         daoBBDD = new DaoUsuario();
         mAuth = FirebaseAuth.getInstance();
+        loginLink = findViewById(R.id.login_link);
+
+        loginLink.setOnClickListener(view -> {
+            finish();
+        });
 
         registerButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
@@ -44,21 +50,20 @@ public class RegisterActivity extends AppCompatActivity {
             String password = passwordInput.getText().toString().trim();
 
             if (email.isEmpty()) {
-                emailInput.setError("El email es obligatorio");
+                emailInput.setError(getString(R.string.emailRequired));
                 emailInput.requestFocus();
                 return;
             }
             if (username.isEmpty()) {
-                usernameInput.setError("El username es obligatorio");
+                usernameInput.setError(getString(R.string.userRequired));
                 usernameInput.requestFocus();
                 return;
             }
             if (password.isEmpty()) {
-                passwordInput.setError("La contraseña es obligatoria");
+                passwordInput.setError(getString(R.string.passwordRequired));
                 passwordInput.requestFocus();
                 return;
             }
-
 
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, authTask -> {
@@ -82,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 daoBBDD.createUser(userId, newUser, task -> {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(RegisterActivity.this, "¡Registro exitoso!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, getString(R.string.registerOK), Toast.LENGTH_SHORT).show();
 
                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                         startActivity(intent);
@@ -90,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     } else {
                                         Exception exception = task.getException();
                                         String errorMessage = exception != null ? exception.getMessage() : "Unknown error";
-                                        Toast.makeText(RegisterActivity.this, "Fallo en el registro en Firestore: " + errorMessage, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, getString(R.string.registerKO) + errorMessage, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -99,9 +104,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                             String errorMessage = authTask.getException() != null ? authTask.getException().getMessage() : "Unknown error";
                             if (errorMessage.contains("The email address is already in use")) {
-                                Toast.makeText(RegisterActivity.this, "El correo ya está en uso", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, getString(R.string.mailAlreadyInUse), Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(RegisterActivity.this, "Fallo en la autenticación: " + errorMessage, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, getString(R.string.authKO) + errorMessage, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

@@ -7,11 +7,11 @@
     tools:context=".activity.LoginActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/filmbookLogotipo"
         android:layout_width="181dp"
         android:layout_height="97dp"
         android:layout_marginTop="32dp"
-        android:background="@color/accent"
+        android:src="@drawable/filmbook_logotipo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,15 +20,12 @@
         android:id="@+id/tvLoginGreeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:paddingBottom="16dp"
         android:text="@string/login_greeting"
-        android:textFontWeight="600"
-        android:textSize="38sp"
+        style="@style/h1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/filmbookLogotipo" />
 
     <LinearLayout
         android:id="@+id/linearLayoutUserPass"
@@ -40,52 +37,47 @@
         app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintTop_toBottomOf="@+id/tvLoginGreeting"
         app:layout_constraintVertical_bias="0.633"
-        tools:layout_editor_absoluteX="22dp">
+        tools:layout_editor_absoluteX="1dp">
 
         <EditText
             android:id="@+id/email"
+            style="@style/CustomEditText"
+            android:paddingStart="26dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:hint="@string/user_hint"
-            android:inputType="text"
-            android:padding="12dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="281dp"
-            android:textSize="16sp"/>
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/password"
+            style="@style/CustomEditText"
+            android:paddingStart="26dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_hint"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="354dp"
-            android:textSize="16sp"/>
+            android:inputType="textPassword" />
 
         <TextView
+            style="@style/textSM_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/forget_password"
+            android:layout_marginTop="16dp"
             android:gravity="right"
-            android:textSize="12sp"/>
+            android:text="@string/forget_password"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <Button
         android:id="@+id/login"
+        style="@style/CustomButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
         android:layout_marginHorizontal="22dp"
         android:text="@string/login_button"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="544dp"
-        android:textSize="18sp"
-        android:textColor="#eeeeee"
+        app:layout_constraintBottom_toTopOf="@id/register_link"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutUserPass"
-        app:layout_constraintBottom_toTopOf="@id/register_link"/>
+        tools:layout_editor_absoluteX="22dp" />
 
     <TextView
         android:id="@+id/register_link"
@@ -93,10 +85,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="56dp"
+        style="@style/textSM_detail"
         android:text="@string/not_registered_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="12sp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,13 +36,13 @@ public class LoginActivity extends AppCompatActivity {
             String password = passwordInput.getText().toString().trim();
 
             if (email.isEmpty()) {
-                emailInput.setError("Email is required");
+                emailInput.setError(getString(R.string.emailRequired));
                 emailInput.requestFocus();
                 return;
             }
 
             if (password.isEmpty()) {
-                passwordInput.setError("Password is required");
+                passwordInput.setError(getString(R.string.passwordRequired));
                 passwordInput.requestFocus();
                 return;
             }
@@ -50,14 +50,14 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.loginOK, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, ApplicationActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
                             String errorMessage = task.getException() != null ? task.getException().getMessage() : "Invalid Credentials";
                             Log.e("LoginActivity", "Login failed: " + errorMessage);
-                            Toast.makeText(LoginActivity.this, "Login failed: " + errorMessage, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, getString(R.string.loginKO) + errorMessage, Toast.LENGTH_SHORT).show();
                         }
                     });
         });
