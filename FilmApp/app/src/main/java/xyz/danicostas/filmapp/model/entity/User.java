@@ -1,5 +1,6 @@
 package xyz.danicostas.filmapp.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ public class User {
         this.password = password;
         this.listaPeliculas = listaPeliculas;
         this.comentarios = comentarios;
+        listaPeliculas.add(new FilmList("Favorites", new ArrayList<Film>()));
     }
 
 

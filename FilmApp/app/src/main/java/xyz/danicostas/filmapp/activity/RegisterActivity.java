@@ -14,9 +14,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.dao.DaoUsuario;
+import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.User;
 
@@ -73,12 +75,15 @@ public class RegisterActivity extends AppCompatActivity {
                                 String userId = firebaseUser.getUid();
 
                                 FilmList filmList = new FilmList();
-                                filmList.setContent(new ArrayList<>());
+                                filmList.setContent(new ArrayList<Film>());
 
                                 ArrayList<FilmList> filmLists = new ArrayList<>();
                                 filmLists.add(filmList);
 
                                 User newUser = new User();
+                                List<FilmList> listaPeliculas = new ArrayList<>();
+                                listaPeliculas.add(new FilmList("Favoritas", new ArrayList<Film>()));
+                                newUser.setListaPeliculas(listaPeliculas);
                                 newUser.setPassword(password);
                                 newUser.setEmail(email);
                                 newUser.setUsername(username);

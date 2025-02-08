@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,8 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
 
     static class FilmListViewHolder extends RecyclerView.ViewHolder {
         TextView txtTitulo, txtDirector;
+
+        ImageButton addMovie;
         TextView tvListTitle, tvVerTodo;
         ConstraintLayout layout;
 
@@ -49,7 +52,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
             List<Film> listaPeliculas = Arrays.asList(
                     new Film(),new Film(),new Film(),new Film(), new Film(), new Film(),new Film(), new Film(), new Film(), new Film(), new Film(), new Film(), new Film(),new Film(), new Film()
             );
-
+            addMovie = itemView.findViewById(R.id.addMovie);
             tvListTitle = itemView.findViewById(R.id.tvListName);
             layout = itemView.findViewById(R.id.FilmListLayout);
             tvVerTodo = itemView.findViewById(R.id.tvVerTodo);
@@ -74,6 +77,9 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
             intent.putExtra(FILM_LIST_NAME, holder.tvListTitle.getText());
             intent.putExtra(FILM_LIST_CONTENT, listaDeListas);
             startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
+        });
+        holder.addMovie.setOnClickListener(v -> {
+            
         });
     }
 

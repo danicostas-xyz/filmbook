@@ -19,6 +19,7 @@
         android:paddingBottom="0dp"/>
 
     <ImageButton
+        android:id="@+id/addMovie"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="12dp"
