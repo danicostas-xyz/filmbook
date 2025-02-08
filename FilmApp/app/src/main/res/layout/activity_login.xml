@@ -7,7 +7,7 @@
     tools:context=".activity.LoginActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/filmbookLogotipo"
         android:layout_width="181dp"
         android:layout_height="97dp"
         android:layout_marginTop="32dp"
@@ -25,7 +25,7 @@
         style="@style/h1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/filmbookLogotipo" />
 
     <LinearLayout
         android:id="@+id/linearLayoutUserPass"
@@ -89,7 +89,6 @@
         android:text="@string/not_registered_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="12sp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

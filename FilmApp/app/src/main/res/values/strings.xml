@@ -31,6 +31,22 @@
     <string name="login_button">Iniciar sesión</string>
     <string name="not_registered_text">No estás registrado? Regístrate</string>
     <string name="forget_password">Olvidaste la contraseña?</string>
+    <string name="register">Introduce tus datos</string>
+    <string name="btRegister">Regístrate</string>
+    <string name="alreadyRegisteredWarning">Ya estás registrado? Inicia Sesión</string>
+    <string name="confirmPassword">Confirma la contraseña</string>
+    <string name="password">Contraseña</string>
+    <string name="username">Usuario</string>
+    <string name="mail">Correo</string>
+    <string name="passwordRequired">La contraseña es obligatoria</string>
+    <string name="emailRequired">El correo es obligatorio</string>
+    <string name="userRequired">El usuario es obligatorio</string>
+    <string name="registerOK">¡Registro exitoso!</string>
+    <string name="registerKO">"Fallo en el registro en Firestore: "</string>
+    <string name="mailAlreadyInUse">El correo ya está en uso</string>
+    <string name="authKO">"Fallo en la autenticación: "</string>
+    <string name="loginOK">¡Login exitoso!</string>
+    <string name="loginKO">"Error en el login: "</string>
 
 
 </resources>
