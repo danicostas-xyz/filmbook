@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.dao;
+package xyz.danicostas.filmapp.model.persistence;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentReference;

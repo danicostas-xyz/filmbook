@@ -9,7 +9,25 @@ public class Film implements Serializable {
     private String titulo;
     private double calificacion;
     private String directorID;
+    private String posterURL;
     private List<String> generos;
+
+    public String getPeliculaID() {
+        return peliculaID;
+    }
+
+    public void setPeliculaID(String peliculaID) {
+        this.peliculaID = peliculaID;
+    }
+
+    public String getPosterURL() {
+        return posterURL;
+    }
+
+    public void setPosterURL(String posterURL) {
+        this.posterURL = posterURL;
+    }
+
     private Map<String, Comentario> comentarios;
 
 

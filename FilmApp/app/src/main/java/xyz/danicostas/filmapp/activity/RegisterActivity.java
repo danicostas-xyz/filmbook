@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.dao.DaoUsuario;
 import xyz.danicostas.filmapp.model.entity.Film;
+import xyz.danicostas.filmapp.model.persistence.DaoUsuario;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.User;
 
@@ -75,18 +75,20 @@ public class RegisterActivity extends AppCompatActivity {
                                 String userId = firebaseUser.getUid();
 
                                 FilmList filmList = new FilmList();
-                                filmList.setContent(new ArrayList<Film>());
+                                filmList.setContent(new ArrayList<>());
 
                                 ArrayList<FilmList> filmLists = new ArrayList<>();
                                 filmLists.add(filmList);
 
                                 User newUser = new User();
-                                List<FilmList> listaPeliculas = new ArrayList<>();
-                                listaPeliculas.add(new FilmList("Favoritas", new ArrayList<Film>()));
-                                newUser.setListaPeliculas(listaPeliculas);
                                 newUser.setPassword(password);
+                                List<Film> listaMovies = new ArrayList<>();
+                                List<FilmList> listaFilm = new ArrayList<>();
+                                listaFilm.add(new FilmList());
+                                listaFilm.get(0).setListName("Favorites");
+                                listaFilm.get(0).setContent(listaMovies);
+                                newUser.setListaPeliculas(listaFilm);
                                 newUser.setEmail(email);
-                                newUser.setUsername(username);
                                 newUser.setListaPeliculas(filmLists);
                                 newUser.setComentarios(new HashMap<>());
 

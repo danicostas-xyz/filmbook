@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.dao;
+package xyz.danicostas.filmapp.model.persistence;
 
 import android.util.Log;
 
