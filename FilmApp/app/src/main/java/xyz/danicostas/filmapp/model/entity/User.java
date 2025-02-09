@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import xyz.danicostas.filmapp.model.entity.FilmList;
-
 public class User {
     private String nombre;
     private String email;
     private String username;
     private String password;
     private List<FilmList> listaPeliculas;
-    private Map<String, Comentario> comentarios;
+    private Map<String, Review> comentarios;
     private List<User> listaAmigos;
     private String url;
 
@@ -21,7 +19,7 @@ public class User {
     }
 
 
-    public User(String nombre, String username, String password, List<FilmList> listaPeliculas, Map<String, Comentario> comentarios) {
+    public User(String nombre, String username, String password, List<FilmList> listaPeliculas, Map<String, Review> comentarios) {
         this.nombre = nombre;
         this.username = username;
         this.password = password;
@@ -76,11 +74,11 @@ public class User {
         this.listaPeliculas = listaPeliculas;
     }
 
-    public Map<String, Comentario> getComentarios() {
+    public Map<String, Review> getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(Map<String, Comentario> comentarios) {
+    public void setComentarios(Map<String, Review> comentarios) {
         this.comentarios = comentarios;
     }
 

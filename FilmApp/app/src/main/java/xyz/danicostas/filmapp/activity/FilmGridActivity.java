@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import java.util.List;
@@ -20,9 +19,7 @@ import retrofit2.Response;
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.adapter.FilmListAdapter;
-import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
-import xyz.danicostas.filmapp.model.entity.FilmTMDB;
 import xyz.danicostas.filmapp.model.entity.MovieResponse;
 import xyz.danicostas.filmapp.model.service.ApiFilmService;
 import xyz.danicostas.filmapp.model.service.TMDBApiService;
@@ -30,7 +27,7 @@ import xyz.danicostas.filmapp.model.service.TMDBApiService;
 public class FilmGridActivity extends AppCompatActivity {
     private FilmList filmList;
     ProgressDialog mDefaultDialog;
-    Context c = this;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +71,7 @@ public class FilmGridActivity extends AppCompatActivity {
                     List<MovieResponse.FilmTMDB> lista = movieResponse.getResults();
 
                     RecyclerView recyclerView = findViewById(R.id.RVFilmGrid);
-                    recyclerView.setLayoutManager(new GridLayoutManager(c, 3));
+                    recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
                     recyclerView.setAdapter(new FilmGridAdapter(lista));
 
                 } else {

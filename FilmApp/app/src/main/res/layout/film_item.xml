@@ -15,7 +15,7 @@
         android:layout_width="113dp"
         android:layout_height="164dp"
         android:background="@color/accent"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:contentDescription="TODO"
         android:clipToOutline="true"
         android:outlineProvider="background"

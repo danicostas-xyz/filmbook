@@ -14,8 +14,6 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.model.entity.Film;
-import xyz.danicostas.filmapp.model.entity.FilmTMDB;
 import xyz.danicostas.filmapp.model.entity.MovieResponse;
 
 public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGridViewHolder> {
