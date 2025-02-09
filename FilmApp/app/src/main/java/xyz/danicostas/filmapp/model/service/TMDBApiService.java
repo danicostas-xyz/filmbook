@@ -1,5 +1,7 @@
 package xyz.danicostas.filmapp.model.service;
 
+import android.graphics.Movie;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -12,13 +14,14 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import xyz.danicostas.filmapp.model.entity.FilmTMDB;
+import xyz.danicostas.filmapp.model.entity.MovieResponse;
 
 public interface TMDBApiService {
 
     // https://api.themoviedb.org/3
 
     @GET("trending/all/week")
-    Call<List<FilmTMDB>> getTrendingMovies(@Query("api_key") String apiKey);
+    Call<MovieResponse> getTrendingMovies(@Query("api_key") String apiKey);
 
 
     /*@Headers({

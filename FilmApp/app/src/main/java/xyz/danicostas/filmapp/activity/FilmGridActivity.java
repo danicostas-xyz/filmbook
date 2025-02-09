@@ -20,8 +20,10 @@ import retrofit2.Response;
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.adapter.FilmListAdapter;
+import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.FilmTMDB;
+import xyz.danicostas.filmapp.model.entity.MovieResponse;
 import xyz.danicostas.filmapp.model.service.ApiFilmService;
 import xyz.danicostas.filmapp.model.service.TMDBApiService;
 
@@ -57,21 +59,23 @@ public class FilmGridActivity extends AppCompatActivity {
 
         TMDBApiService api = ApiFilmService.getInstance().getApi();
 
-        Call<List<FilmTMDB>> call = api.getTrendingMovies("50f1837f71c3d1a88f1de905029df6c0");
+        Call<MovieResponse> call = api.getTrendingMovies("50f1837f71c3d1a88f1de905029df6c0");
 
-        call.enqueue(new Callback<List<FilmTMDB>>() {
+        call.enqueue(new Callback<MovieResponse>() {
 
             @Override
-            public void onResponse(Call<List<FilmTMDB>> call, Response<List<FilmTMDB>> response) {
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if (response.isSuccessful()) {
                     Log.d("Success", "Datos traidos del servicio");
                     //Gracias a Gson, me convierte los json a objetos Usuario
-                    List<FilmTMDB> trendingMovieList = response.body();
-                    Log.d("hey", trendingMovieList.toString());
+                    MovieResponse movieResponse = response.body();
+                    Log.d("hey", movieResponse.toString());
+
+                    List<MovieResponse.FilmTMDB> lista = movieResponse.getResults();
 
                     RecyclerView recyclerView = findViewById(R.id.RVFilmGrid);
                     recyclerView.setLayoutManager(new GridLayoutManager(c, 3));
-                    recyclerView.setAdapter(new FilmGridAdapter(trendingMovieList));
+                    recyclerView.setAdapter(new FilmGridAdapter(lista));
 
                 } else {
                     Log.d("Error", response.code() + " " + response.message());
