@@ -30,6 +30,11 @@ public class User {
         listaPeliculas.add(new FilmList("Favorites", new ArrayList<Film>()));
     }
 
+    public User(String username, String url) {
+        this.username = username;
+        this.url = url;
+    }
+
 
     public String getNombre() {
         return nombre;
