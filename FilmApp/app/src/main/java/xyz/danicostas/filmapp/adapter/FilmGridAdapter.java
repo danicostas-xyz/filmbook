@@ -14,11 +14,11 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.model.entity.MovieResponse;
+import xyz.danicostas.filmapp.model.entity.FilmTMDB;
 
 public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGridViewHolder> {
-    private List<MovieResponse.FilmTMDB> peliculas;
-    public FilmGridAdapter(List<MovieResponse.FilmTMDB> peliculas) {
+    private List<FilmTMDB> peliculas;
+    public FilmGridAdapter(List<FilmTMDB> peliculas) {
         this.peliculas = peliculas;
     }
 
@@ -42,7 +42,7 @@ public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGr
 
     @Override
     public void onBindViewHolder(@NonNull FilmGridViewHolder holder, int position) {
-        MovieResponse.FilmTMDB pelicula = peliculas.get(position);
+        FilmTMDB pelicula = peliculas.get(position);
         // URL de la imagen
         String posterPath = pelicula.getPosterPath();
         String imageUrl = "https://image.tmdb.org/t/p/w500" + posterPath;

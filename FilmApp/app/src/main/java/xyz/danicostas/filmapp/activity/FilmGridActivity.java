@@ -20,6 +20,7 @@ import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.adapter.FilmListAdapter;
 import xyz.danicostas.filmapp.model.entity.FilmList;
+import xyz.danicostas.filmapp.model.entity.FilmTMDB;
 import xyz.danicostas.filmapp.model.entity.MovieResponse;
 import xyz.danicostas.filmapp.model.service.ApiFilmService;
 import xyz.danicostas.filmapp.model.service.TMDBApiService;
@@ -68,7 +69,7 @@ public class FilmGridActivity extends AppCompatActivity {
                     MovieResponse movieResponse = response.body();
                     Log.d("hey", movieResponse.toString());
 
-                    List<MovieResponse.FilmTMDB> lista = movieResponse.getResults();
+                    List<FilmTMDB> lista = movieResponse.getResults();
 
                     RecyclerView recyclerView = findViewById(R.id.RVFilmGrid);
                     recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
