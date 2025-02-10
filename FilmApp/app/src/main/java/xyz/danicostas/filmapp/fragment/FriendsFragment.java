@@ -21,8 +21,6 @@ import xyz.danicostas.filmapp.model.service.UserService;
 
 public class FriendsFragment extends Fragment {
 
-    private List<User> friendList;
-
     public FriendsFragment() {
         // Required empty public constructor
     }
@@ -31,7 +29,6 @@ public class FriendsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        friendList = UserService.getInstance().getFriendList();
     }
 
     @Override

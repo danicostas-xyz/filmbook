@@ -17,8 +17,6 @@ import xyz.danicostas.filmapp.model.service.UserService;
 
 public class CalendarFragment extends Fragment {
 
-    private Map<String, Review> reviews;
-
     public CalendarFragment() {
         // Required empty public constructor
     }
@@ -26,8 +24,6 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        reviews = UserService.getInstance().getReviews();
-
     }
 
     @Override

@@ -13,19 +13,4 @@ public class UserService {
     public static UserService getInstance() {
         return instance == null ? instance = new UserService() : instance;
     }
-
-    // TODO
-    public List<FilmList> getFilmLists() {
-        return null;
-    }
-
-    // TODO
-    public List<User> getFriendList() {
-        return null;
-    }
-
-    // TODO
-    public Map<String, Review> getReviews() {
-        return null;
-    }
 }
