@@ -7,7 +7,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiFilmService {
 
-    public static ApiFilmService instance;
+    private static ApiFilmService instance;
+    public static ApiFilmService getInstance() {
+        return instance == null ? instance = new ApiFilmService() : instance;
+    }
+
     private TMDBApiService api;
 
     private ApiFilmService() {
@@ -20,12 +24,7 @@ public class ApiFilmService {
         api = retrofit.create(TMDBApiService.class);
     }
 
-    public static ApiFilmService getInstance() {
-        return instance == null ? instance = new ApiFilmService() : instance;
-    }
-
     public TMDBApiService getApi(){
         return api;
     }
-
 }

@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.fragment;
+package xyz.danicostas.filmapp.view.fragment;
 
 import android.os.Bundle;
 
@@ -14,9 +14,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.adapter.FriendListAdapter;
+import xyz.danicostas.filmapp.view.adapter.FriendListAdapter;
 import xyz.danicostas.filmapp.model.entity.User;
-import xyz.danicostas.filmapp.model.service.UserService;
 
 
 public class FriendsFragment extends Fragment {

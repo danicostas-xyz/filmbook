@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.adapter;
+package xyz.danicostas.filmapp.view.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

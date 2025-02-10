@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.adapter;
+package xyz.danicostas.filmapp.view.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +35,6 @@ public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGr
         FilmGridViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-            /* txtTitulo = itemView.findViewById(R.id.txtTitulo);
-            txtDirector = itemView.findViewById(R.id.txtDirector);*/
         }
     }
 
@@ -51,14 +49,12 @@ public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGr
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)  // La URL de la imagen
                 .into(holder.imageView);
-        /* holder.txtTitulo.setText(pelicula.getTitulo());
-        holder.txtDirector.setText("Dirigida por: " + pelicula.getDirector());*/
+
     }
 
     @Override
     public int getItemCount() {
         return peliculas.size();
     }
-
 
 }

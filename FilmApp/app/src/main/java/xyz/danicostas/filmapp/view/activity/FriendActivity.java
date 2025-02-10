@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.activity;
+package xyz.danicostas.filmapp.view.activity;
 
 import android.os.Bundle;
 import android.widget.TextView;

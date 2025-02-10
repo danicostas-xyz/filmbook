@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.adapter;
+package xyz.danicostas.filmapp.view.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.User;
-import xyz.danicostas.filmapp.activity.FriendActivity;
+import xyz.danicostas.filmapp.view.activity.FriendActivity;
 
 public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.FriendViewHolder> {
 

@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.fragment;
+package xyz.danicostas.filmapp.view.fragment;
 
 import android.os.Bundle;
 

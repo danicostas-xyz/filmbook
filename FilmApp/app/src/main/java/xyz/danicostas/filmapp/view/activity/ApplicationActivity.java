@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.activity;
+package xyz.danicostas.filmapp.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import xyz.danicostas.filmapp.fragment.CalendarFragment;
-import xyz.danicostas.filmapp.fragment.FriendsFragment;
-import xyz.danicostas.filmapp.fragment.ProfileFragment;
+import xyz.danicostas.filmapp.view.fragment.CalendarFragment;
+import xyz.danicostas.filmapp.view.fragment.FriendsFragment;
+import xyz.danicostas.filmapp.view.fragment.ProfileFragment;
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.fragment.SearchFragment;
+import xyz.danicostas.filmapp.view.fragment.SearchFragment;
 
 public class ApplicationActivity extends AppCompatActivity {
 

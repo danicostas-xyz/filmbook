@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.activity;
+package xyz.danicostas.filmapp.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,8 +17,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.adapter.FilmGridAdapter;
-import xyz.danicostas.filmapp.adapter.FilmListAdapter;
+import xyz.danicostas.filmapp.view.adapter.FilmGridAdapter;
+import xyz.danicostas.filmapp.view.adapter.FilmListAdapter;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.FilmTMDB;
 import xyz.danicostas.filmapp.model.entity.MovieResponse;

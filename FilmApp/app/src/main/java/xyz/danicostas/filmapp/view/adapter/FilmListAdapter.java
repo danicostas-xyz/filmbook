@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.adapter;
+package xyz.danicostas.filmapp.view.adapter;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.activity.FilmGridActivity;
+import xyz.danicostas.filmapp.view.activity.FilmGridActivity;
 import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 

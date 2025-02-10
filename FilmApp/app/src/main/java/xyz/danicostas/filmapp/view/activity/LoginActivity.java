@@ -1,4 +1,4 @@
-package xyz.danicostas.filmapp.activity;
+package xyz.danicostas.filmapp.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
