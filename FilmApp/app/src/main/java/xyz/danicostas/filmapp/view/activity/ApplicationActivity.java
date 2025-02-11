@@ -5,12 +5,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
@@ -26,7 +31,8 @@ import xyz.danicostas.filmapp.view.fragment.SearchFragment;
 public class ApplicationActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
-
+    private BottomNavigationView bottomNavigationView;
+    private FrameLayout fragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +42,68 @@ public class ApplicationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String username = intent.getStringExtra("K_Usuario");
 
+        initViews();
+        topMenuManager(username);
+        fragmentManager(savedInstanceState);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.START); // Abre el menu hambuguesa
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void initViews() {
+        drawerLayout = findViewById(R.id.drawer_layout);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        fragmentContainer = findViewById(R.id.fragment_container);
+    }
+
+    private void fragmentManager(Bundle savedInstanceState) {
+
+        // Replaces the fragment container with a ProfileFragment if there's nothing saved
+        // on the Bundle
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(fragmentContainer.getId(), new ProfileFragment())
+                    .commit();
+        }
+
+        // Bottom Menu Listener to Switch Fragments
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+
+            if (item.getItemId() == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment();
+            } else if (item.getItemId() == R.id.nav_calendar) {
+                selectedFragment = new CalendarFragment();
+            } else if (item.getItemId() == R.id.nav_search) {
+                selectedFragment = new SearchFragment();
+            } else if (item.getItemId() == R.id.nav_friends) {
+                selectedFragment = new FriendsFragment();
+            }
+
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(fragmentContainer.getId(), selectedFragment)
+                        .commit();
+            }
+            return true;
+        });
+    }
+
+    private void topMenuManager(String username) {
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu); //Icon hamburgesa
 
-        drawerLayout = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
 
@@ -63,45 +124,5 @@ public class ApplicationActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
-
-
-        // Fragments..
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new ProfileFragment())
-                    .commit();
-        }
-
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            Fragment selectedFragment = null;
-
-            if (item.getItemId() == R.id.nav_profile) {
-                selectedFragment = new ProfileFragment();
-            } else if (item.getItemId() == R.id.nav_calendar) {
-                selectedFragment = new CalendarFragment();
-            } else if (item.getItemId() == R.id.nav_search) {
-                selectedFragment = new SearchFragment();
-            } else if (item.getItemId() == R.id.nav_friends) {
-                selectedFragment = new FriendsFragment();
-            }
-
-            if (selectedFragment != null) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, selectedFragment)
-                        .commit();
-            }
-            return true;
-        });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            drawerLayout.openDrawer(GravityCompat.START); // Abre el menu hambuguesa
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
