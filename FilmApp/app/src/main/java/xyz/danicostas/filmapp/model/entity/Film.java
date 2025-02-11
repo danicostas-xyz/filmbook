@@ -1,163 +1,101 @@
 package xyz.danicostas.filmapp.model.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 public class Film implements Serializable {
-    private String peliculaID;
-    private String titulo;
-    private double calificacion;
-    private String directorID;
-    private String posterURL;
-    private List<String> generos;
-
-    public String getPeliculaID() {
-        return peliculaID;
-    }
-
-    public void setPeliculaID(String peliculaID) {
-        this.peliculaID = peliculaID;
-    }
-
-    public String getPosterURL() {
-        return posterURL;
-    }
-
-    public void setPosterURL(String posterURL) {
-        this.posterURL = posterURL;
-    }
-
-    private Map<String, Comentario> comentarios;
-
-
-    public Film(String peliculaID, String titulo, double calificacion, String directorID, List<String> generos, Map<String, Comentario> comentarios) {
-        this.peliculaID = peliculaID;
-        this.titulo = titulo;
-        this.calificacion = calificacion;
-        this.directorID = directorID;
-        this.generos = generos;
-        this.comentarios = comentarios;
-    }
-
-    public Film(String theDeparted, double calificacion, String directorID6, List<String> list) {
-        this.titulo = theDeparted;
-        this.calificacion = calificacion;
-        this.directorID = directorID6;
-        this.generos = list;
-    }
+    @SerializedName("id")
+    private int id;
 
     public Film() {
-
     }
 
+    @SerializedName("title")
+    private String title;
 
-    public String getTitulo() {
-        return titulo;
+    @SerializedName("original_title")
+    private String originalTitle;
+
+    @SerializedName("overview")
+    private String overview;
+
+    @SerializedName("poster_path")
+    private String posterPath;
+
+    @SerializedName("release_date")
+    private String releaseDate;
+
+    @SerializedName("vote_average")
+    private double voteAverage;
+
+    @SerializedName("vote_count")
+    private int voteCount;
+
+    // Getters and Setters
+    public int getId() {
+        return id;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public double getCalificacion() {
-        return calificacion;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCalificacion(double calificacion) {
-        this.calificacion = calificacion;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDirectorID() {
-        return directorID;
+    public String getOriginalTitle() {
+        return originalTitle;
     }
 
-    public void setDirectorID(String directorID) {
-        this.directorID = directorID;
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
     }
 
-    public List<String> getGeneros() {
-        return generos;
+    public String getOverview() {
+        return overview;
     }
 
-    public void setGeneros(List<String> generos) {
-        this.generos = generos;
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 
-    public Map<String, Comentario> getComentarios() {
-        return comentarios;
+    public String getPosterPath() {
+        return posterPath;
     }
 
-    public void setComentarios(Map<String, Comentario> comentarios) {
-        this.comentarios = comentarios;
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
+    public String getReleaseDate() {
+        return releaseDate;
+    }
 
-    public static class Comentario {
-        private String texto;
-        private String usuarioID;
-        private String fecha;
-        private String peliculaID;
-        private String peliculaTitulo;
-        private int valoracion;
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
 
+    public double getVoteAverage() {
+        return voteAverage;
+    }
 
-        public Comentario(String texto, String usuarioID, String fecha, String peliculaID, String peliculaTitulo, int valoracion) {
-            this.texto = texto;
-            this.usuarioID = usuarioID;
-            this.fecha = fecha;
-            this.peliculaID = peliculaID;
-            this.peliculaTitulo = peliculaTitulo;
-            this.valoracion = valoracion;
-        }
+    public void setVoteAverage(double voteAverage) {
+        this.voteAverage = voteAverage;
+    }
 
+    public int getVoteCount() {
+        return voteCount;
+    }
 
-        public String getTexto() {
-            return texto;
-        }
-
-        public void setTexto(String texto) {
-            this.texto = texto;
-        }
-
-        public String getUsuarioID() {
-            return usuarioID;
-        }
-
-        public void setUsuarioID(String usuarioID) {
-            this.usuarioID = usuarioID;
-        }
-
-        public String getFecha() {
-            return fecha;
-        }
-
-        public void setFecha(String fecha) {
-            this.fecha = fecha;
-        }
-
-        public String getPeliculaID() {
-            return peliculaID;
-        }
-
-        public void setPeliculaID(String peliculaID) {
-            this.peliculaID = peliculaID;
-        }
-
-        public String getPeliculaTitulo() {
-            return peliculaTitulo;
-        }
-
-        public void setPeliculaTitulo(String peliculaTitulo) {
-            this.peliculaTitulo = peliculaTitulo;
-        }
-
-        public int getValoracion() {
-            return valoracion;
-        }
-
-        public void setValoracion(int valoracion) {
-            this.valoracion = valoracion;
-        }
+    public void setVoteCount(int voteCount) {
+        this.voteCount = voteCount;
     }
 }

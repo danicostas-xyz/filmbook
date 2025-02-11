@@ -17,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.danicostas.filmapp.R;
+import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.view.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.view.adapter.FilmListAdapter;
 import xyz.danicostas.filmapp.model.entity.FilmList;
@@ -69,7 +70,7 @@ public class FilmGridActivity extends AppCompatActivity {
                     MovieResponse movieResponse = response.body();
                     Log.d("hey", movieResponse.toString());
 
-                    List<FilmTMDB> lista = movieResponse.getResults();
+                    List<Film> lista = movieResponse.getResults();
 
                     RecyclerView recyclerView = findViewById(R.id.RVFilmGrid);
                     recyclerView.setLayoutManager(new GridLayoutManager(context, 3));

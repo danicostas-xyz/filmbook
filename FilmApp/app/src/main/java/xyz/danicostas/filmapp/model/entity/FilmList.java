@@ -6,13 +6,12 @@ import java.util.List;
 
 public class FilmList implements Serializable {
     private String listName;
-    private List<Film> content;
-
+    private List<String> content;
 
     public FilmList() {
     }
 
-    public FilmList(String listName, List<Film> content) {
+    public FilmList(String listName, List<String> content) {
         this.listName = listName;
         this.content = content;
     }
@@ -25,29 +24,12 @@ public class FilmList implements Serializable {
         this.listName = listName;
     }
 
-    public List<Film> getContent() {
+    public List<String> getContent() {
         return content;
     }
 
-    public void setContent(List<Film> content) {
+    public void setContent(List<String> content) {
         this.content = content;
-    }
-
-    public void addFilm(Film film) {
-        if (content == null) {
-            content = new ArrayList<>();
-        }
-        content.add(film);
-    }
-
-    public void removeFilm(Film film) {
-        if (content != null) {
-            content.remove(film);
-        }
-    }
-
-    public int getFilmCount() {
-        return content != null ? content.size() : 0;
     }
 
     @Override

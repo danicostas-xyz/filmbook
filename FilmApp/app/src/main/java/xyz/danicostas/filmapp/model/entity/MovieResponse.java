@@ -8,7 +8,7 @@ public class MovieResponse {
     private int page;
 
     @SerializedName("results")
-    private List<FilmTMDB> results;
+    private List<Film> results;
 
     public int getPage() {
         return page;
@@ -18,11 +18,11 @@ public class MovieResponse {
         this.page = page;
     }
 
-    public List<FilmTMDB> getResults() {
+    public List<Film> getResults() {
         return results;
     }
 
-    public void setResults(List<FilmTMDB> results) {
+    public void setResults(List<Film> results) {
         this.results = results;
     }
 

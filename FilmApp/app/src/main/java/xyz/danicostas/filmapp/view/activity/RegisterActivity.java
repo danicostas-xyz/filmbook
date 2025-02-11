@@ -92,14 +92,14 @@ public class RegisterActivity extends AppCompatActivity {
                                 User newUser = new User();
                                 newUser.setPassword(password);
                                 newUser.setUsername(username);
-                                List<Film> listaMovies = new ArrayList<>();
+                                List<String> listaMovies = new ArrayList<>();
                                 List<FilmList> listaFilm = new ArrayList<>();
                                 listaFilm.add(new FilmList());
                                 listaFilm.get(0).setListName("Favorites");
                                 listaFilm.get(0).setContent(listaMovies);
-                                newUser.setListaPeliculas(listaFilm);
+                                newUser.setListasDeListas(listaFilm);
                                 newUser.setEmail(email);
-                                newUser.setListaPeliculas(filmLists);
+                                newUser.setListasDeListas(filmLists);
                                 newUser.setComentarios(new HashMap<>());
 
                                 daoBBDD.createUser(userId, newUser, task -> {

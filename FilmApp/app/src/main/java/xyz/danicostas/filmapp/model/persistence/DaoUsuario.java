@@ -139,37 +139,46 @@ public class DaoUsuario {
     public List<FilmList> getUserFilmLists(String userId) {
         // TODO
         List<FilmList> filmLists = new ArrayList<>();
-        db.collection("listas")
-                .whereEqualTo("userId", userId)
+        db.collection(COLLECTION_NAME)
+                .document(userId) // Accede al documento del usuario específico
                 .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                        filmLists.add(doc.toObject(FilmList.class));
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        User user = documentSnapshot.toObject(User.class); // Convierte el documento a tu clase User
+                        if (user != null && user.getListasDeListas() != null) {
+                            List<FilmList> lista = user.getListasDeListas(); // Obtiene la lista de películas
+                            for (FilmList filmList : lista) {
+                                Log.d("FirestoreData", "Película: " + filmList.toString());
+                                filmLists.add(filmList);
+                            }
+                        } else {
+                            Log.d("FirestoreData", "El usuario no tiene listas.");
+                        }
                     }
                 })
-                .addOnFailureListener(e -> Log.e("FirestoreError", "Error al cargar listas", e));
+                .addOnFailureListener(e -> Log.e("FirestoreError", "Error al cargar las listas", e));
 
-        List<Film> listaPeliculas = Arrays.asList(
-                new Film(),new Film(),new Film(),new Film(), new Film(), new Film(),new Film(), new Film(), new Film(), new Film(), new Film(), new Film(), new Film(),new Film(), new Film()
-        );
-        List<FilmList> listaDeListas = Arrays.asList(
-                new FilmList(), new FilmList(),new FilmList(),new FilmList(),new FilmList(),new FilmList()
-        );
+//        List<Film> listaPeliculas = Arrays.asList(
+//                new Film(),new Film(),new Film(),new Film(), new Film(), new Film(),new Film(), new Film(), new Film(), new Film(), new Film(), new Film(), new Film(),new Film(), new Film()
+//        );
+//        List<FilmList> listaDeListas = Arrays.asList(
+//                new FilmList(), new FilmList(),new FilmList(),new FilmList(),new FilmList(),new FilmList()
+//        );
+//
+//        listaDeListas.get(0).setContent(listaPeliculas);
+//        listaDeListas.get(0).setListName("Favoritas");
+//        listaDeListas.get(1).setContent(listaPeliculas);
+//        listaDeListas.get(1).setListName("Anime");
+//        listaDeListas.get(2).setContent(listaPeliculas);
+//        listaDeListas.get(2).setListName("Pendientes");
+//        listaDeListas.get(3).setContent(listaPeliculas);
+//        listaDeListas.get(3).setListName("Watch List");
+//        listaDeListas.get(4).setContent(listaPeliculas);
+//        listaDeListas.get(4).setListName("Sci-Fi");
+//        listaDeListas.get(5).setContent(listaPeliculas);
+//        listaDeListas.get(5).setListName("Españolas");
 
-        listaDeListas.get(0).setContent(listaPeliculas);
-        listaDeListas.get(0).setListName("Favoritas");
-        listaDeListas.get(1).setContent(listaPeliculas);
-        listaDeListas.get(1).setListName("Anime");
-        listaDeListas.get(2).setContent(listaPeliculas);
-        listaDeListas.get(2).setListName("Pendientes");
-        listaDeListas.get(3).setContent(listaPeliculas);
-        listaDeListas.get(3).setListName("Watch List");
-        listaDeListas.get(4).setContent(listaPeliculas);
-        listaDeListas.get(4).setListName("Sci-Fi");
-        listaDeListas.get(5).setContent(listaPeliculas);
-        listaDeListas.get(5).setListName("Españolas");
-
-        return listaDeListas;
+        return filmLists;
     
     }
 }

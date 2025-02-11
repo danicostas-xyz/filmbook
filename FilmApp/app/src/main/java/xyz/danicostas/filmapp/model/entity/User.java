@@ -9,30 +9,27 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private List<FilmList> listaPeliculas;
+    private List<FilmList> listasDeListas;
     private Map<String, Review> comentarios;
     private List<User> listaAmigos;
     private String url;
 
-
     public User() {
     }
 
-
-    public User(String nombre, String username, String password, List<FilmList> listaPeliculas, Map<String, Review> comentarios) {
+    public User(String nombre, String username, String password, List<FilmList> listasDeListas, Map<String, Review> comentarios) {
         this.nombre = nombre;
         this.username = username;
         this.password = password;
-        this.listaPeliculas = listaPeliculas;
+        this.listasDeListas = listasDeListas;
         this.comentarios = comentarios;
-        listaPeliculas.add(new FilmList("Favorites", new ArrayList<Film>()));
+        listasDeListas.add(new FilmList("Favorites", new ArrayList<String>()));
     }
 
     public User(String username, String url) {
         this.username = username;
         this.url = url;
     }
-
 
     public String getNombre() {
         return nombre;
@@ -66,12 +63,12 @@ public class User {
         this.password = password;
     }
 
-    public List<FilmList> getListaPeliculas() {
-        return listaPeliculas;
+    public List<FilmList> getListasDeListas() {
+        return listasDeListas;
     }
 
-    public void setListaPeliculas(List<FilmList> listaPeliculas) {
-        this.listaPeliculas = listaPeliculas;
+    public void setListasDeListas(List<FilmList> listasDeListas) {
+        this.listasDeListas = listasDeListas;
     }
 
     public Map<String, Review> getComentarios() {
