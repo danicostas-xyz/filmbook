@@ -14,13 +14,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Arrays;
 import java.util.List;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.model.service.GestorUser;
 import xyz.danicostas.filmapp.view.activity.FilmGridActivity;
-import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 
 public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder> {
@@ -46,29 +43,18 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
     }
 
     static class FilmListViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTitulo, txtDirector;
         TextView tvListTitle, tvVerTodo;
         ConstraintLayout layout;
+        RecyclerView nestedList;
 
         FilmListViewHolder(View itemView) {
             super(itemView);
 
-            List<Film> listaPeliculas = Arrays.asList(
-                    new Film(),new Film(),new Film(),new Film(), new Film(), new Film(),new Film(), new Film(), new Film(), new Film(), new Film(), new Film(), new Film(),new Film(), new Film()
-            );
-
             tvListTitle = itemView.findViewById(R.id.tvListName);
             layout = itemView.findViewById(R.id.FilmListLayout);
             tvVerTodo = itemView.findViewById(R.id.tvVerTodo);
-            /*
-             * Aquí creamos las películas de cada una de las listas de películas que se crean en este adapter
-             * Lista de Listas de películas > cada lista tiene una lista de películas
-             */
-            RecyclerView nestedList = itemView.findViewById(R.id.RVNestedList);
+            nestedList = itemView.findViewById(R.id.RVNestedList);
             nestedList.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false));
-            FilmListNestedAdapter adapter = new FilmListNestedAdapter(listaPeliculas);
-            nestedList.setAdapter(adapter);
-
         }
     }
 
@@ -82,12 +68,13 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
             intent.putExtra(FILM_LIST_CONTENT, listaDeListas);
             startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
         });
+
+        FilmListNestedAdapter nestedAdapter = new FilmListNestedAdapter(listaDeListas.getContent());
+        holder.nestedList.setAdapter(nestedAdapter);
     }
 
     @Override
     public int getItemCount() {
         return filmLists.size();
     }
-
-
 }
