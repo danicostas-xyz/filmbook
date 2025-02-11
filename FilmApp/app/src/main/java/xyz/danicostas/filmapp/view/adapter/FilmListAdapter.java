@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import xyz.danicostas.filmapp.R;
+import xyz.danicostas.filmapp.model.service.GestorUser;
 import xyz.danicostas.filmapp.view.activity.FilmGridActivity;
 import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
@@ -36,6 +37,12 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
     public FilmListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.film_list, parent, false);
         return new FilmListViewHolder(view);
+    }
+
+    public void updateList(List<FilmList> peliculas) {
+        filmLists.clear();
+        filmLists.addAll(peliculas);
+        notifyDataSetChanged();
     }
 
     static class FilmListViewHolder extends RecyclerView.ViewHolder {

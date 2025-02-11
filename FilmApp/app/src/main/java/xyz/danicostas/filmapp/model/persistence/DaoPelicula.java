@@ -9,11 +9,16 @@ import com.google.firebase.firestore.QuerySnapshot;
 import xyz.danicostas.filmapp.model.entity.Film;
 
 public class DaoPelicula {
+    private static DaoPelicula instance;
     private static final String COLLECTION_NAME = "peliculas";
     private final FirebaseFirestore db;
 
-    public DaoPelicula() {
+    private DaoPelicula() {
         db = FirebaseFirestore.getInstance();
+    }
+
+    public static DaoPelicula getInstance() {
+        return instance == null ? instance = new DaoPelicula() : instance;
     }
 
     public void createPelicula(Film pelicula, OnCompleteListener<DocumentReference> listener) {

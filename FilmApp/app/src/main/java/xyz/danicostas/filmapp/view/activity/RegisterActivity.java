@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.email);
         usernameInput = findViewById(R.id.username);passwordInput = findViewById(R.id.password);
         registerButton = findViewById(R.id.btRegister);
-        daoBBDD = new DaoUsuario();
+        daoBBDD = DaoUsuario.getInstance();
         mAuth = FirebaseAuth.getInstance();
         loginLink = findViewById(R.id.login_link);
 

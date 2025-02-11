@@ -2,6 +2,8 @@ package xyz.danicostas.filmapp.model.persistence;
 
 import android.util.Log;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -9,17 +11,26 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import xyz.danicostas.filmapp.model.entity.Film;
+import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.User;
 
 public class DaoUsuario {
+    private static DaoUsuario instance;
     private static final String COLLECTION_NAME = "usuarios";
     private final FirebaseFirestore db;
 
-    public DaoUsuario() {
+    private DaoUsuario() {
         db = FirebaseFirestore.getInstance();
+    }
+
+    public static DaoUsuario getInstance() {
+        return instance == null ? instance = new DaoUsuario() : instance;
     }
 
     public void createUser(String userId, User newUser, OnCompleteListener<Void> onCompleteListener) {
@@ -123,5 +134,42 @@ public class DaoUsuario {
         db.collection(COLLECTION_NAME).document(userId)
                 .update("comentarios." + commentId, FieldValue.delete())
                 .addOnCompleteListener(listener);
+    }
+
+    public List<FilmList> getUserFilmLists(String userId) {
+        // TODO
+        List<FilmList> filmLists = new ArrayList<>();
+        db.collection("listas")
+                .whereEqualTo("userId", userId)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                        filmLists.add(doc.toObject(FilmList.class));
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("FirestoreError", "Error al cargar listas", e));
+
+        List<Film> listaPeliculas = Arrays.asList(
+                new Film(),new Film(),new Film(),new Film(), new Film(), new Film(),new Film(), new Film(), new Film(), new Film(), new Film(), new Film(), new Film(),new Film(), new Film()
+        );
+        List<FilmList> listaDeListas = Arrays.asList(
+                new FilmList(), new FilmList(),new FilmList(),new FilmList(),new FilmList(),new FilmList()
+        );
+
+        listaDeListas.get(0).setContent(listaPeliculas);
+        listaDeListas.get(0).setListName("Favoritas");
+        listaDeListas.get(1).setContent(listaPeliculas);
+        listaDeListas.get(1).setListName("Anime");
+        listaDeListas.get(2).setContent(listaPeliculas);
+        listaDeListas.get(2).setListName("Pendientes");
+        listaDeListas.get(3).setContent(listaPeliculas);
+        listaDeListas.get(3).setListName("Watch List");
+        listaDeListas.get(4).setContent(listaPeliculas);
+        listaDeListas.get(4).setListName("Sci-Fi");
+        listaDeListas.get(5).setContent(listaPeliculas);
+        listaDeListas.get(5).setListName("Españolas");
+
+        return listaDeListas;
+    
     }
 }

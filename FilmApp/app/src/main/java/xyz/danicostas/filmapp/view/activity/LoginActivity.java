@@ -1,6 +1,7 @@
 package xyz.danicostas.filmapp.view.activity;
 
 import android.content.Intent;
+import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login);
         registerLink = findViewById(R.id.register_link);
 
-        gu = new GestorUser();
+        gu = GestorUser.getInstance();
 
         loginButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
