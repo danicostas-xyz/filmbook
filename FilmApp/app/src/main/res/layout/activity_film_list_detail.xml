@@ -12,6 +12,8 @@
             android:layout_height="wrap_content"
             android:text="Título de la lista"
             android:textSize="24dp"
+            android:layout_marginStart="16dp"
+            android:paddingVertical="8dp"
             app:layout_constraintBottom_toTopOf="@+id/scrollView2"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,15 +31,23 @@
 
         </ScrollView>
 
-        <ImageButton
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/button_circle"
-            android:src="@drawable/ic_add"
+        <FrameLayout
+            android:id="@+id/addMovie"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp">
+                <ImageButton
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_circle"
+                    android:src="@drawable/ic_add"
+                    />
+        </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

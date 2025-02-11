@@ -48,6 +48,7 @@
     <string name="authKO">"Fallo en la autenticación: "</string>
     <string name="loginOK">¡Login exitoso!</string>
     <string name="loginKO">"Error en el login: "</string>
+    <string name="view_all_list">Ver Todo</string>
 
 
 </resources>
