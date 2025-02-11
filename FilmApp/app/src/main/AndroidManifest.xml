@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Filmbook"
         tools:targetApi="31">
-
+        <activity
+            android:name=".view.activity.SettingsActivity"
+            android:exported="false" />
         <activity
             android:name=".view.activity.FilmGridActivity"
             android:exported="false" />
@@ -35,7 +37,7 @@
             android:exported="true" />
         <activity
             android:name=".view.activity.FriendActivity"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>

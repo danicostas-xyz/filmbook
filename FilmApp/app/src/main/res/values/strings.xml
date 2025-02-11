@@ -6,6 +6,7 @@
     <string name="app_name">Filmbook</string>
 
     <string name="toolbar_title">Welcome to Filmbook</string>
+    <string name="settings_title">Settings</string>
 
 
     <string name="nav_home">Home</string>
