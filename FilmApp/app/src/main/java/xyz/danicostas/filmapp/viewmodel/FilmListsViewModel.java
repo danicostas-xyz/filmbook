@@ -12,15 +12,19 @@ import xyz.danicostas.filmapp.model.service.GestorUser;
 public class FilmListsViewModel extends ViewModel {
     private MutableLiveData<List<FilmList>> listaPeliculasLiveData = new MutableLiveData<>();
     private GestorUser userService;
-
+    private String userId;
 
     public FilmListsViewModel() {
         userService = GestorUser.getInstance();
-        loadUserFilmLists();
     }
 
-    private void loadUserFilmLists() {
-        listaPeliculasLiveData.setValue(userService.getUserFilmLists());
+    public void setUserId(String userId) {
+        this.userId = userId;
+        loadUserFilmLists(userId);
+    }
+
+    private void loadUserFilmLists(String userId) {
+        listaPeliculasLiveData.setValue(userService.getUserFilmLists(userId));
     }
 
     public LiveData<List<FilmList>> getListaPeliculas() {
