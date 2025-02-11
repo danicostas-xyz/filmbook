@@ -41,10 +41,11 @@ public class ApplicationActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String username = intent.getStringExtra("K_Usuario");
+        String userId = intent.getStringExtra("K_UserId");
 
         initViews();
         topMenuManager(username);
-        fragmentManager(savedInstanceState);
+        fragmentManager(savedInstanceState, userId);
 
     }
 
@@ -63,13 +64,18 @@ public class ApplicationActivity extends AppCompatActivity {
         fragmentContainer = findViewById(R.id.fragment_container);
     }
 
-    private void fragmentManager(Bundle savedInstanceState) {
+    private void fragmentManager(Bundle savedInstanceState, String userId) {
 
         // Replaces the fragment container with a ProfileFragment if there's nothing saved
         // on the Bundle
         if (savedInstanceState == null) {
+            ProfileFragment profileFragment = new ProfileFragment();
+            Bundle args = new Bundle();
+            args.putString("K_UserId", userId);
+            profileFragment.setArguments(args);
+
             getSupportFragmentManager().beginTransaction()
-                    .replace(fragmentContainer.getId(), new ProfileFragment())
+                    .replace(fragmentContainer.getId(), profileFragment)
                     .commit();
         }
 
@@ -79,6 +85,9 @@ public class ApplicationActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.nav_profile) {
                 selectedFragment = new ProfileFragment();
+                Bundle args = new Bundle();
+                args.putString("K_UserId", userId);
+                selectedFragment.setArguments(args);
             } else if (item.getItemId() == R.id.nav_calendar) {
                 selectedFragment = new CalendarFragment();
             } else if (item.getItemId() == R.id.nav_search) {

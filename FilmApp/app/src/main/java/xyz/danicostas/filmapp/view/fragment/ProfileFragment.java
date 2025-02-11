@@ -50,6 +50,8 @@ public class ProfileFragment extends Fragment {
             adapter.updateList(peliculas); // Método que actualiza la lista en el adapter
         });
 
+        viewModel.loadUserFilmLists();
+
         return view;
     }
 }
