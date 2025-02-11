@@ -137,7 +137,6 @@ public class DaoUsuario {
     }
 
     public List<FilmList> getUserFilmLists(String userId) {
-        // TODO
         List<FilmList> filmLists = new ArrayList<>();
         db.collection("listas")
                 .whereEqualTo("userId", userId)
@@ -148,28 +147,6 @@ public class DaoUsuario {
                     }
                 })
                 .addOnFailureListener(e -> Log.e("FirestoreError", "Error al cargar listas", e));
-
-        List<Film> listaPeliculas = Arrays.asList(
-                new Film(),new Film(),new Film(),new Film(), new Film(), new Film(),new Film(), new Film(), new Film(), new Film(), new Film(), new Film(), new Film(),new Film(), new Film()
-        );
-        List<FilmList> listaDeListas = Arrays.asList(
-                new FilmList(), new FilmList(),new FilmList(),new FilmList(),new FilmList(),new FilmList()
-        );
-
-        listaDeListas.get(0).setContent(listaPeliculas);
-        listaDeListas.get(0).setListName("Favoritas");
-        listaDeListas.get(1).setContent(listaPeliculas);
-        listaDeListas.get(1).setListName("Anime");
-        listaDeListas.get(2).setContent(listaPeliculas);
-        listaDeListas.get(2).setListName("Pendientes");
-        listaDeListas.get(3).setContent(listaPeliculas);
-        listaDeListas.get(3).setListName("Watch List");
-        listaDeListas.get(4).setContent(listaPeliculas);
-        listaDeListas.get(4).setListName("Sci-Fi");
-        listaDeListas.get(5).setContent(listaPeliculas);
-        listaDeListas.get(5).setListName("Españolas");
-
-        return listaDeListas;
-    
+        return filmLists;
     }
 }
