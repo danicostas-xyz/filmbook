@@ -15,8 +15,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -83,26 +85,30 @@ public class RegisterActivity extends AppCompatActivity {
                             if (firebaseUser != null) {
                                 String userId = firebaseUser.getUid();
 
-                                FilmList filmList = new FilmList();
-                                filmList.setContent(new ArrayList<>());
+                                User user = new User();
+                                Film film1 = new Film();
+                                film1.setId(426063);
+                                film1.setOverview("A gothic tale of obsession between a haunted young woman and the terrifying vampire infatuated with her, causing untold horror in its wake.");
+                                film1.setOriginalTitle("Nosferatu");
+                                film1.setPosterPath("https://image.tmdb.org/t/p/w500/5qGIxdEO841C0tdY8vOdLoRVrr0.jpg");
+                                film1.setReleaseDate("2024-12-25");
+                                film1.setTitle("Nosferatu");
+                                film1.setVoteAverage(6.7);
+                                film1.setVoteCount(2002);
 
-                                ArrayList<FilmList> filmLists = new ArrayList<>();
-                                filmLists.add(filmList);
+                                List<FilmList> filmLists = new ArrayList<>();
+                                FilmList list = new FilmList();
+                                list.setListName("Favoritas");
+                                list.setContent(Arrays.asList(film1, film1, film1, film1, film1, film1, film1, film1));
+                                filmLists.add(list);
 
-                                User newUser = new User();
-                                newUser.setPassword(password);
-                                newUser.setUsername(username);
-                                List<String> listaMovies = new ArrayList<>();
-                                List<FilmList> listaFilm = new ArrayList<>();
-                                listaFilm.add(new FilmList());
-                                listaFilm.get(0).setListName("Favorites");
-                                listaFilm.get(0).setContent(listaMovies);
-                                newUser.setListasDeListas(listaFilm);
-                                newUser.setEmail(email);
-                                newUser.setListasDeListas(filmLists);
-                                newUser.setComentarios(new HashMap<>());
+                                user.setListasDeListas(filmLists);
+                                user.setPassword(password);
+                                user.setUsername(username);
 
-                                daoBBDD.createUser(userId, newUser, task -> {
+                                user.setComentarios(new HashMap<>());
+
+                                daoBBDD.createUser(userId, user, task -> {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(RegisterActivity.this, getString(R.string.registerOK), Toast.LENGTH_SHORT).show();
 

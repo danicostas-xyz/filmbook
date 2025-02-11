@@ -23,7 +23,7 @@ public class User {
         this.password = password;
         this.listasDeListas = listasDeListas;
         this.comentarios = comentarios;
-        listasDeListas.add(new FilmList("Favorites", new ArrayList<String>()));
+        listasDeListas.add(new FilmList("Favorites", new ArrayList<Film>()));
     }
 
     public User(String username, String url) {

@@ -3,10 +3,13 @@ package xyz.danicostas.filmapp.view.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -26,11 +29,19 @@ public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAd
         return new FilmListNestedViewHolder(view);
     }
 
+    public void updateList(List<Film> films) {
+        peliculas.clear();
+        peliculas.addAll(films);
+        notifyDataSetChanged();
+    }
+
     static class FilmListNestedViewHolder extends RecyclerView.ViewHolder {
         TextView txtTitulo, txtDirector;
+        ImageView imageView;
 
         FilmListNestedViewHolder(View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.imageView);
             /* txtTitulo = itemView.findViewById(R.id.txtTitulo);
             txtDirector = itemView.findViewById(R.id.txtDirector);*/
         }
@@ -39,7 +50,9 @@ public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAd
     @Override
     public void onBindViewHolder(@NonNull FilmListNestedViewHolder holder, int position) {
         Film pelicula = peliculas.get(position);
-
+        Glide.with(holder.itemView.getContext())
+                .load(pelicula.getPosterPath())  // La URL de la imagen
+                .into(holder.imageView);
 
         /* holder.txtTitulo.setText(pelicula.getTitulo());
         holder.txtDirector.setText("Dirigida por: " + pelicula.getDirector());*/

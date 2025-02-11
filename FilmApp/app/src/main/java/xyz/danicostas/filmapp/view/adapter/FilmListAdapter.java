@@ -14,6 +14,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,13 +52,11 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
         TextView txtTitulo, txtDirector;
         TextView tvListTitle, tvVerTodo;
         ConstraintLayout layout;
+        RecyclerView nestedList;
+        FilmListNestedAdapter adapter;
 
         FilmListViewHolder(View itemView) {
             super(itemView);
-
-            List<Film> listaPeliculas = Arrays.asList(
-                    new Film(),new Film(),new Film(),new Film(), new Film(), new Film(),new Film(), new Film(), new Film(), new Film(), new Film(), new Film(), new Film(),new Film(), new Film()
-            );
 
             tvListTitle = itemView.findViewById(R.id.tvListName);
             layout = itemView.findViewById(R.id.FilmListLayout);
@@ -64,11 +65,14 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
              * Aquí creamos las películas de cada una de las listas de películas que se crean en este adapter
              * Lista de Listas de películas > cada lista tiene una lista de películas
              */
-            RecyclerView nestedList = itemView.findViewById(R.id.RVNestedList);
+            nestedList = itemView.findViewById(R.id.RVNestedList);
             nestedList.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false));
-            FilmListNestedAdapter adapter = new FilmListNestedAdapter(listaPeliculas);
+            adapter = new FilmListNestedAdapter(new ArrayList<>());
             nestedList.setAdapter(adapter);
+        }
 
+        public void setFilms(List<Film> films) {
+            adapter.updateList(films);
         }
     }
 
@@ -76,6 +80,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
     public void onBindViewHolder(@NonNull FilmListViewHolder holder, int position) {
         FilmList listaDeListas = filmLists.get(position);
         holder.tvListTitle.setText(listaDeListas.getListName());
+        holder.setFilms(listaDeListas.getContent());
         holder.tvVerTodo.setOnClickListener(view -> {
             Intent intent = new Intent(holder.itemView.getContext(), FilmGridActivity.class);
             intent.putExtra(FILM_LIST_NAME, holder.tvListTitle.getText());
