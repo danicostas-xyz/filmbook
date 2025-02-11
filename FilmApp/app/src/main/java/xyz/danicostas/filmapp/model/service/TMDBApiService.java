@@ -22,7 +22,6 @@ public interface TMDBApiService {
     @GET("trending/all/week")
     Call<MovieResponse> getTrendingMovies(@Query("api_key") String apiKey);
 
-
     /*@Headers({
             "Authorization: Bearer c2013086d51347da56494c501d63f7c14f51b908a43b9c0ec0145cfab4b901cd"
     })
