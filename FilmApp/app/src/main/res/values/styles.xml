@@ -24,7 +24,7 @@
     </style>
     <style name="h2" parent="">
         <item name="android:textSize">32sp</item>
-        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
     </style>
     <style name="h3" parent="">
         <item name="android:textSize">24sp</item>

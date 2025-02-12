@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/accent"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/wrapperTitleSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:background="@color/secondaryDark"
+                android:layout_marginEnd="12dp"
+            <TextView
+                android:id="@+id/TVsearchTitle"
+                style="@style/h2"
+                android:textColor="@color/secondaryDark"
+                android:layout_width="236sp"
+                android:layout_height="90sp"
+                android:text="Mulholland Drive"
+                 />
+            
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="68dp"
+            android:background="@drawable/button_circle"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/accent"
+            android:gravity="center"
+            android:text="4/5"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/primaryDark"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wrapperTitleSearch">
+
+            <ImageView
+                android:id="@+id/IVsearchFilmPoster"
+                android:layout_width="113dp"
+                android:layout_height="164dp"
+                android:clipToOutline="true"
+                android:contentDescription="TODO"
+                android:outlineProvider="background"
+                android:scaleType="centerCrop" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/TVsearchContent"
+            android:layout_width="194dp"
+            android:layout_height="116dp"
+            style="@style/textXS"
+            android:ellipsize="end"
+            android:maxLines="7"
+            android:textColor="@color/secondaryDark"
+            android:justificationMode="inter_word"
+            android:text="@string/mock_film_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/wrapperTitleSearch"
+            app:layout_constraintVertical_bias="0.609">
+
+
+        </TextView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
