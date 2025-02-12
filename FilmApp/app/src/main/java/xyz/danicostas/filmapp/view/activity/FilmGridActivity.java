@@ -39,10 +39,12 @@ public class FilmGridActivity extends AppCompatActivity {
         Intent intent = getIntent();
         filmList = (FilmList) intent.getSerializableExtra(FilmListAdapter.FILM_LIST_CONTENT);
 
-
         TextView tvFilmListTitle = findViewById(R.id.tvFilmListTitle);
         tvFilmListTitle.setText(filmList.getListName());
 
+        RecyclerView recyclerView = findViewById(R.id.RVFilmGrid);
+        recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
+        recyclerView.setAdapter(new FilmGridAdapter(filmList.getContent()));
 
 
     }
@@ -50,10 +52,10 @@ public class FilmGridActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        obtainTrendingMovies();
+        //obtainTrendingMovies();
     }
 
-    public void obtainTrendingMovies(){
+    /*public void obtainTrendingMovies(){
         mostrarEspera();
 
         TMDBApiService api = ApiFilmService.getInstance().getApi();
@@ -90,7 +92,7 @@ public class FilmGridActivity extends AppCompatActivity {
                 cancelarEspera();
             }
         });
-    }
+    }*/
 
     public void mostrarEspera() {
         mDefaultDialog = new ProgressDialog(this);

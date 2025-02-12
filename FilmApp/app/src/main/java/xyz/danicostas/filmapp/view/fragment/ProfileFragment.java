@@ -43,26 +43,6 @@ public class ProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        /*List<Film> listaPeliculas = Arrays.asList(
-                new Film(),new Film(),new Film(),new Film(), new Film(), new Film(),new Film(), new Film(), new Film(), new Film(), new Film(), new Film(), new Film(),new Film(), new Film()
-        );
-        List<FilmList> listaDeListas = Arrays.asList(
-                new FilmList(), new FilmList(),new FilmList(),new FilmList(),new FilmList(),new FilmList()
-        );
-
-        listaDeListas.get(0).setContent(listaPeliculas);
-        listaDeListas.get(0).setListName("Favoritas");
-        listaDeListas.get(1).setContent(listaPeliculas);
-        listaDeListas.get(1).setListName("Anime");
-        listaDeListas.get(2).setContent(listaPeliculas);
-        listaDeListas.get(2).setListName("Pendientes");
-        listaDeListas.get(3).setContent(listaPeliculas);
-        listaDeListas.get(3).setListName("Watch List");
-        listaDeListas.get(4).setContent(listaPeliculas);
-        listaDeListas.get(4).setListName("Sci-Fi");
-        listaDeListas.get(5).setContent(listaPeliculas);
-        listaDeListas.get(5).setListName("Españolas");*/
-
         recyclerView = view.findViewById(R.id.RVFilmList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         adapter = new FilmListAdapter(new ArrayList<>());
@@ -73,10 +53,7 @@ public class ProfileFragment extends Fragment {
         // Observar cambios en las listas
         viewModel.getListaPeliculas().observe(getViewLifecycleOwner(), peliculas -> {
             adapter.updateList(peliculas); // Método que actualiza la lista en el adapter
-            Log.d("FIRESTORE-DATA///PROFILE-FRAGMENT", "Lista: " + peliculas.toString());
-
         });
-
 
         return view;
     }
