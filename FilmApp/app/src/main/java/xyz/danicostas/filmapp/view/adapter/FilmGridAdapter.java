@@ -15,7 +15,6 @@ import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
-import xyz.danicostas.filmapp.model.entity.FilmTMDB;
 
 public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGridViewHolder> {
     private List<Film> peliculas;

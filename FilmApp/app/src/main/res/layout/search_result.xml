@@ -28,27 +28,26 @@
                 android:layout_width="4dp"
                 android:layout_height="match_parent"
                 android:background="@color/secondaryDark"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="12dp" />
             <TextView
                 android:id="@+id/TVsearchTitle"
                 style="@style/h2"
                 android:textColor="@color/secondaryDark"
                 android:layout_width="236sp"
                 android:layout_height="90sp"
-                android:text="Mulholland Drive"
-                 />
-            
+                android:text="Mulholland Drive" />
+
         </LinearLayout>
 
         <TextView
+            android:id="@+id/TVsearchRating"
             android:layout_width="60dp"
             android:layout_height="40dp"
-            android:layout_marginBottom="68dp"
             android:background="@drawable/button_circle"
             android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/accent"
             android:gravity="center"
             android:text="4/5"
+            android:textColor="@color/accent"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -72,6 +71,7 @@
                 android:contentDescription="TODO"
                 android:outlineProvider="background"
                 android:scaleType="centerCrop" />
+
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -88,13 +88,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/wrapperTitleSearch"
-            app:layout_constraintVertical_bias="0.609">
-
-
-        </TextView>
-
+            app:layout_constraintVertical_bias="0.609"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.cardview.widget.CardView>

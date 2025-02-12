@@ -50,7 +50,6 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
     }
 
     static class FilmListViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTitulo, txtDirector;
         TextView tvListTitle, tvVerTodo;
         ConstraintLayout layout;
         RecyclerView nestedList;

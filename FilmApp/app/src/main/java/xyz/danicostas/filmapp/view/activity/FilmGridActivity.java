@@ -21,7 +21,6 @@ import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.view.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.view.adapter.FilmListAdapter;
 import xyz.danicostas.filmapp.model.entity.FilmList;
-import xyz.danicostas.filmapp.model.entity.FilmTMDB;
 import xyz.danicostas.filmapp.model.entity.MovieResponse;
 import xyz.danicostas.filmapp.model.service.ApiFilmService;
 import xyz.danicostas.filmapp.model.service.TMDBApiService;
