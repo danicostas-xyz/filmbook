@@ -43,7 +43,7 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/button_circle"
+                    android:background="@drawable/button_circle_dark"
                     android:src="@drawable/ic_add"
                     />
         </FrameLayout>

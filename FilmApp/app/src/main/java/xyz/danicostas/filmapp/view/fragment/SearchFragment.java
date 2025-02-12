@@ -59,7 +59,7 @@ public class SearchFragment extends Fragment {
 
         List<Film> lista = List.of(nosferatu, nosferatu, nosferatu, nosferatu, nosferatu, nosferatu, nosferatu, nosferatu, nosferatu, nosferatu);
 
-        adapter = new SearchResultAdapter(new ArrayList<>());
+        adapter = new SearchResultAdapter(lista);
         recyclerView.setAdapter(adapter);
 
         return view;
