@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,8 @@ public class ProfileFragment extends Fragment {
         // Observar cambios en las listas
         viewModel.getListaPeliculas().observe(getViewLifecycleOwner(), peliculas -> {
             adapter.updateList(peliculas); // Método que actualiza la lista en el adapter
+            Log.d("FIRESTORE-DATA///PROFILE-FRAGMENT", "Lista: " + peliculas.toString());
+
         });
 
 

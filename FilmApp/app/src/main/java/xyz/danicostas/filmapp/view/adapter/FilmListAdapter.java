@@ -4,6 +4,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
     @Override
     public void onBindViewHolder(@NonNull FilmListViewHolder holder, int position) {
         FilmList listaDeListas = filmLists.get(position);
+        Log.d("FIRESTORE-DATA///FILM-LIST-ADAPTER", "Lista: " + listaDeListas.toString());
         holder.tvListTitle.setText(listaDeListas.getListName());
         holder.setFilms(listaDeListas.getContent());
         holder.tvVerTodo.setOnClickListener(view -> {

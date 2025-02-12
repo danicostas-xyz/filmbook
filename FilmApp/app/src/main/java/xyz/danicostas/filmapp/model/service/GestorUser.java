@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
@@ -55,8 +57,7 @@ public class GestorUser {
                 });
     }
 
-    public List<FilmList> getUserFilmLists() {
-        List<FilmList> filmLists = dao.getUserFilmLists(mAuth.getCurrentUser().getUid());
-        return filmLists;
+    public MutableLiveData<List<FilmList>> getUserFilmLists() {
+        return dao.getUserFilmLists(mAuth.getCurrentUser().getUid());
     }
 }
