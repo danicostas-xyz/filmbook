@@ -4,14 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 public class Film implements Serializable {
     @SerializedName("id")
     private int id;
-
-    public Film() {
-    }
 
     @SerializedName("title")
     private String title;
@@ -25,6 +21,9 @@ public class Film implements Serializable {
     @SerializedName("poster_path")
     private String posterPath;
 
+    @SerializedName("backdrop_path")
+    private String backdropPath;
+
     @SerializedName("release_date")
     private String releaseDate;
 
@@ -33,6 +32,27 @@ public class Film implements Serializable {
 
     @SerializedName("vote_count")
     private int voteCount;
+
+    @SerializedName("media_type")
+    private String mediaType;
+
+    @SerializedName("adult")
+    private boolean adult;
+
+    @SerializedName("original_language")
+    private String originalLanguage;
+
+    @SerializedName("genre_ids")
+    private List<Integer> genreIds;
+
+    @SerializedName("popularity")
+    private double popularity;
+
+    @SerializedName("video")
+    private boolean video;
+
+    public Film() {
+    }
 
     // Getters and Setters
     public int getId() {
@@ -75,22 +95,16 @@ public class Film implements Serializable {
         this.posterPath = posterPath;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getBackdropPath() {
+        return backdropPath;
     }
 
-    @Override
-    public String toString() {
-        return "Film{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", originalTitle='" + originalTitle + '\'' +
-                ", overview='" + overview + '\'' +
-                ", posterPath='" + posterPath + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
-                ", voteAverage=" + voteAverage +
-                ", voteCount=" + voteCount +
-                '}';
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
     public void setReleaseDate(String releaseDate) {
@@ -111,5 +125,74 @@ public class Film implements Serializable {
 
     public void setVoteCount(int voteCount) {
         this.voteCount = voteCount;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
+
+    public boolean isAdult() {
+        return adult;
+    }
+
+    public void setAdult(boolean adult) {
+        this.adult = adult;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
+    }
+
+    public List<Integer> getGenreIds() {
+        return genreIds;
+    }
+
+    public void setGenreIds(List<Integer> genreIds) {
+        this.genreIds = genreIds;
+    }
+
+    public double getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(double popularity) {
+        this.popularity = popularity;
+    }
+
+    public boolean isVideo() {
+        return video;
+    }
+
+    public void setVideo(boolean video) {
+        this.video = video;
+    }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", originalTitle='" + originalTitle + '\'' +
+                ", overview='" + overview + '\'' +
+                ", posterPath='" + posterPath + '\'' +
+                ", backdropPath='" + backdropPath + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", voteAverage=" + voteAverage +
+                ", voteCount=" + voteCount +
+                ", mediaType='" + mediaType + '\'' +
+                ", adult=" + adult +
+                ", originalLanguage='" + originalLanguage + '\'' +
+                ", genreIds=" + genreIds +
+                ", popularity=" + popularity +
+                ", video=" + video +
+                '}';
     }
 }
