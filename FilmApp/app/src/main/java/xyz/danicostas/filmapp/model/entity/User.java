@@ -11,6 +11,10 @@ public class User {
     private String password;
     private List<FilmList> listasDeListas;
     private Map<String, Review> comentarios;
+    // Lo mejor sería tener una List<Map<String, List<Film>>>
+    // Y eliminar la clase FilmList, que no aporta nada
+    // Y para comentarios, tener una List<Review> (porque solo hay una lista de reviews
+    // y entonces no hay que poner varias listas con títulos distintos
     private List<User> listaAmigos;
     private String url;
 
