@@ -21,7 +21,8 @@ public class User {
     public User() {
     }
 
-    public User(String nombre, String username, String password, List<FilmList> listasDeListas, Map<String, Review> comentarios) {
+    public User(String nombre, String username, String password, List<FilmList> listasDeListas,
+                Map<String, Review> comentarios) {
         this.nombre = nombre;
         this.username = username;
         this.password = password;

@@ -18,9 +18,17 @@ import xyz.danicostas.filmapp.model.entity.MovieResponse;
 public interface TMDBApiService {
 
     // https://api.themoviedb.org/3
+    // La Apì Key en TMDBApi no va en la cabecera, si no como QueryParam en la url
 
     @GET("trending/all/week")
     Call<MovieResponse> getTrendingMovies(@Query("api_key") String apiKey);
+
+    // https://api.themoviedb.org/3/search/movie?query=blue%20velvet&include_adult=false&language=es&page=1' \
+
+    @GET("search/movie")
+    Call<MovieResponse> getMovieByTitle(@Query("api_key") String apiKey, @Query ("query") String query);
+
+
 
     /*@Headers({
             "Authorization: Bearer c2013086d51347da56494c501d63f7c14f51b908a43b9c0ec0145cfab4b901cd"

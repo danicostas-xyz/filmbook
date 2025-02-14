@@ -3,20 +3,29 @@ package xyz.danicostas.filmapp.view.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
-import xyz.danicostas.filmapp.view.adapter.FilmListAdapter;
+import xyz.danicostas.filmapp.model.entity.MovieResponse;
+import xyz.danicostas.filmapp.model.service.ApiFilmService;
+import xyz.danicostas.filmapp.model.service.TMDBApiService;
 import xyz.danicostas.filmapp.view.adapter.SearchResultAdapter;
 import xyz.danicostas.filmapp.viewmodel.FilmListsViewModel;
 
@@ -26,6 +35,10 @@ public class SearchFragment extends Fragment {
     private RecyclerView recyclerView;
     private SearchResultAdapter adapter;
     private FilmListsViewModel viewModel;
+    private List<Film> listOfFilms;
+    private EditText editTextSearch;
+    private Handler handler = new Handler();
+    private Runnable searchRunnable;
 
     public SearchFragment() { /* Required empty public constructor */ }
     @Override
@@ -37,31 +50,58 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        recyclerView = view.findViewById(R.id.RVSearch);
+        adapter = new SearchResultAdapter(new ArrayList<>());
+        recyclerView = view.findViewById(R.id.rvSearch);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-
-        Film nosferatu = new Film();
-            nosferatu.setId(426063);
-            nosferatu.setTitle("Nosferatu");
-            nosferatu.setOriginalTitle("Nosferatu");
-            nosferatu.setOverview("A gothic tale of obsession between a haunted young woman and the terrifying vampire infatuated with her, causing untold horror in its wake.");
-            nosferatu.setPosterPath("https://image.tmdb.org/t/p/w500/5qGIxdEO841C0tdY8vOdLoRVrr0.jpg");
-            nosferatu.setBackdropPath(null); // No se proporcionó backdropPath
-            nosferatu.setReleaseDate("2024-12-25");
-            nosferatu.setVoteAverage(6.7);
-            nosferatu.setVoteCount(2002);
-            nosferatu.setMediaType(null); // No se proporcionó mediaType
-            nosferatu.setAdult(false);
-            nosferatu.setOriginalLanguage("en");
-            nosferatu.setGenreIds(List.of(27, 18)); // Supongamos que 27 = Horror, 18 = Drama
-            nosferatu.setPopularity(0.0); // No se proporcionó, por lo que dejamos 0.0
-            nosferatu.setVideo(false);
-
-        List<Film> lista = List.of(nosferatu, nosferatu, nosferatu, nosferatu, nosferatu, nosferatu, nosferatu, nosferatu, nosferatu, nosferatu);
-
-        adapter = new SearchResultAdapter(lista);
         recyclerView.setAdapter(adapter);
+        editTextSearch = view.findViewById(R.id.editTextSearch);
+
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Cancelamos la búsqueda anterior
+                handler.removeCallbacks(searchRunnable);
+                // Nueva búsqueda con retraso de 500ms
+                searchRunnable = () -> obtainMoviesByTitle(recyclerView, s.toString(), adapter);
+                handler.postDelayed(searchRunnable, 500);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
 
         return view;
+    }
+
+    public void obtainMoviesByTitle(RecyclerView recyclerView, String query, SearchResultAdapter adapter){
+
+        TMDBApiService api = ApiFilmService.getInstance().getApi();
+
+        Call<MovieResponse> call = api.getMovieByTitle(ApiFilmService.API_KEY, query);
+
+        call.enqueue(new Callback<MovieResponse>() {
+
+            @Override
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Success", "Datos traidos del servicio");
+                    MovieResponse movieResponse = response.body();
+                    Log.d("MOVIES BY TITLE", movieResponse.toString());
+                    List<Film> lista = movieResponse.getResults();
+                    lista.forEach(v->Log.d("Peli", v.toString()));
+                    adapter.updateList(lista);
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Log.d("Error", response.code() + " " + response.message());
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.d("Error", t.toString());
+            }
+        });
     }
 }
