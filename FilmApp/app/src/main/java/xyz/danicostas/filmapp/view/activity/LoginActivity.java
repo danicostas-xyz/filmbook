@@ -1,7 +1,7 @@
 package xyz.danicostas.filmapp.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,13 +15,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.model.service.GestorUser;
+import xyz.danicostas.filmapp.model.service.LoginRegisterService;
+import xyz.danicostas.filmapp.model.service.UserService;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText emailInput, passwordInput;
     private TextView registerLink;
     private Button loginButton;
-    private GestorUser gu;
+    private LoginRegisterService loginRegisterService;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,25 +36,45 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        emailInput = findViewById(R.id.email);
-        passwordInput = findViewById(R.id.password);
-        loginButton = findViewById(R.id.login);
-        registerLink = findViewById(R.id.register_link);
+        initViews();
+        getInstances();
+        setOnClickListeners();
+    }
 
-        gu = GestorUser.getInstance();
-
+    private void setOnClickListeners() {
         loginButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
 
-                gu.loguearse(LoginActivity.this, email, password);  // Llamar al método de login
+            if (email.isEmpty()) {
+                Toast.makeText(context, context.getString(R.string.emailRequired), Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
 
-
+            if (password.isEmpty()) {
+                Toast.makeText(context, context.getString(R.string.passwordRequired), Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
+            // Llamar al método de login
+            loginRegisterService.login(LoginActivity.this, email, password);
         });
 
         registerLink.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void getInstances() {
+        loginRegisterService = LoginRegisterService.getInstance();
+    }
+
+    private void initViews() {
+        emailInput = findViewById(R.id.etEmailLogin);
+        passwordInput = findViewById(R.id.etPassLogin);
+        loginButton = findViewById(R.id.btLogin);
+        registerLink = findViewById(R.id.tvRegisterLinkLogin);
     }
 }

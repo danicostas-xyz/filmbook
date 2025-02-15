@@ -6,7 +6,7 @@
     tools:context=".view.fragment.ProfileFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RVFilmList"
+        android:id="@+id/rclViewFilmList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 

@@ -21,6 +21,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Fr
 
     private List<User> friendList;
     private Context context;
+    public static final String FRIEND_NAME = "Friend Name";
 
     // Constructor
     public FriendListAdapter(Context context, List<User> friendList) {
@@ -42,7 +43,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Fr
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, FriendActivity.class);
-            intent.putExtra("friendName", friend.getUsername());
+            intent.putExtra(FRIEND_NAME, friend.getUsername());
             context.startActivity(intent);
         });
     }

@@ -15,11 +15,12 @@ import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
+import xyz.danicostas.filmapp.model.service.ApiFilmService;
 
 public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGridViewHolder> {
-    private List<Film> peliculas;
-    public FilmGridAdapter(List<Film> peliculas) {
-        this.peliculas = peliculas;
+    private List<Film> listOfFilms;
+    public FilmGridAdapter(List<Film> listOfFilms) {
+        this.listOfFilms = listOfFilms;
     }
 
     @NonNull
@@ -30,7 +31,6 @@ public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGr
     }
 
     static class FilmGridViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTitulo, txtDirector;
         ImageView imageView;
         FilmGridViewHolder(View itemView) {
             super(itemView);
@@ -40,21 +40,20 @@ public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGr
 
     @Override
     public void onBindViewHolder(@NonNull FilmGridViewHolder holder, int position) {
-        Film pelicula = peliculas.get(position);
+        Film film = listOfFilms.get(position);
         // URL de la imagen
-        String posterPath = pelicula.getPosterPath();
-        String imageUrl = "https://image.tmdb.org/t/p/w500" + posterPath;
+        String posterPath = film.getPosterPath();
+        String imageUrl = ApiFilmService.TMDB_API_IMAGE_URL + posterPath;
 
         // Usar Glide para cargar la imagen
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)  // La URL de la imagen
                 .into(holder.imageView);
-
     }
 
     @Override
     public int getItemCount() {
-        return peliculas.size();
+        return listOfFilms.size();
     }
 
 }

@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/ETsearch"
+            android:id="@+id/editTextSearch"
             style="@style/CustomEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         tools:layout_editor_absoluteX="22dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RVSearch"
+            android:id="@+id/rvSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </ScrollView>

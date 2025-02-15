@@ -8,17 +8,17 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import xyz.danicostas.filmapp.model.entity.Film;
 
-public class DaoPelicula {
-    private static DaoPelicula instance;
+public class DaoFilm {
+    private static DaoFilm instance;
     private static final String COLLECTION_NAME = "peliculas";
     private final FirebaseFirestore db;
 
-    private DaoPelicula() {
+    private DaoFilm() {
         db = FirebaseFirestore.getInstance();
     }
 
-    public static DaoPelicula getInstance() {
-        return instance == null ? instance = new DaoPelicula() : instance;
+    public static DaoFilm getInstance() {
+        return instance == null ? instance = new DaoFilm() : instance;
     }
 
     public void createPelicula(Film pelicula, OnCompleteListener<DocumentReference> listener) {

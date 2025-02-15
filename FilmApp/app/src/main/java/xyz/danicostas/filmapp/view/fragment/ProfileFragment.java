@@ -7,19 +7,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.view.adapter.FilmListAdapter;
-import xyz.danicostas.filmapp.model.entity.Film;
-import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.viewmodel.FilmListsViewModel;
 
 public class ProfileFragment extends Fragment {
@@ -43,7 +38,7 @@ public class ProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        recyclerView = view.findViewById(R.id.RVFilmList);
+        recyclerView = view.findViewById(R.id.rclViewFilmList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         adapter = new FilmListAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);

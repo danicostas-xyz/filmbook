@@ -17,9 +17,9 @@ import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
 
 public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAdapter.FilmListNestedViewHolder> {
-    private List<Film> peliculas;
-    public FilmListNestedAdapter(List<Film> peliculas) {
-        this.peliculas = peliculas;
+    private List<Film> listOfFilms;
+    public FilmListNestedAdapter(List<Film> listOfFilms) {
+        this.listOfFilms = listOfFilms;
     }
 
     @NonNull
@@ -29,38 +29,32 @@ public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAd
         return new FilmListNestedViewHolder(view);
     }
 
-    public void updateList(List<Film> films) {
-        peliculas.clear();
-        peliculas.addAll(films);
+    public void updateList(List<Film> newList) {
+        listOfFilms.clear();
+        listOfFilms.addAll(newList);
         notifyDataSetChanged();
     }
 
     static class FilmListNestedViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTitulo, txtDirector;
         ImageView imageView;
 
         FilmListNestedViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-            /* txtTitulo = itemView.findViewById(R.id.txtTitulo);
-            txtDirector = itemView.findViewById(R.id.txtDirector);*/
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull FilmListNestedViewHolder holder, int position) {
-        Film pelicula = peliculas.get(position);
+        Film pelicula = listOfFilms.get(position);
         Glide.with(holder.itemView.getContext())
                 .load(pelicula.getPosterPath())  // La URL de la imagen
                 .into(holder.imageView);
-
-        /* holder.txtTitulo.setText(pelicula.getTitulo());
-        holder.txtDirector.setText("Dirigida por: " + pelicula.getDirector());*/
     }
 
     @Override
     public int getItemCount() {
-        return peliculas.size();
+        return listOfFilms.size();
     }
 
 }
