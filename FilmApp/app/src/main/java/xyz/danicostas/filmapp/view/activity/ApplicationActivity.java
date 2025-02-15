@@ -111,13 +111,13 @@ public class ApplicationActivity extends AppCompatActivity {
         if (headerName != null && username != null) {
             headerName.setText(username);
         }
-
         // Menu hamburgesa
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
 
             if (id == R.id.nav_settings) {
                 Intent i = new Intent(ApplicationActivity.this, SettingsActivity.class);
+
                 startActivity(i);
             }
 
