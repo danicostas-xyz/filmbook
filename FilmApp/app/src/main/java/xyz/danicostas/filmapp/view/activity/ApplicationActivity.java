@@ -42,7 +42,7 @@ public class ApplicationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_application);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra("K_Usuario");
+        String username = intent.getStringExtra("USERNAME");
 
         initViews();
         getInstances();
