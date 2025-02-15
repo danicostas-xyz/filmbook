@@ -1,10 +1,12 @@
 package xyz.danicostas.filmapp.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView registerLink;
     private Button loginButton;
     private LoginRegisterService loginRegisterService;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,19 @@ public class LoginActivity extends AppCompatActivity {
             String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
 
-            loginRegisterService.login(LoginActivity.this, email, password);  // Llamar al método de login
+            if (email.isEmpty()) {
+                Toast.makeText(context, context.getString(R.string.emailRequired), Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
+
+            if (password.isEmpty()) {
+                Toast.makeText(context, context.getString(R.string.passwordRequired), Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
+            // Llamar al método de login
+            loginRegisterService.login(LoginActivity.this, email, password);
         });
 
         registerLink.setOnClickListener(view -> {

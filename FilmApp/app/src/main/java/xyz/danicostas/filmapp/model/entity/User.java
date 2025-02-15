@@ -2,15 +2,14 @@ package xyz.danicostas.filmapp.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class User {
-    private String nombre;
+    private String id;
+    private String name;
     private String email;
     private String username;
-    private String password;
     private List<FilmList> listasDeListas;
-    private Map<String, Review> comentarios;
+    private List<Review> listOfReviews;
     // Lo mejor sería tener una List<Map<String, List<Film>>>
     // Y eliminar la clase FilmList, que no aporta nada
     // Y para comentarios, tener una List<Review> (porque solo hay una lista de reviews
@@ -18,17 +17,19 @@ public class User {
     private List<User> listaAmigos;
     private String url;
 
-    public User() {
+    public User(String id, String name, String email, String username, List<FilmList> listasDeListas,
+                List<Review> listOfReviews, List<User> listaAmigos) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.listasDeListas = listasDeListas;
+        this.listOfReviews = listOfReviews;
+        this.listaAmigos = listaAmigos;
+        listasDeListas.add(new FilmList("Favorites", new ArrayList<Film>()));
     }
 
-    public User(String nombre, String username, String password, List<FilmList> listasDeListas,
-                Map<String, Review> comentarios) {
-        this.nombre = nombre;
-        this.username = username;
-        this.password = password;
-        this.listasDeListas = listasDeListas;
-        this.comentarios = comentarios;
-        listasDeListas.add(new FilmList("Favorites", new ArrayList<Film>()));
+    public User() {
     }
 
     public User(String username, String url) {
@@ -36,12 +37,16 @@ public class User {
         this.url = url;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
+
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -60,14 +65,6 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public List<FilmList> getListasDeListas() {
         return listasDeListas;
     }
@@ -76,12 +73,12 @@ public class User {
         this.listasDeListas = listasDeListas;
     }
 
-    public Map<String, Review> getComentarios() {
-        return comentarios;
+    public List<Review> getListOfReviews() {
+        return listOfReviews;
     }
 
-    public void setComentarios(Map<String, Review> comentarios) {
-        this.comentarios = comentarios;
+    public void setListOfReviews(List<Review> listOfReviews) {
+        this.listOfReviews = listOfReviews;
     }
 
     public List<User> getListaAmigos() {
@@ -98,5 +95,19 @@ public class User {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", listasDeListas=" + listasDeListas +
+                ", listOfReviews=" + listOfReviews +
+                ", listaAmigos=" + listaAmigos +
+                ", url='" + url + '\'' +
+                '}';
     }
 }
