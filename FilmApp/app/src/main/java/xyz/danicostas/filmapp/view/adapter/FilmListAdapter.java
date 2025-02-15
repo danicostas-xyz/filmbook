@@ -43,9 +43,9 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
         return new FilmListViewHolder(view);
     }
 
-    public void updateList(List<FilmList> peliculas) {
+    public void updateList(List<FilmList> newList) {
         filmLists.clear();
-        filmLists.addAll(peliculas);
+        filmLists.addAll(newList);
         notifyDataSetChanged();
     }
 

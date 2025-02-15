@@ -42,9 +42,9 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         }
     }
 
-    public void updateList(List<Film> peliculas) {
+    public void updateList(List<Film> newList) {
         peliculas.clear();
-        peliculas.addAll(peliculas);
+        peliculas.addAll(newList);
         notifyDataSetChanged();
     }
 
@@ -53,8 +53,8 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         Film pelicula = peliculas.get(position);
 
         holder.tVsearchTitle.setText(pelicula.getTitle());
-        holder.tVsearchRating.setText(String.valueOf(pelicula.getVoteAverage())); ;
-        holder.tVsearchContent.setText(pelicula.getOverview()); ;
+        holder.tVsearchRating.setText(String.valueOf(pelicula.getVoteAverage()));
+        holder.tVsearchContent.setText(pelicula.getOverview());
 
         String posterPath = pelicula.getPosterPath();
         String imageUrl = "https://image.tmdb.org/t/p/w500" + posterPath;

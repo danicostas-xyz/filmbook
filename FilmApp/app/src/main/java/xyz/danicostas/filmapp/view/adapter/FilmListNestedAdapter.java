@@ -29,9 +29,9 @@ public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAd
         return new FilmListNestedViewHolder(view);
     }
 
-    public void updateList(List<Film> films) {
+    public void updateList(List<Film> newList) {
         peliculas.clear();
-        peliculas.addAll(films);
+        peliculas.addAll(newList);
         notifyDataSetChanged();
     }
 
