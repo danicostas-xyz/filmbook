@@ -3,7 +3,7 @@ package xyz.danicostas.filmapp.model.entity;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
-public class MovieResponse {
+public class ApiResponseSearchFilmByTitle {
     @SerializedName("page")
     private int page;
 

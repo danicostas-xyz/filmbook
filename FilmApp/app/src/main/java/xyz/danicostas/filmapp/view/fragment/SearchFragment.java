@@ -23,7 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
-import xyz.danicostas.filmapp.model.entity.MovieResponse;
+import xyz.danicostas.filmapp.model.entity.ApiResponseSearchFilmByTitle;
 import xyz.danicostas.filmapp.model.service.ApiFilmService;
 import xyz.danicostas.filmapp.model.service.TMDBApiService;
 import xyz.danicostas.filmapp.view.adapter.SearchResultAdapter;
@@ -77,16 +77,16 @@ public class SearchFragment extends Fragment {
     public void obtainMoviesByTitle(RecyclerView recyclerView, String query, SearchResultAdapter adapter){
 
         TMDBApiService api = ApiFilmService.getInstance().getApi();
-        Call<MovieResponse> call = api.getMovieByTitle(ApiFilmService.API_KEY, query);
-        call.enqueue(new Callback<MovieResponse>() {
+        Call<ApiResponseSearchFilmByTitle> call = api.getMovieByTitle(ApiFilmService.API_KEY, query);
+        call.enqueue(new Callback<ApiResponseSearchFilmByTitle>() {
 
             @Override
-            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+            public void onResponse(Call<ApiResponseSearchFilmByTitle> call, Response<ApiResponseSearchFilmByTitle> response) {
                 if (response.isSuccessful()) {
                     Log.d("Success", "Datos traidos del servicio");
-                    MovieResponse movieResponse = response.body();
-                    Log.d("MOVIES BY TITLE", movieResponse.toString());
-                    List<Film> lista = movieResponse.getResults();
+                    ApiResponseSearchFilmByTitle apiResponseSearchFilmByTitle = response.body();
+                    Log.d("MOVIES BY TITLE", apiResponseSearchFilmByTitle.toString());
+                    List<Film> lista = apiResponseSearchFilmByTitle.getResults();
                     lista.forEach(v->Log.d("Peli", v.toString()));
                     adapter.updateList(lista);
                     adapter.notifyDataSetChanged();
