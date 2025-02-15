@@ -15,12 +15,11 @@ import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
-import xyz.danicostas.filmapp.model.entity.FilmList;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder> {
-    private List<Film> peliculas;
-    public SearchResultAdapter(List<Film> peliculas) {
-        this.peliculas = peliculas;
+    private List<Film> listOfFIlms;
+    public SearchResultAdapter(List<Film> listOfFIlms) {
+        this.listOfFIlms = listOfFIlms;
     }
 
     @NonNull
@@ -35,22 +34,22 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         ImageView iVsearchFilmPoster;
         SearchResultViewHolder(View itemView) {
             super(itemView);
-            tVsearchTitle = itemView.findViewById(R.id.TVsearchTitle);
-            tVsearchRating = itemView.findViewById(R.id.TVsearchRating);
-            tVsearchContent = itemView.findViewById(R.id.TVsearchContent);
-            iVsearchFilmPoster = itemView.findViewById(R.id.IVsearchFilmPoster);
+            tVsearchTitle = itemView.findViewById(R.id.tvSearchTitle);
+            tVsearchRating = itemView.findViewById(R.id.tvSearchRating);
+            tVsearchContent = itemView.findViewById(R.id.tvSearchContent);
+            iVsearchFilmPoster = itemView.findViewById(R.id.imgViewSearchFilmPoster);
         }
     }
 
     public void updateList(List<Film> newList) {
-        peliculas.clear();
-        peliculas.addAll(newList);
+        listOfFIlms.clear();
+        listOfFIlms.addAll(newList);
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(@NonNull SearchResultViewHolder holder, int position) {
-        Film pelicula = peliculas.get(position);
+        Film pelicula = listOfFIlms.get(position);
 
         holder.tVsearchTitle.setText(pelicula.getTitle());
         holder.tVsearchRating.setText(String.valueOf(pelicula.getVoteAverage()));
@@ -66,7 +65,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     @Override
     public int getItemCount() {
-        return peliculas.size();
+        return listOfFIlms.size();
     }
 
 }

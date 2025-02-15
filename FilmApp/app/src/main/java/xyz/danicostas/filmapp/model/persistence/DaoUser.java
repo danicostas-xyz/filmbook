@@ -2,7 +2,6 @@ package xyz.danicostas.filmapp.model.persistence;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -13,7 +12,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -21,17 +19,17 @@ import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.User;
 
-public class DaoUsuario {
-    private static DaoUsuario instance;
+public class DaoUser {
+    private static DaoUser instance;
     private static final String COLLECTION_NAME = "usuarios";
     private final FirebaseFirestore db;
 
-    private DaoUsuario() {
+    private DaoUser() {
         db = FirebaseFirestore.getInstance();
     }
 
-    public static DaoUsuario getInstance() {
-        return instance == null ? instance = new DaoUsuario() : instance;
+    public static DaoUser getInstance() {
+        return instance == null ? instance = new DaoUser() : instance;
     }
 
     public void createUser(String userId, User newUser, OnCompleteListener<Void> onCompleteListener) {
@@ -40,7 +38,6 @@ public class DaoUsuario {
                 .set(newUser)
                 .addOnCompleteListener(onCompleteListener);
     }
-
 
     public void getUserById(String id, OnCompleteListener<DocumentSnapshot> listener) {
         db.collection(COLLECTION_NAME)
@@ -70,9 +67,6 @@ public class DaoUsuario {
                 });
     }
 
-
-
-
     public void getUserByUsername(String username, OnCompleteListener<QuerySnapshot> listener) {
         db.collection(COLLECTION_NAME)
                 .whereEqualTo("username", username)
@@ -91,7 +85,6 @@ public class DaoUsuario {
     public void deleteUser(String id, OnCompleteListener<Void> listener) {
         db.collection(COLLECTION_NAME).document(id).delete().addOnCompleteListener(listener);
     }
-
 
     public void addMovieToUserList(String userId, Film film, OnCompleteListener<DocumentReference> callback) {
         if (userId == null || userId.isEmpty()) {
@@ -116,7 +109,6 @@ public class DaoUsuario {
                     Log.e("FirestoreError", "Error al añadir película", e);
                 });
     }
-
 
     public void removeMovieFromList(String userId, String listType, String movieId, OnCompleteListener<Void> listener) {
         // Si necesitas eliminar una película específica de FilmList, necesitas hacerlo dentro de la lista correspondiente

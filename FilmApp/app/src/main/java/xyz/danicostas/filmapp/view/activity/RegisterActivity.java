@@ -15,7 +15,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,14 +23,14 @@ import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
-import xyz.danicostas.filmapp.model.persistence.DaoUsuario;
+import xyz.danicostas.filmapp.model.persistence.DaoUser;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.User;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText emailInput, usernameInput, passwordInput;
     private Button registerButton;
-    private DaoUsuario daoBBDD;
+    private DaoUser daoBBDD;
     private FirebaseAuth mAuth;
     private TextView loginLink;
 
@@ -46,10 +45,10 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
-        emailInput = findViewById(R.id.email);
-        usernameInput = findViewById(R.id.username);passwordInput = findViewById(R.id.password);
+        emailInput = findViewById(R.id.etEmailLogin);
+        usernameInput = findViewById(R.id.username);passwordInput = findViewById(R.id.etPassLogin);
         registerButton = findViewById(R.id.btRegister);
-        daoBBDD = DaoUsuario.getInstance();
+        daoBBDD = DaoUser.getInstance();
         mAuth = FirebaseAuth.getInstance();
         loginLink = findViewById(R.id.login_link);
 

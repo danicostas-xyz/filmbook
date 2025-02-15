@@ -77,9 +77,7 @@ public class SearchFragment extends Fragment {
     public void obtainMoviesByTitle(RecyclerView recyclerView, String query, SearchResultAdapter adapter){
 
         TMDBApiService api = ApiFilmService.getInstance().getApi();
-
         Call<MovieResponse> call = api.getMovieByTitle(ApiFilmService.API_KEY, query);
-
         call.enqueue(new Callback<MovieResponse>() {
 
             @Override

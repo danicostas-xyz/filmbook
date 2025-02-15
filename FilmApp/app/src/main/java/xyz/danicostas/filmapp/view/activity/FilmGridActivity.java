@@ -34,18 +34,13 @@ public class FilmGridActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_film_list_detail);
-
         Intent intent = getIntent();
         filmList = (FilmList) intent.getSerializableExtra(FilmListAdapter.FILM_LIST_CONTENT);
-
         TextView tvFilmListTitle = findViewById(R.id.tvFilmListTitle);
         tvFilmListTitle.setText(filmList.getListName());
-
         RecyclerView recyclerView = findViewById(R.id.RVFilmGrid);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
         recyclerView.setAdapter(new FilmGridAdapter(filmList.getContent()));
-
-
     }
 
     @Override

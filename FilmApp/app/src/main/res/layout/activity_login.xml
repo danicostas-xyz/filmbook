@@ -8,7 +8,7 @@
     android:id="@+id/loginActivity">
 
     <ImageView
-        android:id="@+id/filmbookLogotipo"
+        android:id="@+id/imgViewFilmbookLogotipo"
         android:layout_width="181dp"
         android:layout_height="97dp"
         android:layout_marginTop="32dp"
@@ -26,22 +26,22 @@
         style="@style/h1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filmbookLogotipo" />
+        app:layout_constraintTop_toBottomOf="@+id/imgViewFilmbookLogotipo" />
 
     <LinearLayout
-        android:id="@+id/linearLayoutUserPass"
+        android:id="@+id/linearLayoutUserPassLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="22dp"
         android:layout_marginBottom="57dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintBottom_toTopOf="@+id/btLogin"
         app:layout_constraintTop_toBottomOf="@+id/tvLoginGreeting"
         app:layout_constraintVertical_bias="0.633"
         tools:layout_editor_absoluteX="1dp">
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/etEmailLogin"
             style="@style/CustomEditText"
             android:paddingStart="26dp"
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/etPassLogin"
             style="@style/CustomEditText"
             android:paddingStart="26dp"
             android:layout_width="match_parent"
@@ -70,18 +70,18 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/btLogin"
         style="@style/CustomButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="22dp"
         android:text="@string/login_button"
-        app:layout_constraintBottom_toTopOf="@id/register_link"
-        app:layout_constraintTop_toBottomOf="@id/linearLayoutUserPass"
+        app:layout_constraintBottom_toTopOf="@id/tvRegisterLinkLogin"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutUserPassLogin"
         tools:layout_editor_absoluteX="22dp" />
 
     <TextView
-        android:id="@+id/register_link"
+        android:id="@+id/tvRegisterLinkLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

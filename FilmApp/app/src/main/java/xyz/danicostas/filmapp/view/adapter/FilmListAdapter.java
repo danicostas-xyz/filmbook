@@ -15,25 +15,21 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.model.service.GestorUser;
 import xyz.danicostas.filmapp.view.activity.FilmGridActivity;
 import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 
 public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder> {
-    private List<FilmList> filmLists;
+    private List<FilmList> listOfFilmLists;
     public static final String FILM_LIST_NAME = "Film List Name";
     public static final String FILM_LIST_CONTENT = "Film List Content";
 
-    public FilmListAdapter(List<FilmList> filmLists) {
-        this.filmLists = filmLists;
+    public FilmListAdapter(List<FilmList> listOfFilmLists) {
+        this.listOfFilmLists = listOfFilmLists;
     }
 
     @NonNull
@@ -44,8 +40,8 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
     }
 
     public void updateList(List<FilmList> newList) {
-        filmLists.clear();
-        filmLists.addAll(newList);
+        listOfFilmLists.clear();
+        listOfFilmLists.addAll(newList);
         notifyDataSetChanged();
     }
 
@@ -65,7 +61,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
              * Aquí creamos las películas de cada una de las listas de películas que se crean en este adapter
              * Lista de Listas de películas > cada lista tiene una lista de películas
              */
-            nestedList = itemView.findViewById(R.id.RVNestedList);
+            nestedList = itemView.findViewById(R.id.rclViewNestedList);
             nestedList.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false));
             adapter = new FilmListNestedAdapter(new ArrayList<>());
             nestedList.setAdapter(adapter);
@@ -78,7 +74,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
 
     @Override
     public void onBindViewHolder(@NonNull FilmListViewHolder holder, int position) {
-        FilmList listaDeListas = filmLists.get(position);
+        FilmList listaDeListas = listOfFilmLists.get(position);
         Log.d("FIRESTORE-DATA///FILM-LIST-ADAPTER", "Lista: " + listaDeListas.toString());
         holder.tvListTitle.setText(listaDeListas.getListName());
         holder.setFilms(listaDeListas.getContent());
@@ -92,7 +88,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
 
     @Override
     public int getItemCount() {
-        return filmLists.size();
+        return listOfFilmLists.size();
     }
 
 

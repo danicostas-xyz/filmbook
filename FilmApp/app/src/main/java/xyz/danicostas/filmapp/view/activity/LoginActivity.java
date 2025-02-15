@@ -1,12 +1,10 @@
 package xyz.danicostas.filmapp.view.activity;
 
 import android.content.Intent;
-import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +13,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.model.service.GestorUser;
+import xyz.danicostas.filmapp.model.service.UserService;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText emailInput, passwordInput;
     private TextView registerLink;
     private Button loginButton;
-    private GestorUser gu;
+    private UserService userService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,20 +32,18 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        emailInput = findViewById(R.id.email);
-        passwordInput = findViewById(R.id.password);
-        loginButton = findViewById(R.id.login);
-        registerLink = findViewById(R.id.register_link);
+        emailInput = findViewById(R.id.etEmailLogin);
+        passwordInput = findViewById(R.id.etPassLogin);
+        loginButton = findViewById(R.id.btLogin);
+        registerLink = findViewById(R.id.tvRegisterLinkLogin);
 
-        gu = GestorUser.getInstance();
+        userService = UserService.getInstance();
 
         loginButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
 
-                gu.loguearse(LoginActivity.this, email, password);  // Llamar al método de login
-
-
+            userService.login(LoginActivity.this, email, password);  // Llamar al método de login
         });
 
         registerLink.setOnClickListener(view -> {
