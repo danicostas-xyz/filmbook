@@ -27,8 +27,10 @@ import xyz.danicostas.filmapp.model.service.TMDBApiService;
 
 public class FilmGridActivity extends AppCompatActivity {
     private FilmList filmList;
-    ProgressDialog mDefaultDialog;
-    Context context = this;
+    private RecyclerView recyclerView;
+    private ProgressDialog mDefaultDialog;
+    private TextView tvFilmListTitle;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +38,9 @@ public class FilmGridActivity extends AppCompatActivity {
         setContentView(R.layout.activity_film_list_detail);
         Intent intent = getIntent();
         filmList = (FilmList) intent.getSerializableExtra(FilmListAdapter.FILM_LIST_CONTENT);
-        TextView tvFilmListTitle = findViewById(R.id.tvFilmListTitle);
+        initViews();
         tvFilmListTitle.setText(filmList.getListName());
-        RecyclerView recyclerView = findViewById(R.id.RVFilmGrid);
+
         recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
         recyclerView.setAdapter(new FilmGridAdapter(filmList.getContent()));
     }
@@ -87,6 +89,11 @@ public class FilmGridActivity extends AppCompatActivity {
             }
         });
     }*/
+
+    private void initViews() {
+        tvFilmListTitle = findViewById(R.id.tvFilmListTitle);
+        recyclerView = findViewById(R.id.RVFilmGrid);
+    }
 
     public void mostrarEspera() {
         mDefaultDialog = new ProgressDialog(this);

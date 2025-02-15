@@ -13,13 +13,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import xyz.danicostas.filmapp.R;
+import xyz.danicostas.filmapp.model.service.LoginRegisterService;
 import xyz.danicostas.filmapp.model.service.UserService;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText emailInput, passwordInput;
     private TextView registerLink;
     private Button loginButton;
-    private UserService userService;
+    private LoginRegisterService loginRegisterService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +33,33 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        emailInput = findViewById(R.id.etEmailLogin);
-        passwordInput = findViewById(R.id.etPassLogin);
-        loginButton = findViewById(R.id.btLogin);
-        registerLink = findViewById(R.id.tvRegisterLinkLogin);
+        initViews();
+        getInstances();
+        setOnClickListeners();
+    }
 
-        userService = UserService.getInstance();
-
+    private void setOnClickListeners() {
         loginButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
 
-            userService.login(LoginActivity.this, email, password);  // Llamar al método de login
+            loginRegisterService.login(LoginActivity.this, email, password);  // Llamar al método de login
         });
 
         registerLink.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void getInstances() {
+        loginRegisterService = LoginRegisterService.getInstance();
+    }
+
+    private void initViews() {
+        emailInput = findViewById(R.id.etEmailLogin);
+        passwordInput = findViewById(R.id.etPassLogin);
+        loginButton = findViewById(R.id.btLogin);
+        registerLink = findViewById(R.id.tvRegisterLinkLogin);
     }
 }
