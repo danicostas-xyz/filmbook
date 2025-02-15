@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import xyz.danicostas.filmapp.model.service.UserSession;
 import xyz.danicostas.filmapp.view.fragment.CalendarFragment;
 import xyz.danicostas.filmapp.view.fragment.FriendsFragment;
 import xyz.danicostas.filmapp.view.fragment.ProfileFragment;
@@ -33,6 +34,7 @@ public class ApplicationActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
     private FrameLayout fragmentContainer;
+    private UserSession session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,14 @@ public class ApplicationActivity extends AppCompatActivity {
         String username = intent.getStringExtra("K_Usuario");
 
         initViews();
-        topMenuManager(username);
+        getInstances();
+        topMenuManager(session.getUsername());
         fragmentManager(savedInstanceState);
 
+    }
+
+    private void getInstances() {
+        session = UserSession.getInstance();
     }
 
     @Override
