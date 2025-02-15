@@ -8,22 +8,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.view.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.view.adapter.FilmListAdapter;
 import xyz.danicostas.filmapp.model.entity.FilmList;
-import xyz.danicostas.filmapp.model.entity.MovieResponse;
-import xyz.danicostas.filmapp.model.service.ApiFilmService;
-import xyz.danicostas.filmapp.model.service.TMDBApiService;
 
 public class FilmGridActivity extends AppCompatActivity {
     private FilmList filmList;
