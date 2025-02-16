@@ -26,4 +26,11 @@ public class ApiResponseSearchFilmByTitle {
         this.results = results;
     }
 
+    @Override
+    public String toString() {
+        return "ApiResponseSearchFilmByTitle{" +
+                "page=" + page +
+                ", results=" + results +
+                '}';
+    }
 }

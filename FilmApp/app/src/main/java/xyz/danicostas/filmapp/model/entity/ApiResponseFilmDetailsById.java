@@ -27,6 +27,39 @@ public class ApiResponseFilmDetailsById {
     public String posterPath;
     @SerializedName("production_companies")
     public List<ProductionCompany> productionCompanies;
+
+    @Override
+    public String toString() {
+        return "ApiResponseFilmDetailsById{" +
+                "adult=" + adult +
+                ", backdropPath='" + backdropPath + '\'' +
+                ", belongsToCollection=" + belongsToCollection +
+                ", budget=" + budget +
+                ", genres=" + genres +
+                ", homepage='" + homepage + '\'' +
+                ", id=" + id +
+                ", imdbId='" + imdbId + '\'' +
+                ", originCountry=" + originCountry +
+                ", originalLanguage='" + originalLanguage + '\'' +
+                ", originalTitle='" + originalTitle + '\'' +
+                ", overview='" + overview + '\'' +
+                ", popularity=" + popularity +
+                ", posterPath='" + posterPath + '\'' +
+                ", productionCompanies=" + productionCompanies +
+                ", productionCountries=" + productionCountries +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", revenue=" + revenue +
+                ", runtime=" + runtime +
+                ", spokenLanguages=" + spokenLanguages +
+                ", status='" + status + '\'' +
+                ", tagline='" + tagline + '\'' +
+                ", title='" + title + '\'' +
+                ", video=" + video +
+                ", voteAverage=" + voteAverage +
+                ", voteCount=" + voteCount +
+                '}';
+    }
+
     @SerializedName("production_countries")
     public List<ProductionCountry> productionCountries;
     @SerializedName("release_date")

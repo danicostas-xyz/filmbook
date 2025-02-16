@@ -35,7 +35,7 @@ import xyz.danicostas.filmapp.view.adapter.KeywordsGenresAdapter;
 
 public class FilmDetailActivity extends AppCompatActivity {
 
-    private String filmId;
+    private int filmId;
 
     private TextView tvFilmTitle, tvRatingFilmDetail, tvOriginalTitleB, tvDirectorB, tvReleaseDateB,
             tvSinopsisB;
@@ -49,8 +49,9 @@ public class FilmDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_film_detail);
         initViews();
+        getInstances();
         Intent intent = getIntent();
-        filmId = intent.getStringExtra(FILM_ID);
+        filmId = intent.getIntExtra(FILM_ID,0);
         obtainFilmDetails(filmId);
         obtainKeywords(filmId);
         obtainSimilarFilms(filmId);
@@ -73,22 +74,22 @@ public class FilmDetailActivity extends AppCompatActivity {
         api = ApiFilmService.getInstance().getApi();
     }
 
-    private void obtainFilmDetails(String filmId) {
-        Call<ApiResponseFilmDetailsById> call = api.getDetailsByFilmId(ApiFilmService.API_KEY, filmId);
+    private void obtainFilmDetails(int filmId) {
+        Call<ApiResponseFilmDetailsById> call = api.getDetailsByFilmId(filmId, ApiFilmService.API_KEY);
         call.enqueue(new Callback<ApiResponseFilmDetailsById>() {
 
             @Override
             public void onResponse(Call<ApiResponseFilmDetailsById> call,
                                    Response<ApiResponseFilmDetailsById> response) {
                 if (response.isSuccessful()) {
-                    Log.d("Success", "Datos traidos del servicio");
+                    Log.d("Success", "OBTAINFILMDETAILS");
                     ApiResponseFilmDetailsById apiResponse = response.body();
                     assert apiResponse != null;
-                    Log.d("MOVIES BY TITLE", apiResponse.toString());
+                    Log.d("OBTAINFILMDETAILS", apiResponse.toString());
                     tvFilmTitle.setText(apiResponse.title);
                     tvOriginalTitleB.setText(apiResponse.originalTitle);
                     tvRatingFilmDetail.setText(String.valueOf(apiResponse.voteAverage));
-                    tvDirectorB.setText(apiResponse.id);
+                    tvDirectorB.setText(String.valueOf(apiResponse.id));
                     tvReleaseDateB.setText(apiResponse.releaseDate);
                     tvSinopsisB.setText(apiResponse.overview);
                     tvOriginalTitleB.setText(apiResponse.originalTitle);
@@ -119,18 +120,18 @@ public class FilmDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void obtainKeywords(String filmId) {
-        Call<ApiResponseKeywordsByFilmId> call = api.getKeywordsByFilmId(ApiFilmService.API_KEY, filmId);
+    private void obtainKeywords(int filmId) {
+        Call<ApiResponseKeywordsByFilmId> call = api.getKeywordsByFilmId(filmId, ApiFilmService.API_KEY);
         call.enqueue(new Callback<ApiResponseKeywordsByFilmId>() {
 
             @Override
             public void onResponse(Call<ApiResponseKeywordsByFilmId> call,
                                    Response<ApiResponseKeywordsByFilmId> response) {
                 if (response.isSuccessful()) {
-                    Log.d("Success", "Datos traidos del servicio");
+                    Log.d("Success", "OBTAINKEYOWRDS");
                     ApiResponseKeywordsByFilmId apiResponse = response.body();
                     assert apiResponse != null;
-                    Log.d("MOVIES BY TITLE", apiResponse.toString());
+                    Log.d("OBTAINKEYOWRDS", apiResponse.toString());
                     List<KeywordOrGenres> listOfKeywords = apiResponse.keywords;
 
                     List<KeywordOrGenres> limitedKeywords =
@@ -151,18 +152,18 @@ public class FilmDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void obtainSimilarFilms(String filmId) {
+    private void obtainSimilarFilms(int filmId) {
 
-        Call<ApiResponseSearchFilmByTitle> call = api.getSimilarMoviesByFilmId(ApiFilmService.API_KEY, filmId);
+        Call<ApiResponseSearchFilmByTitle> call = api.getSimilarMoviesByFilmId(filmId, ApiFilmService.API_KEY);
         call.enqueue(new Callback<ApiResponseSearchFilmByTitle>() {
 
             @Override
             public void onResponse(Call<ApiResponseSearchFilmByTitle> call,
                                    Response<ApiResponseSearchFilmByTitle> response) {
                 if (response.isSuccessful()) {
-                    Log.d("Success", "Datos traidos del servicio");
+                    Log.d("Success", "SIMILARFILMS");
                     ApiResponseSearchFilmByTitle apiResponse = response.body();
-                    Log.d("hey", apiResponse.toString());
+                    Log.d("SIMILARFILMS", apiResponse.toString());
                     List<Film> listOfSimilarFilms = apiResponse.getResults();
                     rvSimilarFilms.setLayoutManager(new GridLayoutManager(context, 3));
                     rvSimilarFilms.setAdapter(new FilmGridAdapter(listOfSimilarFilms));

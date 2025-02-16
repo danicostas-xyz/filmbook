@@ -26,18 +26,18 @@ public interface TMDBApiService {
 
     @GET("movie/{movie_id}/similar")
     Call<ApiResponseSearchFilmByTitle> getSimilarMoviesByFilmId(
-            @Query("api_key") String apiKey,
-            @Path("movie_id") String movieId);
+            @Path("movie_id") int movieId,
+            @Query("api_key") String apiKey);
 
     @GET("movie/{movie_id}/keywords")
     Call<ApiResponseKeywordsByFilmId> getKeywordsByFilmId(
-            @Query("api_key") String apiKey,
-            @Path("movie_id") String movieId);
+            @Path("movie_id") int movieId,
+            @Query("api_key") String apiKey);
 
     @GET("movie/{movie_id}")
     Call<ApiResponseFilmDetailsById> getDetailsByFilmId(
-            @Query("api_key") String apiKey,
-            @Path("movie_id") String movieId);
+            @Path("movie_id") int movieId,
+            @Query("api_key") String apiKey);
 
     /*@Headers({
             "Authorization: Bearer c2013086d51347da56494c501d63f7c14f51b908a43b9c0ec0145cfab4b901cd"
