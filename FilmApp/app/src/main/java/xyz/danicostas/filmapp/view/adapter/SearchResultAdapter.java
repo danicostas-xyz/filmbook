@@ -42,7 +42,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         CardView cardViewSearch;
         SearchResultViewHolder(View itemView) {
             super(itemView);
-            tVsearchTitle = itemView.findViewById(R.id.tvSearchTitle);
+            tVsearchTitle = itemView.findViewById(R.id.tvFilmDetailTitle);
             tVsearchRating = itemView.findViewById(R.id.tvSearchRating);
             tVsearchContent = itemView.findViewById(R.id.tvSearchContent);
             iVsearchFilmPoster = itemView.findViewById(R.id.imgViewSearchFilmPoster);

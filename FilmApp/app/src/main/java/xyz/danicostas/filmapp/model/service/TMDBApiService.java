@@ -5,7 +5,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import xyz.danicostas.filmapp.model.entity.ApiResponseKeywordsByFilmId;
-import xyz.danicostas.filmapp.model.entity.ApiResponseMovieDetailsById;
+import xyz.danicostas.filmapp.model.entity.ApiResponseFilmDetailsById;
 import xyz.danicostas.filmapp.model.entity.ApiResponseSearchFilmByTitle;
 
 public interface TMDBApiService {
@@ -35,7 +35,7 @@ public interface TMDBApiService {
             @Path("movie_id") String movieId);
 
     @GET("movie/{movie_id}")
-    Call<ApiResponseMovieDetailsById> getDetailsByFilmId(
+    Call<ApiResponseFilmDetailsById> getDetailsByFilmId(
             @Query("api_key") String apiKey,
             @Path("movie_id") String movieId);
 

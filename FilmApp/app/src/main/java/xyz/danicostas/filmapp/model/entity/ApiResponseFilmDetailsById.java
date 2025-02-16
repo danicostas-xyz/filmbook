@@ -3,14 +3,14 @@ package xyz.danicostas.filmapp.model.entity;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
-public class ApiResponseMovieDetailsById {
+public class ApiResponseFilmDetailsById {
     public boolean adult;
     @SerializedName("backdrop_path")
     public String backdropPath;
     @SerializedName("belongs_to_collection")
     public Object belongsToCollection;
     public int budget;
-    public List<Genre> genres;
+    public List<KeywordOrGenres> genres;
     public String homepage;
     public int id;
     @SerializedName("imdb_id")
@@ -43,11 +43,6 @@ public class ApiResponseMovieDetailsById {
     public double voteAverage;
     @SerializedName("vote_count")
     public int voteCount;
-
-    public static class Genre {
-        public int id;
-        public String name;
-    }
 
     public static class ProductionCompany {
         public int id;

@@ -32,7 +32,7 @@
                 android:background="@color/secondaryDark"
                 android:layout_marginEnd="12dp" />
             <TextView
-                android:id="@+id/tvSearchTitle"
+                android:id="@+id/tvFilmDetailTitle"
                 style="@style/h2"
                 android:textColor="@color/secondaryDark"
                 android:layout_width="236sp"

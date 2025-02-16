@@ -36,7 +36,7 @@
                     android:background="?attr/colorSecondary" />
 
                 <TextView
-                    android:id="@+id/tvSearchTitle"
+                    android:id="@+id/tvFilmDetailTitle"
                     style="@style/h2"
                     android:layout_width="236sp"
                     android:layout_height="90sp"
