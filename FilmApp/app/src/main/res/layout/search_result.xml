@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
+    android:id="@+id/cardViewSearch"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -44,7 +45,7 @@
             android:id="@+id/tvSearchRating"
             android:layout_width="60dp"
             android:layout_height="40dp"
-            android:background="@drawable/button_circle_white"
+            android:background="@drawable/button_circle_color_secondary"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:text="4/5"

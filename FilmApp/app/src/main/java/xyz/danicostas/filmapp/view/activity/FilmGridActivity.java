@@ -25,7 +25,7 @@ public class FilmGridActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_film_list_detail);
+        setContentView(R.layout.activity_film_grid);
         Intent intent = getIntent();
         filmList = (FilmList) intent.getSerializableExtra(FilmListAdapter.FILM_LIST_CONTENT);
         initViews();

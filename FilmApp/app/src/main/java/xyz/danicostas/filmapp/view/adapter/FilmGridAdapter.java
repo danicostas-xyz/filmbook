@@ -1,5 +1,9 @@
 package xyz.danicostas.filmapp.view.adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +20,14 @@ import java.util.List;
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.service.ApiFilmService;
+import xyz.danicostas.filmapp.view.activity.FilmDetailActivity;
 
 public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGridViewHolder> {
     private List<Film> listOfFilms;
     public FilmGridAdapter(List<Film> listOfFilms) {
         this.listOfFilms = listOfFilms;
     }
+    public static final String FILM_ID = "Film ID";
 
     @NonNull
     @Override
@@ -49,6 +55,11 @@ public class FilmGridAdapter extends RecyclerView.Adapter<FilmGridAdapter.FilmGr
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)  // La URL de la imagen
                 .into(holder.imageView);
+        holder.imageView.setOnClickListener(view -> {
+            Intent intent = new Intent(holder.itemView.getContext(), FilmDetailActivity.class);
+            intent.putExtra(FILM_ID, film.getId());
+            startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
+        });
     }
 
     @Override

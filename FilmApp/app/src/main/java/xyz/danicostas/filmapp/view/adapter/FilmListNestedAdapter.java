@@ -1,5 +1,9 @@
 package xyz.danicostas.filmapp.view.adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +19,14 @@ import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
+import xyz.danicostas.filmapp.view.activity.FilmDetailActivity;
 
 public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAdapter.FilmListNestedViewHolder> {
     private List<Film> listOfFilms;
     public FilmListNestedAdapter(List<Film> listOfFilms) {
         this.listOfFilms = listOfFilms;
     }
+    public static final String FILM_ID = "Film ID";
 
     @NonNull
     @Override
@@ -46,10 +52,16 @@ public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAd
 
     @Override
     public void onBindViewHolder(@NonNull FilmListNestedViewHolder holder, int position) {
-        Film pelicula = listOfFilms.get(position);
+        Film film = listOfFilms.get(position);
         Glide.with(holder.itemView.getContext())
-                .load(pelicula.getPosterPath())  // La URL de la imagen
+                .load(film.getPosterPath())  // La URL de la imagen
                 .into(holder.imageView);
+
+        holder.imageView.setOnClickListener(view -> {
+            Intent intent = new Intent(holder.itemView.getContext(), FilmDetailActivity.class);
+            intent.putExtra(FILM_ID, film.getId());
+            startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
+        });
     }
 
     @Override
