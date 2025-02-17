@@ -25,6 +25,13 @@ public class UserSession {
     public String getUsername() { return username; }
     public String getEmail() { return email; }
 
+    public void clearUserData() {
+        this.name = null;
+        this.userId = null;
+        this.username = null;
+        this.email = null;
+    }
+
     @Override
     public String toString() {
         return "UserSession{" +
