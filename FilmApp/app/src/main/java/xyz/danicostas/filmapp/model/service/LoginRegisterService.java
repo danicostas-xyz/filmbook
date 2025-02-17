@@ -1,9 +1,12 @@
 package xyz.danicostas.filmapp.model.service;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,7 +45,16 @@ public class LoginRegisterService {
         return instance == null ? instance = new LoginRegisterService() : instance;
     }
 
+
     public void login(Context context, String email, String password) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialogView = inflater.inflate(R.layout.progress_dialog, null);
+
+        final AlertDialog progressDialog = new AlertDialog.Builder(context)
+                .setView(dialogView)
+                //.setCancelable(false)
+                .create();
+        progressDialog.show();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -56,6 +68,8 @@ public class LoginRegisterService {
                             db.collection("users").document(userId)
                                     .get()
                                     .addOnSuccessListener(documentSnapshot -> {
+                                        progressDialog.dismiss();
+
                                         String username = documentSnapshot.exists() ?
                                                 documentSnapshot.getString("username") : null;
 
@@ -72,13 +86,15 @@ public class LoginRegisterService {
                                                 username,
                                                 email
                                         );
+
                                         Intent intent = new Intent(context, ApplicationActivity.class);
                                         intent.putExtra("USERNAME", username);
                                         context.startActivity(intent);
                                     })
                                     .addOnFailureListener(e -> {
-                                        Log.e("GestorUser", "Error fetching user data", e);
+                                        progressDialog.dismiss();
 
+                                        Log.e("GestorUser", "Error fetching user data", e);
                                         UserSession.getInstance().setUser("User", userId, "Unknown", email);
 
                                         Intent intent = new Intent(context, ApplicationActivity.class);
@@ -86,14 +102,16 @@ public class LoginRegisterService {
                                         context.startActivity(intent);
                                     });
                         }
-
-                        Toast.makeText(context, R.string.loginOK, Toast.LENGTH_SHORT).show();
                     } else {
+                        progressDialog.dismiss();
                         String errorMessage = task.getException() != null ? task.getException().getMessage() : "Invalid Credentials";
                         Log.e("GestorUser", "Login failed: " + errorMessage);
                         Toast.makeText(context, context.getString(R.string.loginKO) + errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
+
+
+
 
         userService.getUserData();
     }
