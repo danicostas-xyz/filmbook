@@ -77,6 +77,14 @@ public class LoginRegisterService {
         }
     }
 
+    public void logout() {
+        if (mAuth != null) {
+            mAuth.signOut();
+            UserSession.getInstance().clearUserData();
+        } else {
+            Log.e("GestorUser", "FirebaseAuth is not initialized.");
+        }
+    }
 
     public void register(Context context, String email, String username, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
