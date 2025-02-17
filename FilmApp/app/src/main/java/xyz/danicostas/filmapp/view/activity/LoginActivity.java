@@ -58,7 +58,9 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
             // Llamar al método de login
-            loginRegisterService.login(LoginActivity.this, email, password);
+            loginRegisterService.login(LoginActivity.this, email, password, o -> {
+
+            });
         });
 
         registerLink.setOnClickListener(view -> {

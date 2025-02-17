@@ -33,19 +33,23 @@ public class UserService {
         return instance == null ? instance = new UserService() : instance;
     }
 
-    public void getUserData(){
+    public Object getUserData(){
         dao.getUserData(authUser.getUid(), new OnUserDataCallback() {
             @Override
             public void onSuccess(User u) {
-                Log.d("ON-SUCCESS-GET-USER-DATA-USER-SERVICE", u.toString());
-                UserSession.getInstance().setUser(u.getName(), u.getId(), u.getUsername(),
-                        u.getEmail());
+                if (u!=null){
+                    Log.d("ON-SUCCESS-GET-USER-DATA-USER-SERVICE", u.toString());
+                    UserSession.getInstance().setUser(u.getName(), u.getId(), u.getUsername(),
+                            u.getEmail());
+                }
                 Log.d("USER-SESSION", UserSession.getInstance().toString());
             }
 
             @Override
             public void onFailure(String errorMessage) {}
         });
+
+        return new Object();
     }
 
     public MutableLiveData<List<FilmList>> getUserFilmLists() {

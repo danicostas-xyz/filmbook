@@ -47,7 +47,7 @@ public class KeywordsGenresAdapter extends RecyclerView.Adapter<KeywordsGenresAd
     @Override
     public void onBindViewHolder(@NonNull KeywordsGenresViewHolder holder, int position) {
         String keywordGenre = listOfWords.get(position).name;
-        holder.tvKeywordsGenres.setText(keywordGenre);
+        holder.tvKeywordsGenres.setText(keywordGenre.toLowerCase());
         // TODO (Abrir un intent cuando se pulse el Keyword o Genre para hacer una búsqueda nueva)
         // Ahora mismo solo hay una clase que agrupa a keyword y genre, pero supongo que tendré
         // que separarlas en 2 porque si no luego no puedo saber desde aquí si es keyword o genre
