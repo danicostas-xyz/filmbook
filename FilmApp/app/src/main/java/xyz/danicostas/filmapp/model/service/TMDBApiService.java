@@ -15,29 +15,34 @@ public interface TMDBApiService {
 
     @GET("trending/all/week")
     Call<ApiResponseSearchFilmByTitle> getTrendingMovies(
-            @Query("api_key") String apiKey);
+            @Query("api_key") String apiKey,
+            @Query("language") String language);
 
     // https://api.themoviedb.org/3/search/movie?query=blue%20velvet&include_adult=false&language=es&page=1' \
 
     @GET("search/movie")
     Call<ApiResponseSearchFilmByTitle> getMovieByTitle(
             @Query("api_key") String apiKey,
-            @Query ("query") String query);
+            @Query ("query") String query,
+            @Query("language") String language);
 
     @GET("movie/{movie_id}/similar")
     Call<ApiResponseSearchFilmByTitle> getSimilarMoviesByFilmId(
             @Path("movie_id") int movieId,
-            @Query("api_key") String apiKey);
+            @Query("api_key") String apiKey,
+            @Query("language") String language);
 
     @GET("movie/{movie_id}/keywords")
     Call<ApiResponseKeywordsByFilmId> getKeywordsByFilmId(
             @Path("movie_id") int movieId,
-            @Query("api_key") String apiKey);
+            @Query("api_key") String apiKey,
+            @Query("language") String language);
 
     @GET("movie/{movie_id}")
     Call<ApiResponseFilmDetailsById> getDetailsByFilmId(
             @Path("movie_id") int movieId,
-            @Query("api_key") String apiKey);
+            @Query("api_key") String apiKey,
+            @Query("language") String language);
 
     /*@Headers({
             "Authorization: Bearer c2013086d51347da56494c501d63f7c14f51b908a43b9c0ec0145cfab4b901cd"

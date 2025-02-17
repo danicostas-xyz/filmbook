@@ -127,6 +127,11 @@ public class ApplicationActivity extends AppCompatActivity {
 
                 startActivity(i);
             }
+            if (id == R.id.nav_logout) {
+                Intent i = new Intent(ApplicationActivity.this, LoginActivity.class);
+
+                startActivity(i);
+            }
 
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;

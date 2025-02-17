@@ -45,6 +45,24 @@ public class Film implements Serializable {
     @SerializedName("genre_ids")
     private List<Integer> genreIds;
 
+    public Film(int id, String title, String originalTitle, String overview, String posterPath, String backdropPath, String releaseDate, double voteAverage, int voteCount, String mediaType, boolean adult, String originalLanguage, List<Integer> genreIds, double popularity, boolean video) {
+        this.id = id;
+        this.title = title;
+        this.originalTitle = originalTitle;
+        this.overview = overview;
+        this.posterPath = posterPath;
+        this.backdropPath = backdropPath;
+        this.releaseDate = releaseDate;
+        this.voteAverage = voteAverage;
+        this.voteCount = voteCount;
+        this.mediaType = mediaType;
+        this.adult = adult;
+        this.originalLanguage = originalLanguage;
+        this.genreIds = genreIds;
+        this.popularity = popularity;
+        this.video = video;
+    }
+
     @SerializedName("popularity")
     private double popularity;
 

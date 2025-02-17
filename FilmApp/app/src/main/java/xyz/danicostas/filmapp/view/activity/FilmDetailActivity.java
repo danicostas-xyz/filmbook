@@ -9,12 +9,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +82,8 @@ public class FilmDetailActivity extends AppCompatActivity {
     }
 
     private void obtainFilmDetails(int filmId) {
-        Call<ApiResponseFilmDetailsById> call = api.getDetailsByFilmId(filmId, ApiFilmService.API_KEY);
+        Call<ApiResponseFilmDetailsById> call = api.getDetailsByFilmId(filmId,
+                ApiFilmService.API_KEY, ApiFilmService.LANG_SPANISH);
         call.enqueue(new Callback<ApiResponseFilmDetailsById>() {
 
             @Override
@@ -87,8 +95,16 @@ public class FilmDetailActivity extends AppCompatActivity {
                     assert apiResponse != null;
                     Log.d("OBTAINFILMDETAILS", apiResponse.toString());
                     tvFilmTitle.setText(apiResponse.title);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        tvFilmTitle.setAutoSizeTextTypeUniformWithConfiguration(
+                                18,
+                                32,
+                                4, TypedValue.COMPLEX_UNIT_SP
+                                );
+                    }
                     tvOriginalTitleB.setText(apiResponse.originalTitle);
-                    tvRatingFilmDetail.setText(String.valueOf(apiResponse.voteAverage));
+                    tvRatingFilmDetail.setText(String.valueOf(
+                            Math.round(apiResponse.voteAverage * 10.0) / 10.0));
                     tvDirectorB.setText(String.valueOf(apiResponse.id));
                     tvReleaseDateB.setText(apiResponse.releaseDate);
                     tvSinopsisB.setText(apiResponse.overview);
@@ -104,6 +120,11 @@ public class FilmDetailActivity extends AppCompatActivity {
                     List<KeywordOrGenres> listOfGenres = apiResponse.genres;
                     List<KeywordOrGenres> limitedKeywords =
                             listOfGenres.size() > 3 ? listOfGenres.subList(0, 3) : listOfGenres;
+
+                    FlexboxLayoutManager flex = new FlexboxLayoutManager(context);
+                    flex.setFlexDirection(FlexDirection.COLUMN);
+                    flex.setJustifyContent(JustifyContent.CENTER);
+                    flex.setAlignItems(AlignItems.CENTER);
                     rvGenres.setLayoutManager(new LinearLayoutManager(context));
                     rvGenres.setAdapter(new KeywordsGenresAdapter(limitedKeywords));
 
@@ -121,7 +142,8 @@ public class FilmDetailActivity extends AppCompatActivity {
     }
 
     private void obtainKeywords(int filmId) {
-        Call<ApiResponseKeywordsByFilmId> call = api.getKeywordsByFilmId(filmId, ApiFilmService.API_KEY);
+        Call<ApiResponseKeywordsByFilmId> call = api.getKeywordsByFilmId(filmId,
+                ApiFilmService.API_KEY, ApiFilmService.LANG_SPANISH);
         call.enqueue(new Callback<ApiResponseKeywordsByFilmId>() {
 
             @Override
@@ -136,7 +158,12 @@ public class FilmDetailActivity extends AppCompatActivity {
 
                     List<KeywordOrGenres> limitedKeywords =
                             listOfKeywords.size() > 9 ? listOfKeywords.subList(0, 9) : listOfKeywords;
-                    rvKeywords.setLayoutManager(new LinearLayoutManager(context));
+
+                    FlexboxLayoutManager flex = new FlexboxLayoutManager(context);
+                    flex.setFlexWrap(FlexWrap.WRAP);
+                    flex.setFlexDirection(FlexDirection.ROW);
+                    flex.setJustifyContent(JustifyContent.FLEX_START);
+                    rvKeywords.setLayoutManager(flex);
                     rvKeywords.setAdapter(new KeywordsGenresAdapter(limitedKeywords));
 
                 } else {
@@ -154,7 +181,8 @@ public class FilmDetailActivity extends AppCompatActivity {
 
     private void obtainSimilarFilms(int filmId) {
 
-        Call<ApiResponseSearchFilmByTitle> call = api.getSimilarMoviesByFilmId(filmId, ApiFilmService.API_KEY);
+        Call<ApiResponseSearchFilmByTitle> call = api.getSimilarMoviesByFilmId(filmId,
+                ApiFilmService.API_KEY, ApiFilmService.LANG_SPANISH);
         call.enqueue(new Callback<ApiResponseSearchFilmByTitle>() {
 
             @Override
