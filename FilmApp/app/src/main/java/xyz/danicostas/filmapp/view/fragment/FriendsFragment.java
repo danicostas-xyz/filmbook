@@ -32,19 +32,16 @@ public class FriendsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Create a mock list of friends
+            // Lista de friends para usuario prueba
         List<User> friendList = Arrays.asList(
-                new User("John Doe", "https://example.com/john.jpg"),
-                new User("Jane Smith", "https://example.com/jane.jpg"),
-                new User("Carlos Rivera", "https://example.com/carlos.jpg"),
-                new User("Emily Davis", "https://example.com/emily.jpg"),
-                new User("Sophia Brown", "https://example.com/sophia.jpg")
+                new User("Guts", R.drawable.gut_pfp),
+                new User("Jane ", R.drawable.test_pfp),
+                new User("Carlos ", R.drawable.default_profile),
+                new User("Guille", "https://example.com/emily.jpg")
         );
 
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
-        // Set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewFriends);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         FriendListAdapter adapter = new FriendListAdapter(getContext(), friendList);

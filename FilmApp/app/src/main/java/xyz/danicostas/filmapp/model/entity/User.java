@@ -9,6 +9,8 @@ public class User {
     private String email;
     private String username;
     private List<FilmList> listasDeListas;
+
+
     private List<Review> listOfReviews;
     // Lo mejor sería tener una List<Map<String, List<Film>>>
     // Y eliminar la clase FilmList, que no aporta nada
@@ -16,6 +18,23 @@ public class User {
     // y entonces no hay que poner varias listas con títulos distintos
     private List<User> listaAmigos;
     private String url;
+    private int profileImageResId; // Para imágenes en drawable
+    private String profileImageUrl; // Para imágenes online
+
+    // Constructor para imágenes en drawable
+    public User(String username, int profileImageResId) {
+        this.username = username;
+        this.profileImageResId = profileImageResId;
+        this.profileImageUrl = null;
+    }
+
+    // Constructor para imágenes online
+   /** public User(String username, String profileImageUrl) {
+        this.username = username;
+        this.profileImageResId = 0;
+        this.profileImageUrl = profileImageUrl;
+    }
+    */
 
     public User(String id, String name, String email, String username, List<FilmList> listasDeListas,
                 List<Review> listOfReviews, List<User> listaAmigos) {
@@ -26,6 +45,7 @@ public class User {
         this.listasDeListas = listasDeListas;
         this.listOfReviews = listOfReviews;
         this.listaAmigos = listaAmigos;
+
         listasDeListas.add(new FilmList("Favorites", new ArrayList<Film>()));
     }
 
@@ -35,6 +55,9 @@ public class User {
     public User(String username, String url) {
         this.username = username;
         this.url = url;
+    }
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 
     public String getId() { return id; }
@@ -109,5 +132,13 @@ public class User {
                 ", listaAmigos=" + listaAmigos +
                 ", url='" + url + '\'' +
                 '}';
+    }
+
+    public int getProfileImageResId() {
+        return profileImageResId;
+    }
+
+    public void setProfileImageResId(int profileImageResId) {
+        this.profileImageResId = profileImageResId;
     }
 }

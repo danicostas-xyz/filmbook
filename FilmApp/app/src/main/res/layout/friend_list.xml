@@ -26,15 +26,17 @@
         android:id="@+id/tvFriendName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Friend's Name"
-        android:textSize="18sp"
-        android:textColor="@color/white"
+        android:gravity="center"
+        android:textAlignment="center"
         android:ellipsize="end"
         android:maxLines="1"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toEndOf="@id/ivFriendProfile"
+        android:text="Friend's Name"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivFriendProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ivFriendProfile"
-        app:layout_constraintBottom_toBottomOf="@id/ivFriendProfile" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/ivFriendProfile"
+        app:layout_constraintTop_toTopOf="@id/ivFriendProfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

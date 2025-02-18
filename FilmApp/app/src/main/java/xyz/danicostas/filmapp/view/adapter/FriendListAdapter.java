@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import xyz.danicostas.filmapp.R;
@@ -41,6 +43,20 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Fr
         User friend = friendList.get(position);
         holder.tvFriendName.setText(friend.getUsername());
 
+        // Cargar imagenes etc...
+        if (friend.getProfileImageResId() != 0) {
+            holder.ivProfile.setImageResource(friend.getProfileImageResId());
+        } else if (friend.getProfileImageUrl() != null && !friend.getProfileImageUrl().isEmpty()) {
+            Glide.with(context)
+                    .load(friend.getProfileImageUrl())
+                    .placeholder(R.drawable.default_profile)
+                    .error(R.drawable.error_profile)
+                    .into(holder.ivProfile);
+        } else {
+            holder.ivProfile.setImageResource(R.drawable.default_profile);
+        }
+
+        // Enviar al FriendActivity el usuario
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, FriendActivity.class);
             intent.putExtra(FRIEND_NAME, friend.getUsername());
@@ -48,12 +64,13 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Fr
         });
     }
 
+
+
     @Override
     public int getItemCount() {
         return friendList.size();
     }
 
-    // ViewHolder for friend items
     static class FriendViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProfile;
         TextView tvFriendName;
