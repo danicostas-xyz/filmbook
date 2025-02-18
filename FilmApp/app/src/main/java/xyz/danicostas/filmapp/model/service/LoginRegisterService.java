@@ -46,54 +46,67 @@ public class LoginRegisterService {
         return instance == null ? instance = new LoginRegisterService() : instance;
     }
 
-    public void login(Context context, String email, String password, Consumer consumer) {
+    public void validateLogin(Context context) {
+        if (mAuth.getCurrentUser() != null) {
+            userService.getUserData(mAuth.getCurrentUser().getUid());
+            Intent intent = new Intent(context, ApplicationActivity.class);
+            context.startActivity(intent);
+        }
+    }
+
+    public void login(Context context, String email, String password) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialogView = inflater.inflate(R.layout.progress_dialog, null);
 
         final AlertDialog progressDialog = new AlertDialog.Builder(context)
-                .setView(dialogView)
-                .create();
+            .setView(dialogView)
+            .create();
         progressDialog.show();
 
         if (mAuth != null) {
             mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(task -> {
-                        progressDialog.dismiss();
+                .addOnCompleteListener(task -> {
+                    progressDialog.dismiss();
 
-                        if (task.isSuccessful()) {
-                            consumer.accept(userService.getUserData());
-                            Intent intent = new Intent(context, ApplicationActivity.class);
-                            context.startActivity(intent);
+                    if (task.isSuccessful()) {
+                        userService.getUserData(mAuth.getCurrentUser().getUid());
+                        Intent intent = new Intent(context, ApplicationActivity.class);
+                        context.startActivity(intent);
 
-                        } else {
-                            String errorMessage = task.getException() != null ? task.getException().getMessage() : "Invalid Credentials";
-                            Log.e("GestorUser", "Login failed: " + errorMessage);
-                            Toast.makeText(context, context.getString(R.string.loginKO) + " " + errorMessage, Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    } else {
+                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Invalid Credentials";
+                        Log.e("GestorUser", "Login failed: " + errorMessage);
+                        Toast.makeText(context, context.getString(R.string.loginKO) + " " + errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                });
         } else {
             Log.e("GestorUser", "FirebaseAuth is not initialized.");
             progressDialog.dismiss(); // Make sure to dismiss the dialog if mAuth is null
         }
     }
 
-    public void logout() {
+    public void logout(Context context) {
         if (mAuth != null) {
             mAuth.signOut();
+            Log.d("LOGOUT", "CERRANDO SESIÓN");
             UserSession.getInstance().clearUserData();
+            context.startActivity(new Intent(context, LoginActivity.class));
+            if (context instanceof Activity) {
+                ((Activity) context).finish();
+            }
         } else {
             Log.e("GestorUser", "FirebaseAuth is not initialized.");
         }
     }
 
     public void register(Context context, String email, String username, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password)
+        if (mAuth != null) {
+            mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(authTask -> {
                     if (authTask.isSuccessful()) {
-                        FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
-                        if (firebaseUser != null) {
-                            UserSession.getInstance().setUser("Name", firebaseUser.getUid(), username, email);
+                        if (mAuth.getCurrentUser() != null) {
+                            UserSession.getInstance().setUser("Name", mAuth.getCurrentUser().getUid(), username, email);
 
                             User user = new User();
                             List<FilmList> filmLists = mockListOfLists();
@@ -129,6 +142,7 @@ public class LoginRegisterService {
                         }
                     }
                 });
+        }
     }
 
     @NonNull

@@ -41,5 +41,4 @@ public class UserSession {
                 ", email='" + email + '\'' +
                 '}';
     }
-
 }

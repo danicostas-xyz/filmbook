@@ -16,6 +16,7 @@ import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.User;
 import xyz.danicostas.filmapp.model.interfaces.OnUserDataCallback;
 import xyz.danicostas.filmapp.model.persistence.DaoUser;
+import xyz.danicostas.filmapp.view.activity.ApplicationActivity;
 
 public class UserService {
     private static UserService instance;
@@ -33,11 +34,11 @@ public class UserService {
         return instance == null ? instance = new UserService() : instance;
     }
 
-    public Object getUserData(){
-        dao.getUserData(authUser.getUid(), new OnUserDataCallback() {
+    public void getUserData(String userId){
+        dao.getUserData(userId, new OnUserDataCallback() {
             @Override
             public void onSuccess(User u) {
-                if (u!=null){
+                if (u != null) {
                     Log.d("ON-SUCCESS-GET-USER-DATA-USER-SERVICE", u.toString());
                     UserSession.getInstance().setUser(u.getName(), u.getId(), u.getUsername(),
                             u.getEmail());
@@ -48,8 +49,6 @@ public class UserService {
             @Override
             public void onFailure(String errorMessage) {}
         });
-
-        return new Object();
     }
 
     public MutableLiveData<List<FilmList>> getUserFilmLists() {

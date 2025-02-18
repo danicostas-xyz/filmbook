@@ -2,6 +2,7 @@ package xyz.danicostas.filmapp.view.activity;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -26,6 +27,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import xyz.danicostas.filmapp.R;
+import xyz.danicostas.filmapp.model.service.LoginRegisterService;
 import xyz.danicostas.filmapp.model.service.UserSession;
 import xyz.danicostas.filmapp.view.fragment.CalendarFragment;
 import xyz.danicostas.filmapp.view.fragment.FriendsFragment;
@@ -38,15 +40,14 @@ public class ApplicationActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FrameLayout fragmentContainer;
     private UserSession session;
+    private LoginRegisterService loginService;
     private static final String CHANNEL_ID = "1234"; // Channel ID for notifications
+    private final Context CONTEXT = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application);
-
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("USERNAME");
 
         initViews();
         getInstances();
@@ -57,6 +58,7 @@ public class ApplicationActivity extends AppCompatActivity {
 
     private void getInstances() {
         session = UserSession.getInstance();
+        loginService = LoginRegisterService.getInstance();
     }
 
     @Override
@@ -128,9 +130,8 @@ public class ApplicationActivity extends AppCompatActivity {
 
                 startActivity(new Intent(ApplicationActivity.this, SettingsActivity.class));
             } else if (id == R.id.nav_logout) {
-                startActivity(new Intent(ApplicationActivity.this, LoginActivity.class));
+                loginService.logout(CONTEXT);
                 enviarNotificacion("Te has salido de la aplicacion");
-                finish();
             }
 
             drawerLayout.closeDrawer(GravityCompat.START);

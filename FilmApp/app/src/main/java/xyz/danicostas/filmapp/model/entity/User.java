@@ -9,8 +9,6 @@ public class User {
     private String email;
     private String username;
     private List<FilmList> listasDeListas;
-
-
     private List<Review> listOfReviews;
     // Lo mejor sería tener una List<Map<String, List<Film>>>
     // Y eliminar la clase FilmList, que no aporta nada

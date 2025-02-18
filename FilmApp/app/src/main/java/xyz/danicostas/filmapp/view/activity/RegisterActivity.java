@@ -1,12 +1,10 @@
 package xyz.danicostas.filmapp.view.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,18 +13,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.persistence.DaoUser;
-import xyz.danicostas.filmapp.model.entity.FilmList;
-import xyz.danicostas.filmapp.model.entity.User;
 import xyz.danicostas.filmapp.model.service.LoginRegisterService;
 import xyz.danicostas.filmapp.model.service.UserService;
 
@@ -34,10 +23,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText emailInput, usernameInput, passwordInput;
     private Button registerButton;
     private LoginRegisterService loginRegisterService;
-    private DaoUser daoBBDD;
-    private FirebaseAuth mAuth;
     private TextView loginLink;
-    private Context context;
+    private final Context CONTEXT = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
         initViews();
         getInstances();
         setOnClickListeners();
-
     }
 
     private void setOnClickListeners() {
@@ -82,15 +68,12 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            loginRegisterService.register(context, email, username, password);
+            loginRegisterService.register(CONTEXT, email, username, password);
         });
     }
 
     private void getInstances() {
-        daoBBDD = DaoUser.getInstance();
         loginRegisterService = LoginRegisterService.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        context = RegisterActivity.this;
     }
 
     private void initViews() {

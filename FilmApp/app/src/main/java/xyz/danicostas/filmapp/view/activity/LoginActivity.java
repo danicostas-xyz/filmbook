@@ -14,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.service.LoginRegisterService;
 import xyz.danicostas.filmapp.model.service.UserService;
@@ -23,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView registerLink;
     private Button loginButton;
     private LoginRegisterService loginRegisterService;
-    private Context context = this;
+    private final Context CONTEXT = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,20 +49,22 @@ public class LoginActivity extends AppCompatActivity {
             String password = passwordInput.getText().toString().trim();
 
             if (email.isEmpty()) {
-                Toast.makeText(context, context.getString(R.string.emailRequired), Toast.LENGTH_SHORT)
+                Toast.makeText(CONTEXT, CONTEXT.getString(R.string.emailRequired), Toast.LENGTH_SHORT)
                         .show();
                 return;
             }
 
             if (password.isEmpty()) {
-                Toast.makeText(context, context.getString(R.string.passwordRequired), Toast.LENGTH_SHORT)
+                Toast.makeText(CONTEXT, CONTEXT.getString(R.string.passwordRequired), Toast.LENGTH_SHORT)
                         .show();
                 return;
             }
-            // Llamar al método de login
-            loginRegisterService.login(LoginActivity.this, email, password, o -> {
 
-            });
+            loginRegisterService.login(
+                    CONTEXT,
+                    email,
+                    password
+            );
         });
 
         registerLink.setOnClickListener(view -> {
