@@ -29,7 +29,7 @@ import com.google.android.material.navigation.NavigationView;
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.service.LoginRegisterService;
 import xyz.danicostas.filmapp.model.service.UserSession;
-import xyz.danicostas.filmapp.view.fragment.CalendarFragment;
+import xyz.danicostas.filmapp.view.fragment.DiaryFragment;
 import xyz.danicostas.filmapp.view.fragment.FriendsFragment;
 import xyz.danicostas.filmapp.view.fragment.ProfileFragment;
 import xyz.danicostas.filmapp.view.fragment.SearchFragment;
@@ -89,7 +89,7 @@ public class ApplicationActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.nav_profile) {
                 selectedFragment = new ProfileFragment();
             } else if (item.getItemId() == R.id.nav_calendar) {
-                selectedFragment = new CalendarFragment();
+                selectedFragment = new DiaryFragment();
             } else if (item.getItemId() == R.id.nav_search) {
                 selectedFragment = new SearchFragment();
             } else if (item.getItemId() == R.id.nav_friends) {

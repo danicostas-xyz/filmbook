@@ -18,6 +18,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -110,6 +111,7 @@ public class LoginRegisterService {
 
                             User user = new User();
                             List<FilmList> filmLists = mockListOfLists();
+                            List<Review> listOfReviews = mockListOfReviews();
                             user.setId(UserSession.getInstance().getUserId());
                             user.setListasDeListas(filmLists);
                             user.setUsername(UserSession.getInstance().getUsername());
@@ -143,6 +145,47 @@ public class LoginRegisterService {
                     }
                 });
         }
+    }
+
+    private List<Review> mockListOfReviews() {
+        Review review1 = new Review(
+                "review001",
+                "user123",
+                "Lynch en su máxima expresión",
+                "Una pesadilla surrealista llena de simbolismo y atmósfera inquietante. Una obra maestra del cine experimental.",
+                "/mxveW3mGVc0DzLdOmtkZsgd7c3B.jpg",
+                "985",
+                "Eraserhead",
+                new Date(),
+                9
+        );
+
+        Review review2 = new Review(
+                "review002",
+                "user456",
+                "Una obra maestra del cine neo-noir",
+                "Un retrato psicológico brutal de la alienación y la locura en una ciudad decadente. De Niro está impresionante.",
+                "/ekstpH614fwDX8DUln1a2Opz0N8.jpg",
+                "103",
+                "Taxi Driver",
+                new Date(),
+                10
+        );
+
+        Review review3 = new Review(
+                "review003",
+                "user789",
+                "El espíritu de la infancia en su máxima expresión",
+                "Una historia encantadora, llena de magia y calidez. Perfecta para todas las edades.",
+                "/rtGDOeG9LzoerkDGZF9dnVeLppL.jpg",
+                "8392",
+                "Mi vecino Totoro",
+                new Date(),
+                8
+        );
+
+        return List.of(review1, review2, review3);
+
     }
 
     @NonNull
@@ -566,7 +609,6 @@ public class LoginRegisterService {
         filmLists.add(list);
         filmLists.add(list2);
         filmLists.add(list3);
-        filmLists.add(list4);
         filmLists.add(list5);
         return filmLists;
     }

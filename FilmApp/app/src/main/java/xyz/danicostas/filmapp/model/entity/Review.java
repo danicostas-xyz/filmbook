@@ -1,71 +1,116 @@
 package xyz.danicostas.filmapp.model.entity;
 
+import java.util.Date;
+
 public class Review {
-    private String texto;
-    private String peliculaID;
-    private String peliculaTitulo;
-    private String usuarioID;
-    private String fecha;
-    private int valoracion;
+    private String id;
+    private String userId;
+    private String title;
+    private String overview;
+    private String posterPath;
+    private String filmId;
 
-    public Review() {
-        // Constructor vacío requerido por Firestore
+    private String filmTitle;
+    private Date date;
+    private int voteAverage;
+
+    public Review() {}
+
+    public Review(String id, String userId, String title, String overview, String posterPath, String filmId, String filmTitle, Date date, int voteAverage) {
+        this.id = id;
+        this.userId = userId;
+        this.title = title;
+        this.overview = overview;
+        this.posterPath = posterPath;
+        this.filmId = filmId;
+        this.filmTitle = filmTitle;
+        this.date = date;
+        this.voteAverage = voteAverage;
     }
 
-    public Review(String texto, String peliculaID, String peliculaTitulo, String usuarioID, String fecha, int valoracion) {
-        this.texto = texto;
-        this.peliculaID = peliculaID;
-        this.peliculaTitulo = peliculaTitulo;
-        this.usuarioID = usuarioID;
-        this.fecha = fecha;
-        this.valoracion = valoracion;
+    public String getPosterPath() {
+        return posterPath;
     }
 
-    public String getTexto() {
-        return texto;
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public int getVoteAverage() {
+        return voteAverage;
     }
 
-    public String getPeliculaID() {
-        return peliculaID;
+    public void setVoteAverage(int voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
-    public void setPeliculaID(String peliculaID) {
-        this.peliculaID = peliculaID;
+    public Date getDate() {
+        return date;
     }
 
-    public String getPeliculaTitulo() {
-        return peliculaTitulo;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public void setPeliculaTitulo(String peliculaTitulo) {
-        this.peliculaTitulo = peliculaTitulo;
+    public String getFilmTitle() {
+        return filmTitle;
     }
 
-    public String getUsuarioID() {
-        return usuarioID;
+    public void setFilmTitle(String filmTitle) {
+        this.filmTitle = filmTitle;
     }
 
-    public void setUsuarioID(String usuarioID) {
-        this.usuarioID = usuarioID;
+    public String getFilmId() {
+        return filmId;
     }
 
-    public String getFecha() {
-        return fecha;
+    public void setFilmId(String filmId) {
+        this.filmId = filmId;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public String getOverview() {
+        return overview;
     }
 
-    public int getValoracion() {
-        return valoracion;
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 
-    public void setValoracion(int valoracion) {
-        this.valoracion = valoracion;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + overview + '\'' +
+                ", filmId='" + filmId + '\'' +
+                ", filmTitle='" + filmTitle + '\'' +
+                ", date=" + date +
+                ", rating=" + voteAverage +
+                '}';
     }
 }
