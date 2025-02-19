@@ -5,21 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="16dp">
+    android:layout_marginTop="16dp">
 
     <ImageView
         android:id="@+id/ivFriendProfile"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
-        android:background="@drawable/profile_circle"
+        android:background="@drawable/rounded_button_no_stroke"
         android:contentDescription="Friend Profile Picture"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:src="@drawable/sample_profile" />
+        android:clipToOutline="true" />
 
     <TextView
         android:id="@+id/tvFriendName"

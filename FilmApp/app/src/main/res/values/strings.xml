@@ -45,7 +45,8 @@
     <string name="similar_films">Películas similares:</string>
     <string name="keywords">Keywords:</string>
     <string name="sinopsis">Sinopsis:</string>
-    <string name="mi_diary">Mi Diario</string>
+    <string name="mi_diary">Mi diario</string>
     <string name="friend_list">Lista de amigos</string>
     <string name="add">add</string>
+    <string name="my_profile">Mi perfil</string>
 </resources>

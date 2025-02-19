@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        recyclerView = view.findViewById(R.id.rclViewFilmList);
+        recyclerView = view.findViewById(R.id.rvFilmList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
         adapter = new FilmListAdapter(new ArrayList<>());

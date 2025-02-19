@@ -28,10 +28,10 @@
             android:layout_width="48dp"
             android:layout_height="48dp">
             <ImageButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:background="@drawable/button_circle_dark"
-                android:src="@drawable/ic_add_24"
+                android:src="@drawable/ic_add_circle_outline_32"
                 android:layout_gravity="center"/>
         </FrameLayout>
 
