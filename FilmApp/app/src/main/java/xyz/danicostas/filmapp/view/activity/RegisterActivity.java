@@ -1,6 +1,7 @@
 package xyz.danicostas.filmapp.view.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,6 +70,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             loginRegisterService.register(CONTEXT, email, username, password);
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("REGISTERED_EMAIL", email);
+            setResult(RESULT_OK, resultIntent);
+            finish();
+
         });
     }
 

@@ -123,8 +123,6 @@ public class LoginRegisterService {
                             daoUser.createUser(user.getId(), user, task -> {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(context, context.getString(R.string.registerOK), Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(context, LoginActivity.class);
-                                    context.startActivity(intent);
                                     if (context instanceof Activity) {
                                         ((Activity) context).finish();
                                     }

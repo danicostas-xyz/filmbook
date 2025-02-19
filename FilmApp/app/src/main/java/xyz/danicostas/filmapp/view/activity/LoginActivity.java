@@ -8,19 +8,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.service.LoginRegisterService;
-import xyz.danicostas.filmapp.model.service.UserService;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final int REGISTER_REQUEST_CODE = 1001; // Unique request code
     private EditText emailInput, passwordInput;
     private TextView registerLink;
     private Button loginButton;
@@ -30,13 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.loginActivity), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         initViews();
         getInstances();
@@ -69,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
         registerLink.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, REGISTER_REQUEST_CODE); // Start RegisterActivity expecting a result
         });
     }
 
@@ -82,5 +70,19 @@ public class LoginActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.etPassLogin);
         loginButton = findViewById(R.id.btLogin);
         registerLink = findViewById(R.id.tvRegisterLinkLogin);
+    }
+
+    // Handle the result from RegisterActivity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REGISTER_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            String registeredEmail = data.getStringExtra("REGISTERED_EMAIL");
+            if (registeredEmail != null) {
+                emailInput.setText(registeredEmail); // Autofill email field
+                Toast.makeText(CONTEXT, "Email auto-filled from registration", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
