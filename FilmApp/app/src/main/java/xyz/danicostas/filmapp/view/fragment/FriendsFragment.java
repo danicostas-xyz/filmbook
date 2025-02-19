@@ -44,6 +44,7 @@ public class FriendsFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewFriends);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        recyclerView.setHasFixedSize(true);
         FriendListAdapter adapter = new FriendListAdapter(getContext(), friendList);
         recyclerView.setAdapter(adapter);
 

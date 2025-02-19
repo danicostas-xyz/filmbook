@@ -16,7 +16,6 @@ import java.util.List;
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Review;
 import xyz.danicostas.filmapp.view.adapter.ReviewAdapter;
-import xyz.danicostas.filmapp.view.adapter.SearchResultAdapter;
 
 
 public class DiaryFragment extends Fragment {
@@ -38,12 +37,13 @@ public class DiaryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_diary, container, false);
         recyclerView = view.findViewById(R.id.rvReviews);
         adapter = new ReviewAdapter(mockListOfReviews());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
                 RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
         return view;
     }
 

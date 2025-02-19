@@ -31,33 +31,31 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/button_circle_dark"
-                android:src="@drawable/ic_add"
+                android:src="@drawable/ic_add_24"
                 android:layout_gravity="center"/>
         </FrameLayout>
 
     </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rclViewNestedList"
-            android:layout_width="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayoutListNameAndIcon">
-        </androidx.recyclerview.widget.RecyclerView>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rclViewNestedList"
+        android:layout_width="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:scrollbars="none"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutListNameAndIcon">
+    </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:id="@+id/tvVerTodo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:paddingVertical="8dp"
+        android:layout_marginEnd="8dp"
+        android:padding="8dp"
         android:text="@string/view_all_list"
-        android:textSize="16sp"
+        style="@style/textSM_detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rclViewNestedList" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

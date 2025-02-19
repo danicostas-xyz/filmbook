@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -40,8 +41,11 @@ public class ProfileFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.rclViewFilmList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        recyclerView.setHasFixedSize(true);
         adapter = new FilmListAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
+        LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
+        linearSnapHelper.attachToRecyclerView(recyclerView);
 
         viewModel = new ViewModelProvider(this).get(FilmListsViewModel.class);
 
@@ -49,6 +53,8 @@ public class ProfileFragment extends Fragment {
         viewModel.getListaPeliculas().observe(getViewLifecycleOwner(), peliculas -> {
             adapter.updateList(peliculas); // Método que actualiza la lista en el adapter
         });
+
+
 
         return view;
     }

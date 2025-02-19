@@ -33,6 +33,7 @@ public class FilmGridActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
         recyclerView.setAdapter(new FilmGridAdapter(filmList.getContent()));
+        recyclerView.setHasFixedSize(true);
     }
 
     @Override

@@ -63,6 +63,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
              */
             nestedList = itemView.findViewById(R.id.rclViewNestedList);
             nestedList.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false));
+            nestedList.setHasFixedSize(true);
             adapter = new FilmListNestedAdapter(new ArrayList<>());
             nestedList.setAdapter(adapter);
         }

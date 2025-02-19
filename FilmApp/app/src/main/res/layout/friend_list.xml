@@ -5,38 +5,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:paddingVertical="16dp">
 
-    <!-- Circle ImageView for Friend's Profile -->
     <ImageView
         android:id="@+id/ivFriendProfile"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/profile_circle"
         android:contentDescription="Friend Profile Picture"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:src="@drawable/sample_profile" />
 
-    <!-- TextView for Friend's Name -->
     <TextView
         android:id="@+id/tvFriendName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAlignment="center"
+        android:layout_marginStart="16dp"
         android:ellipsize="end"
+        android:gravity="center"
         android:maxLines="1"
         android:text="Friend's Name"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/ivFriendProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:textAlignment="center"
+        android:textColor="?attr/colorSecondary"
+        style="@style/textMD_Bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivFriendProfile"
-        app:layout_constraintTop_toTopOf="@id/ivFriendProfile" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -54,6 +54,7 @@ public class SearchFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rvSearch);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
         editTextSearch = view.findViewById(R.id.editTextSearch);
 
         editTextSearch.addTextChangedListener(new TextWatcher() {
