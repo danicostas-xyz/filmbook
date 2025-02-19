@@ -30,6 +30,7 @@ import xyz.danicostas.filmapp.model.entity.User;
 import xyz.danicostas.filmapp.model.persistence.DaoUser;
 import xyz.danicostas.filmapp.view.activity.ApplicationActivity;
 import xyz.danicostas.filmapp.view.activity.LoginActivity;
+import xyz.danicostas.filmapp.viewmodel.FilmListsViewModel;
 
 public class LoginRegisterService {
     private FirebaseAuth mAuth;
@@ -91,6 +92,7 @@ public class LoginRegisterService {
             mAuth.signOut();
             Log.d("LOGOUT", "CERRANDO SESIÓN");
             UserSession.getInstance().clearUserData();
+            FilmListsViewModel.notifyUserLoggedOut();
             context.startActivity(new Intent(context, LoginActivity.class));
             if (context instanceof Activity) {
                 ((Activity) context).finish();

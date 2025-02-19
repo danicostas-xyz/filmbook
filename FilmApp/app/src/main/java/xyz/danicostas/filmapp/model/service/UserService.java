@@ -52,7 +52,7 @@ public class UserService {
     }
 
     public MutableLiveData<List<FilmList>> getUserFilmLists() {
-        return dao.getUserFilmLists(authUser.getUid());
+        return dao.getUserFilmLists(mAuth.getCurrentUser().getUid());
     }
 
     public void clearUserSessionData() {
