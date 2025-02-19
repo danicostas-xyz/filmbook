@@ -109,14 +109,15 @@ public class LoginRegisterService {
                     if (authTask.isSuccessful()) {
 
                         if (mAuth.getCurrentUser() != null) {
-                            UserSession.getInstance().setUser("Name", mAuth.getCurrentUser().getUid(), username, email);
+                            UserSession.getInstance().setUser("Name", mAuth.getCurrentUser().getUid(),email);
+                            UserSession.getInstance().setUsername(username);
 
                             User user = new User();
                             List<FilmList> filmLists = mockListOfLists();
                             List<Review> listOfReviews = mockListOfReviews();
                             user.setId(UserSession.getInstance().getUserId());
                             user.setListasDeListas(filmLists);
-                            user.setUsername(UserSession.getInstance().getUsername());
+                            user.setUsername(UserSession.getInstance().getUsernameLiveData().getValue());
                             user.setListOfReviews(new ArrayList<Review>());
                             user.setEmail(UserSession.getInstance().getEmail());
                             user.setName(UserSession.getInstance().getName());

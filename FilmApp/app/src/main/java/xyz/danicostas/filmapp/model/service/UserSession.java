@@ -1,9 +1,12 @@
 package xyz.danicostas.filmapp.model.service;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 public class UserSession {
 
     private String userId;
-    private String username;
+    private MutableLiveData<String> username = new MutableLiveData<>();
     private String name;
     private String email;
     
@@ -13,22 +16,27 @@ public class UserSession {
         return instance == null ? instance = new UserSession() : instance;
     }
 
-    public void setUser(String name, String userId, String username, String email) {
+    public void setUser(String name, String userId, String email) {
         this.name = name;
         this.userId = userId;
-        this.username = username;
         this.email = email;
     }
 
     public String getName() {  return name; }
     public String getUserId() { return userId; }
-    public String getUsername() { return username; }
     public String getEmail() { return email; }
+    public LiveData<String> getUsernameLiveData() {
+        return username;
+    }
+
+    public void setUsername(String name) {
+        username.setValue(name);
+    }
 
     public void clearUserData() {
         this.name = null;
         this.userId = null;
-        this.username = null;
+        this.username.setValue(null);
         this.email = null;
     }
 

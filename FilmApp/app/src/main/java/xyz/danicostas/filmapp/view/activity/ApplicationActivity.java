@@ -51,7 +51,9 @@ public class ApplicationActivity extends AppCompatActivity {
 
         initViews();
         getInstances();
-        topMenuManager(session.getUsername());
+        if (session.getUsernameLiveData() != null) {
+            session.getUsernameLiveData().observe(this, this::topMenuManager);
+        }
         fragmentManager(savedInstanceState);
         createNotificationChannel(); // Notificaciones
     }

@@ -40,8 +40,9 @@ public class UserService {
             public void onSuccess(User u) {
                 if (u != null) {
                     Log.d("ON-SUCCESS-GET-USER-DATA-USER-SERVICE", u.toString());
-                    UserSession.getInstance().setUser(u.getName(), u.getId(), u.getUsername(),
+                    UserSession.getInstance().setUser(u.getName(), u.getId(),
                             u.getEmail());
+                    UserSession.getInstance().setUsername(u.getUsername());
                 }
                 Log.d("USER-SESSION", UserSession.getInstance().toString());
             }
