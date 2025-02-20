@@ -113,7 +113,7 @@ public class LoginRegisterService {
      * Registers a new user using Firebase Authentication and saves the user's data in Firestore.
      * This method first creates a user with the provided email and password. If the authentication
      * is successful, it initializes the user's session and stores additional user information in Firestore.
-     * Aditionally, it also checks if the email is already in the Database.
+     * Additionally, it also checks if the email is already in the Database.
      *
      * @param context  the Activity context from where the method is called.
      * @param email    the email address used for authentication.
