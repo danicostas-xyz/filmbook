@@ -5,6 +5,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,6 +88,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.SearchResu
         holder.cardViewSearch.setOnClickListener(view -> {
             Intent intent = new Intent(holder.itemView.getContext(), FilmDetailActivity.class);
             intent.putExtra(FILM_ID, review.getFilmId());
+            Log.i("FILM_ID_FROM_REVIEW_ADAPTER", "FilmID: " + review.getFilmId());
             startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
         });  // TODO Podemos poner un intent al detalle de la review
     }

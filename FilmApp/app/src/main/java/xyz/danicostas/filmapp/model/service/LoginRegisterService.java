@@ -168,36 +168,36 @@ public class LoginRegisterService {
 
     private List<Review> mockListOfReviews() {
         Review review1 = new Review(
-                "review001",
+                1,
                 "user123",
                 "Lynch en su máxima expresión",
                 "Una pesadilla surrealista llena de simbolismo y atmósfera inquietante. Una obra maestra del cine experimental.",
                 "/mxveW3mGVc0DzLdOmtkZsgd7c3B.jpg",
-                "985",
+                985,
                 "Eraserhead",
                 new Date(),
                 9
         );
 
         Review review2 = new Review(
-                "review002",
+                2,
                 "user456",
                 "Una obra maestra del cine neo-noir",
                 "Un retrato psicológico brutal de la alienación y la locura en una ciudad decadente. De Niro está impresionante.",
                 "/ekstpH614fwDX8DUln1a2Opz0N8.jpg",
-                "103",
+                103,
                 "Taxi Driver",
                 new Date(),
                 10
         );
 
         Review review3 = new Review(
-                "review003",
+                3,
                 "user789",
                 "El espíritu de la infancia en su máxima expresión",
                 "Una historia encantadora, llena de magia y calidez. Perfecta para todas las edades.",
                 "/rtGDOeG9LzoerkDGZF9dnVeLppL.jpg",
-                "8392",
+                8392,
                 "Mi vecino Totoro",
                 new Date(),
                 8

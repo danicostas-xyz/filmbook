@@ -3,12 +3,12 @@ package xyz.danicostas.filmapp.model.entity;
 import java.util.Date;
 
 public class Review {
-    private String id;
+    private int id;
     private String userId;
     private String title;
     private String overview;
     private String posterPath;
-    private String filmId;
+    private int filmId;
 
     private String filmTitle;
     private Date date;
@@ -16,7 +16,7 @@ public class Review {
 
     public Review() {}
 
-    public Review(String id, String userId, String title, String overview, String posterPath, String filmId, String filmTitle, Date date, int voteAverage) {
+    public Review(int id, String userId, String title, String overview, String posterPath, int filmId, String filmTitle, Date date, int voteAverage) {
         this.id = id;
         this.userId = userId;
         this.title = title;
@@ -60,11 +60,11 @@ public class Review {
         this.filmTitle = filmTitle;
     }
 
-    public String getFilmId() {
+    public int getFilmId() {
         return filmId;
     }
 
-    public void setFilmId(String filmId) {
+    public void setFilmId(int filmId) {
         this.filmId = filmId;
     }
 
@@ -92,11 +92,11 @@ public class Review {
         this.userId = userId;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

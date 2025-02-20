@@ -11,6 +11,9 @@
     <color name="secondaryLight">#1A1A1A</color>
     <color name="accent">#9E2525</color> <!-- Color de acento para botones o interacciones -->
 
+    <color name="secondaryNotSelected">#AEAEAE</color>
+    <color name="primaryNotSelected">#4F4F4F</color>
+
     <!-- Colores para la barra de navegación y elementos seleccionados -->
     <color name="drawerBackground">#FFFFFF</color> <!-- Fondo blanco del Navigation Drawer -->
     <color name="drawerItemSelected">#3700B3</color> <!-- Color de texto de los items seleccionados en el Drawer -->

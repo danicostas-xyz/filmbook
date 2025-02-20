@@ -66,7 +66,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         holder.tVsearchTitle.setText(film.getTitle());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             holder.tVsearchTitle.setAutoSizeTextTypeUniformWithConfiguration(
-                    18,
+                    14,
                     32,
                     4, TypedValue.COMPLEX_UNIT_SP
             );

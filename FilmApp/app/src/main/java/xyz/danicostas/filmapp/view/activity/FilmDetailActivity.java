@@ -121,10 +121,6 @@ public class FilmDetailActivity extends AppCompatActivity {
                     List<KeywordOrGenres> limitedKeywords =
                             listOfGenres.size() > 3 ? listOfGenres.subList(0, 3) : listOfGenres;
 
-                    FlexboxLayoutManager flex = new FlexboxLayoutManager(context);
-                    flex.setFlexDirection(FlexDirection.COLUMN);
-                    flex.setJustifyContent(JustifyContent.CENTER);
-                    flex.setAlignItems(AlignItems.CENTER);
                     rvGenres.setLayoutManager(new LinearLayoutManager(context));
                     rvGenres.setAdapter(new KeywordsGenresAdapter(limitedKeywords));
 
@@ -193,8 +189,11 @@ public class FilmDetailActivity extends AppCompatActivity {
                     ApiResponseSearchFilmByTitle apiResponse = response.body();
                     Log.d("SIMILARFILMS", apiResponse.toString());
                     List<Film> listOfSimilarFilms = apiResponse.getResults();
+                    List<Film> limitedFilms =
+                            listOfSimilarFilms.size() > 9 ? listOfSimilarFilms.subList(0, 9) : listOfSimilarFilms;
                     rvSimilarFilms.setLayoutManager(new GridLayoutManager(context, 3));
-                    rvSimilarFilms.setAdapter(new FilmGridAdapter(listOfSimilarFilms));
+                    rvSimilarFilms.setAdapter(new FilmGridAdapter(limitedFilms));
+                    rvSimilarFilms.setHasFixedSize(true);
                 } else {
                     Log.d("Error", response.code() + " " + response.message());
                     return;
