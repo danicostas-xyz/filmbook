@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import xyz.danicostas.filmapp.R;
@@ -20,6 +22,19 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private LoginRegisterService loginRegisterService;
     private final Context CONTEXT = this;
+
+    // Intent for result method
+    private final ActivityResultLauncher<Intent> registerActivityLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                            String registeredEmail = result.getData().getStringExtra("REGISTERED_EMAIL");
+                            if (registeredEmail != null) {
+                                emailInput.setText(registeredEmail);
+                                Toast.makeText(CONTEXT, "Email auto-completado desde el registro", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                     password
             );
         });
-
         registerLink.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivityForResult(intent, REGISTER_REQUEST_CODE); // Start RegisterActivity expecting a result
+            registerActivityLauncher.launch(intent);
         });
     }
 
@@ -72,17 +86,5 @@ public class LoginActivity extends AppCompatActivity {
         registerLink = findViewById(R.id.tvRegisterLinkLogin);
     }
 
-    // Handle the result from RegisterActivity
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REGISTER_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            String registeredEmail = data.getStringExtra("REGISTERED_EMAIL");
-            if (registeredEmail != null) {
-                emailInput.setText(registeredEmail); // Autofill email field
-                Toast.makeText(CONTEXT, "Email auto-filled from registration", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 }
