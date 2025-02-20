@@ -86,7 +86,13 @@ public class LoginRegisterService {
             progressDialog.dismiss(); // Make sure to dismiss the dialog if mAuth is null
         }
     }
-
+    /**
+     * Logs out the current user from Firebase Authentication and clears the user session.
+     *
+     * If Firebase Authentication (`mAuth`) is not initialized, an error is logged.
+     *
+     * @param context the Activity context from which the method is called, used for navigation.
+     */
     public void logout(Context context) {
         if (mAuth != null) {
             mAuth.signOut();
@@ -102,6 +108,18 @@ public class LoginRegisterService {
         }
     }
 
+
+    /**
+     * Registers a new user using Firebase Authentication and saves the user's data in Firestore.
+     * This method first creates a user with the provided email and password. If the authentication
+     * is successful, it initializes the user's session and stores additional user information in Firestore.
+     * Aditionally, it also checks if the email is already in the Database.
+     *
+     * @param context  the Activity context from where the method is called.
+     * @param email    the email address used for authentication.
+     * @param username the username to be associated with the user.
+     * @param password the password used for authentication.
+     */
     public void register(Context context, String email, String username, String password) {
         if (mAuth != null) {
             mAuth.createUserWithEmailAndPassword(email, password)
