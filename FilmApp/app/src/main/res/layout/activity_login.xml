@@ -47,7 +47,9 @@
             app:hintTextColor="?attr/colorSecondary"
             android:hint="@string/user_hint"
             app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/black">
+            app:boxBackgroundColor="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmailLogin"
@@ -64,7 +66,11 @@
             android:layout_height="wrap_content"
             app:endIconMode="password_toggle"
             app:hintTextColor="?attr/colorSecondary"
-            android:hint="@string/password_hint">
+            android:hint="@string/password_hint"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassLogin"
@@ -73,7 +79,7 @@
                 android:paddingStart="26dp"
                 android:paddingEnd="26dp"
                 android:inputType="textPassword"
-                style="@style/CustomEditText"/>
+                style="@style/CustomEditText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView

@@ -49,4 +49,5 @@
     <string name="friend_list">Lista de amigos</string>
     <string name="add">add</string>
     <string name="my_profile">Mi perfil</string>
+    <string name="list_title">Título de la lista</string>
 </resources>

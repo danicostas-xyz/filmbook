@@ -17,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <LinearLayout
         android:id="@+id/registerFormLayout"
         android:layout_width="match_parent"
@@ -39,44 +38,90 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filmbookLogotipoRegister" />
 
-        <EditText
-            android:id="@+id/etEmailLogin"
-            style="@style/CustomEditText"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            app:hintTextColor="?attr/colorSecondary"
             android:hint="@string/mail"
-            android:inputType="textEmailAddress"
-            android:paddingStart="26dp" />
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
 
-        <EditText
-            android:id="@+id/username"
-            style="@style/CustomEditText"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmailLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="26dp"
+                android:paddingEnd="26dp"
+                android:inputType="textEmailAddress"
+                style="@style/CustomEditText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            app:hintTextColor="?attr/colorSecondary"
             android:hint="@string/username"
-            android:inputType="text"
-            android:paddingStart="26dp" />
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
 
-        <EditText
-            android:id="@+id/etPassLogin"
-            style="@style/CustomEditText"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="26dp"
+                android:paddingEnd="26dp"
+                android:inputType="text"
+                style="@style/CustomEditText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            app:endIconMode="password_toggle"
+            app:hintTextColor="?attr/colorSecondary"
             android:hint="@string/password"
-            android:inputType="textPassword"
-            android:paddingStart="26dp" />
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
 
-        <EditText
-            android:id="@+id/confirm_password"
-            style="@style/CustomEditText"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="26dp"
+                android:paddingEnd="26dp"
+                android:inputType="textPassword"
+                style="@style/CustomEditText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="password_toggle"
+            app:hintTextColor="?attr/colorSecondary"
             android:hint="@string/confirmPassword"
-            android:inputType="textPassword"
-            android:paddingStart="26dp" />
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="26dp"
+                android:paddingEnd="26dp"
+                android:inputType="textPassword"
+                style="@style/CustomEditText" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <Button
