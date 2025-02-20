@@ -45,9 +45,6 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    // https://mvnrepository.com/artifact/org.projectlombok/lombok
-    compileOnly ("org.projectlombok:lombok:1.18.36")
-    annotationProcessor("org.projectlombok:lombok:1.18.36")
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("com.google.firebase:firebase-auth")
@@ -57,6 +54,9 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
     implementation ("com.google.android.flexbox:flexbox:3.0.0")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("com.google.android.material:material:1.12.0")
+
+
 
 
 }
