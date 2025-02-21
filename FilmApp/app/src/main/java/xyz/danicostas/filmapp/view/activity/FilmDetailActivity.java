@@ -39,6 +39,7 @@ import xyz.danicostas.filmapp.model.service.ApiFilmService;
 import xyz.danicostas.filmapp.model.service.TMDBApiService;
 import xyz.danicostas.filmapp.view.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.view.adapter.KeywordsGenresAdapter;
+import xyz.danicostas.filmapp.view.loader.CustomAlertDialog;
 
 public class FilmDetailActivity extends AppCompatActivity {
 
@@ -53,6 +54,8 @@ public class FilmDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        CustomAlertDialog progressDialog = new CustomAlertDialog(context, "Cargando");
+        progressDialog.show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_film_detail);
         initViews();
@@ -62,6 +65,7 @@ public class FilmDetailActivity extends AppCompatActivity {
         obtainFilmDetails(filmId);
         obtainKeywords(filmId);
         obtainSimilarFilms(filmId);
+        progressDialog.dismiss(1000L);
     }
 
     private void initViews() {
