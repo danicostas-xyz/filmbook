@@ -229,8 +229,15 @@ public class DaoUser {
     }
 
     /**
-     * TODO
+     * This method queries Firestore to retrieve the document associated with the given user ID.
+     * If the document exists, it converts it into a `User` object and invokes the success callback.
+     * If the document does not exist, it triggers the failure callback with an appropriate message.
+     * In case of a Firestore retrieval error, it logs the error message.
+     *
+     * @param userId   the ID of the user whose data is to be retrieved.
+     * @param callback a callback interface.
      */
+
     public void getUserData(String userId, OnUserDataCallback callback) {
         db.collection(COLLECTION_NAME)
                 .document(userId)

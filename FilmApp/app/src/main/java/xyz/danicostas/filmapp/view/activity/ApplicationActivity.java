@@ -58,6 +58,8 @@ public class ApplicationActivity extends AppCompatActivity {
         createNotificationChannel(); // Notificaciones
     }
 
+
+    // Métodos de inicialización
     private void getInstances() {
         session = UserSession.getInstance();
         loginService = LoginRegisterService.getInstance();
@@ -72,6 +74,7 @@ public class ApplicationActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Obtiene referencias del XML
     private void initViews() {
         drawerLayout = findViewById(R.id.drawer_layout);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -107,6 +110,13 @@ public class ApplicationActivity extends AppCompatActivity {
         });
     }
 
+
+    // Lo que hace aquí es establecer el icono del menu hamburgesa en la linea 121
+    // Después, inicializa el nav view y el headername, el headerName sera el del usuario
+    // siempre y cuando este no sea null.
+    // Tras esto, se abre un ItemSelectedListener, de la id navigationView, cuyo cual tiene dentro
+    // el xml del menu, que a su vez tiene los items que llevara dentro el menu hamburguesa.
+    // Si la id del item seleccionado coincide, con una de esas 2, realizara la accion necesaria.
     private void topMenuManager(String username) {
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -141,7 +151,9 @@ public class ApplicationActivity extends AppCompatActivity {
         });
     }
 
+
 // APARTADO DE CREACION DE NOTIFICACIONES
+    // Metodos de la creacion para llamar a la notificacion y ponerle un mensaje.
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -162,7 +174,7 @@ public class ApplicationActivity extends AppCompatActivity {
     public void enviarNotificacion(String message) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("Notification!")
+                .setContentTitle("Notificacion recibida")
                 .setContentText("Message: " + message)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 

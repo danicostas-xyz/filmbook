@@ -34,6 +34,15 @@ public class UserService {
         return instance == null ? instance = new UserService() : instance;
     }
 
+    /**
+     * Retrieves user data from the database using the provided user ID.
+     * If the user data is successfully retrieved, the method logs the user data and
+     * updates the current user session. If there is a failure in retrieving the data,
+     * no action is taken.
+     *
+     * @param userId the ID of the user whose data is to be retrieved.
+     */
+
     public void getUserData(String userId){
         dao.getUserData(userId, new OnUserDataCallback() {
             @Override

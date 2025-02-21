@@ -24,6 +24,10 @@ public class LoginActivity extends AppCompatActivity {
     private final Context CONTEXT = this;
 
     // Intent for result method
+    /**
+     * This method will set an email in the emailInput if the RESULT from the RegisterActivity is
+     * RESULT_OK, it also will return with the email that will be set in the input.
+     */
     private final ActivityResultLauncher<Intent> registerActivityLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     result -> {
@@ -47,6 +51,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setOnClickListeners() {
+        /**
+         * When login button is pressed, it will verify none of the inputs are empty,
+         * after that, the method from loginRegisterService will happen using the CONTEXT(this),
+         * the email text and the password
+         */
         loginButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
@@ -69,6 +78,11 @@ public class LoginActivity extends AppCompatActivity {
                     password
             );
         });
+        /**
+         * When this button is pressed, it will redirect the user to the RegisterActivity,
+         * it also will save the email there and bring it to the LoginActivity once the
+         * register is completed.
+         */
         registerLink.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             registerActivityLauncher.launch(intent);

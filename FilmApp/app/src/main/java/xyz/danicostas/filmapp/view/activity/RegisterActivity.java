@@ -47,7 +47,14 @@ public class RegisterActivity extends AppCompatActivity {
         loginLink.setOnClickListener(view -> {
             finish();
         });
-
+        /**
+         * Once this button is pressed, it will collect the inputs and verify
+         * it follows the rules like not being empty, after that the
+         * loginRegisterService will run the method for register with the CONTEXT,
+         * email,username and the password.
+         * After that, the intent for result will finish returning RESULT_OK and the
+         * email of the user that registered successfully
+         */
         registerButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
             String username = usernameInput.getText().toString().trim();

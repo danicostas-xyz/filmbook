@@ -55,7 +55,20 @@ public class LoginRegisterService {
             context.startActivity(intent);
         }
     }
-
+    /**
+     * Authenticates a user using Firebase Authentication and initializes the user session.
+     *
+     * If authentication is successful:
+     *    - Retrieves the authenticated user’s information.
+     *    - Initializes the user session by collecting relevant data.
+     *    - Redirects the user to the main Application Activity.
+     *
+     * If authentication fails, an error message is displayed.
+     *
+     * @param context  the Activity context from where the method is called, used for navigation.
+     * @param email    the email address of the user attempting to sign in.
+     * @param password the password of the user attempting to sign in.
+     */
     public void login(Context context, String email, String password) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View dialogView = inflater.inflate(R.layout.progress_dialog, null);
