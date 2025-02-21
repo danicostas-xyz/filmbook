@@ -2,8 +2,11 @@ package xyz.danicostas.filmapp.model.service;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
@@ -30,6 +35,7 @@ import xyz.danicostas.filmapp.model.entity.User;
 import xyz.danicostas.filmapp.model.persistence.DaoUser;
 import xyz.danicostas.filmapp.view.activity.ApplicationActivity;
 import xyz.danicostas.filmapp.view.activity.LoginActivity;
+import xyz.danicostas.filmapp.view.loader.CustomAlertDialog;
 import xyz.danicostas.filmapp.viewmodel.FilmListsViewModel;
 
 public class LoginRegisterService {
@@ -70,34 +76,37 @@ public class LoginRegisterService {
      * @param password the password of the user attempting to sign in.
      */
     public void login(Context context, String email, String password) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View dialogView = inflater.inflate(R.layout.progress_dialog, null);
 
-        final AlertDialog progressDialog = new AlertDialog.Builder(context)
-            .setView(dialogView)
-            .create();
+        CustomAlertDialog progressDialog = new CustomAlertDialog(context, context.getString(R.string.logging));
         progressDialog.show();
 
         if (mAuth != null) {
             mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
-                    progressDialog.dismiss();
 
                     if (task.isSuccessful()) {
                         userService.getUserData(mAuth.getCurrentUser().getUid());
                         Intent intent = new Intent(context, ApplicationActivity.class);
+                        progressDialog.dismiss(1000L);
                         context.startActivity(intent);
 
                     } else {
                         String errorMessage = task.getException() != null ? task.getException().getMessage() : "Invalid Credentials";
                         Log.e("GestorUser", "Login failed: " + errorMessage);
                         Toast.makeText(context, context.getString(R.string.loginKO) + " " + errorMessage, Toast.LENGTH_SHORT).show();
+                        progressDialog.setText("Email y/o contraseña incorrectos \uD83D\uDE14");
+                        // TODO
+                        // Aquí hay que hacer también un progressDialog.dismiss(), pero lo dejo así,
+                        // para poder enseñar el loader de forma indefinida cuando el inicio de
+                        // sesión es KO.
                     }
                 });
+
         } else {
             Log.e("GestorUser", "FirebaseAuth is not initialized.");
-            progressDialog.dismiss(); // Make sure to dismiss the dialog if mAuth is null
+            progressDialog.dismiss(1000L);
         }
+
     }
     /**
      * Logs out the current user from Firebase Authentication and clears the user session.
