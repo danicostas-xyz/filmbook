@@ -50,7 +50,9 @@
             app:menu="@menu/bottom_nav_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:labelVisibilityMode="unlabeled"
-            app:itemActiveIndicatorStyle="@color/white" />
+            app:itemActiveIndicatorStyle="@android:color/transparent"
+            app:itemIconTint="@color/selector_bottom_nav"
+            app:itemTextColor="@color/selector_bottom_nav"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Menú lateral de navegación -->

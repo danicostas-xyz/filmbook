@@ -36,7 +36,8 @@
                 android:layout_marginHorizontal="22dp"
                 android:scrollbars="none"
                 app:layout_constraintTop_toBottomOf="@+id/calendarView"
-                tools:layout_editor_absoluteX="22dp"/>
+                tools:layout_editor_absoluteX="22dp"
+                android:nestedScrollingEnabled="false"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,8 +44,6 @@ public class ProfileFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         adapter = new FilmListAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
-        LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
-        linearSnapHelper.attachToRecyclerView(recyclerView);
 
         viewModel = new ViewModelProvider(this).get(FilmListsViewModel.class);
 
