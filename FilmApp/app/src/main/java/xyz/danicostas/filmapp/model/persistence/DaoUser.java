@@ -198,6 +198,13 @@ public class DaoUser {
      * Este enfoque mantiene todo organizado y coherente con la arquitectura MVVM.
      */
 
+    /**
+     * Recupera las listas de películas de un usuario desde Firestore y las envuelve en un LiveData.
+     *
+     * @param userId El ID del usuario cuya lista de películas se va a recuperar.
+     * @return Un {@link MutableLiveData} que contiene una lista de {@link FilmList}.
+     *         La lista se actualizará cuando se complete la operación en Firestore.
+     */
     public MutableLiveData<List<FilmList>> getUserFilmLists(String userId) {
         MutableLiveData<List<FilmList>> listaLiveData = new MutableLiveData<>();
         List<FilmList> listaDeListas = new ArrayList<>();
@@ -206,17 +213,15 @@ public class DaoUser {
                 .document(userId) // Accede al documento del usuario específico
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
-
                     if (documentSnapshot.exists()) {
-                        User user = documentSnapshot.toObject(User.class); // Convierte el documento a User
+                        // Convierte el documento a User
+                        User user = documentSnapshot.toObject(User.class);
 
                         if (user != null && user.getListasDeListas() != null) {
-                            List<FilmList> listaFirebase = user.getListasDeListas(); // Obtiene la List<FilmList> del User
-
-                            for (FilmList filmList : listaFirebase) {
-                                listaDeListas.add(filmList);
-                            }
-
+                            // Obtiene la List<FilmList> del User
+                            List<FilmList> listaFirebase = user.getListasDeListas();
+                            // Agrega las listas a la lista local
+                            listaDeListas.addAll(listaFirebase);
                         } else {
                             Log.d("FirestoreData", "El usuario no tiene listas.");
                         }
@@ -225,8 +230,12 @@ public class DaoUser {
                 })
                 .addOnFailureListener(e -> Log.e("FirestoreError", "Error al cargar las listas", e));
 
+        // Esta línea se ejecuta antes que la consulta a Firebase termine, por lo que, en este punto,
+        // está vacía. Es por eso que se usa un MutableLiveData y no una lista normal. Cuando la
+        // consulta a Firebase finalice, se ejecuta listaLiveData.setValue() para actualizar la lista.
         return listaLiveData;
     }
+
 
     /**
      * This method queries Firestore to retrieve the document associated with the given user ID.
@@ -235,7 +244,7 @@ public class DaoUser {
      * In case of a Firestore retrieval error, it logs the error message.
      *
      * @param userId   the ID of the user whose data is to be retrieved.
-     * @param callback a callback interface.
+     * @param callback a OnUserDataCallback custom interface, that has two methods (success & failure)
      */
 
     public void getUserData(String userId, OnUserDataCallback callback) {

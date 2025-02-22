@@ -34,7 +34,7 @@ public class User {
     }
     */
 
-    public User(String id, String name, String email, String username, List<FilmList> listasDeListas,
+   public User(String id, String name, String email, String username, List<FilmList> listasDeListas,
                 List<Review> listOfReviews, List<User> listaAmigos) {
         this.id = id;
         this.name = name;
@@ -45,7 +45,7 @@ public class User {
         this.listaAmigos = listaAmigos;
 
         listasDeListas.add(new FilmList("Favorites", new ArrayList<Film>()));
-    }
+   }
 
     public User() {
     }
@@ -57,65 +57,53 @@ public class User {
     public String getProfileImageUrl() {
         return profileImageUrl;
     }
-
     public String getId() { return id; }
-
     public void setId(String id) { this.id = id; }
-
-    public String getName() {
-        return name;
-    }
-
+    public String getName() { return name; }
     public void setName(String name) {
         this.name = name;
     }
-
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
-
     public List<FilmList> getListasDeListas() {
         return listasDeListas;
     }
-
     public void setListasDeListas(List<FilmList> listasDeListas) {
         this.listasDeListas = listasDeListas;
     }
-
     public List<Review> getListOfReviews() {
         return listOfReviews;
     }
-
     public void setListOfReviews(List<Review> listOfReviews) {
         this.listOfReviews = listOfReviews;
     }
-
     public List<User> getListaAmigos() {
         return listaAmigos;
     }
-
     public void setListaAmigos(List<User> listaAmigos) {
         this.listaAmigos = listaAmigos;
     }
-
     public String getUrl() {
         return url;
     }
-
     public void setUrl(String url) {
         this.url = url;
+    }
+    public int getProfileImageResId() {
+        return profileImageResId;
+    }
+    public void setProfileImageResId(int profileImageResId) {
+        this.profileImageResId = profileImageResId;
     }
 
     @Override
@@ -130,13 +118,5 @@ public class User {
                 ", listaAmigos=" + listaAmigos +
                 ", url='" + url + '\'' +
                 '}';
-    }
-
-    public int getProfileImageResId() {
-        return profileImageResId;
-    }
-
-    public void setProfileImageResId(int profileImageResId) {
-        this.profileImageResId = profileImageResId;
     }
 }

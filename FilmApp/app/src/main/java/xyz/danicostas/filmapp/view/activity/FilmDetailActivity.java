@@ -98,7 +98,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                     ApiResponseFilmDetailsById apiResponse = response.body();
                     assert apiResponse != null;
                     Log.d("OBTAINFILMDETAILS", apiResponse.toString());
-                    tvFilmTitle.setText(apiResponse.title);
+                    tvFilmTitle.setText(apiResponse.getTitle());
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         tvFilmTitle.setAutoSizeTextTypeUniformWithConfiguration(
                                 18,
@@ -106,22 +106,22 @@ public class FilmDetailActivity extends AppCompatActivity {
                                 4, TypedValue.COMPLEX_UNIT_SP
                                 );
                     }
-                    tvOriginalTitleB.setText(apiResponse.originalTitle);
+                    tvOriginalTitleB.setText(apiResponse.getOriginalTitle());
                     tvRatingFilmDetail.setText(String.valueOf(
-                            Math.round(apiResponse.voteAverage * 10.0) / 10.0));
-                    tvDirectorB.setText(String.valueOf(apiResponse.id));
-                    tvReleaseDateB.setText(apiResponse.releaseDate);
-                    tvSinopsisB.setText(apiResponse.overview);
-                    tvOriginalTitleB.setText(apiResponse.originalTitle);
+                            Math.round(apiResponse.getVoteAverage() * 10.0) / 10.0));
+                    tvDirectorB.setText(String.valueOf(apiResponse.getId()));
+                    tvReleaseDateB.setText(apiResponse.getReleaseDate());
+                    tvSinopsisB.setText(apiResponse.getOverview());
+                    tvOriginalTitleB.setText(apiResponse.getOriginalTitle());
 
-                    String posterPath = apiResponse.posterPath;
+                    String posterPath = apiResponse.getPosterPath();
                     String imageUrl = ApiFilmService.TMDB_API_IMAGE_URL + posterPath;
 
                     Glide.with(context)
                             .load(imageUrl)
                             .into(ivFilmDetailCover);
 
-                    List<KeywordOrGenres> listOfGenres = apiResponse.genres;
+                    List<KeywordOrGenres> listOfGenres = apiResponse.getGenres();
                     List<KeywordOrGenres> limitedKeywords =
                             listOfGenres.size() > 3 ? listOfGenres.subList(0, 3) : listOfGenres;
 
@@ -154,7 +154,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                     ApiResponseKeywordsByFilmId apiResponse = response.body();
                     assert apiResponse != null;
                     Log.d("OBTAINKEYOWRDS", apiResponse.toString());
-                    List<KeywordOrGenres> listOfKeywords = apiResponse.keywords;
+                    List<KeywordOrGenres> listOfKeywords = apiResponse.getKeywords();
 
                     List<KeywordOrGenres> limitedKeywords =
                             listOfKeywords.size() > 9 ? listOfKeywords.subList(0, 9) : listOfKeywords;

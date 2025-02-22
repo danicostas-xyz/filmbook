@@ -31,71 +31,54 @@ public class Review {
     public String getPosterPath() {
         return posterPath;
     }
-
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
     }
-
     public int getVoteAverage() {
         return voteAverage;
     }
-
     public void setVoteAverage(int voteAverage) {
         this.voteAverage = voteAverage;
     }
-
     public Date getDate() {
         return date;
     }
-
     public void setDate(Date date) {
         this.date = date;
     }
-
     public String getFilmTitle() {
         return filmTitle;
     }
-
     public void setFilmTitle(String filmTitle) {
         this.filmTitle = filmTitle;
     }
-
     public int getFilmId() {
         return filmId;
     }
-
     public void setFilmId(int filmId) {
         this.filmId = filmId;
     }
-
     public String getOverview() {
         return overview;
     }
-
     public void setOverview(String overview) {
         this.overview = overview;
     }
-
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public String getUserId() {
         return userId;
     }
-
     public void setUserId(String userId) {
         this.userId = userId;
     }
-
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }

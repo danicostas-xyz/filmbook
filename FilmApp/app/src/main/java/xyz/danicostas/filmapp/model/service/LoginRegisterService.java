@@ -61,6 +61,7 @@ public class LoginRegisterService {
             context.startActivity(intent);
         }
     }
+
     /**
      * Authenticates a user using Firebase Authentication and initializes the user session.
      *
@@ -110,6 +111,7 @@ public class LoginRegisterService {
         }
 
     }
+
     /**
      * Logs out the current user from Firebase Authentication and clears the user session.
      *
@@ -131,7 +133,6 @@ public class LoginRegisterService {
             Log.e("GestorUser", "FirebaseAuth is not initialized.");
         }
     }
-
 
     /**
      * Registers a new user using Firebase Authentication and saves the user's data in Firestore.
@@ -461,7 +462,7 @@ public class LoginRegisterService {
         film23.setId(4348);
         film23.setOverview("A newlywed couple’s honeymoon turns into a nightmare as a vengeful ghost pursues them.");
         film23.setOriginalTitle("Pride and Prejudice");
-        film23.setPosterPath("https://image.tmdb.org/t/p/w500/sGjIvtVvT lWnia2zfJfHz81pZ9Q.jpg");
+        film23.setPosterPath("https://image.tmdb.org/t/p/w500/sGjIvtVvTlWnia2zfJfHz81pZ9Q.jpg");
         film23.setReleaseDate("2020-10-09");
         film23.setTitle("Blue Velvet");
         film23.setVoteAverage(7.5);
