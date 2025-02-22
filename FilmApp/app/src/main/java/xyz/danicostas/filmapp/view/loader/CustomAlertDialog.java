@@ -10,6 +10,13 @@ import android.widget.TextView;
 
 import xyz.danicostas.filmapp.R;
 
+/**
+ * Esta clase permite:
+ * - Mostrar un cuadro de diálogo personalizado con un mensaje definido por el usuario.
+ * - Cambiar el texto del mensaje dinámicamente.
+ * - Configurar un tiempo de espera antes de cerrar el cuadro de diálogo.
+ */
+
 public class CustomAlertDialog extends AlertDialog {
 
     private Context context;
