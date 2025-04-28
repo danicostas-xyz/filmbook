@@ -3,54 +3,72 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#1A1A1A">
 
-    <!-- Toolbar-like Header -->
+    <!-- Enhanced Header with Elevation -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="64dp"
         android:background="?android:attr/colorPrimary"
-        android:padding="8dp"
+        android:elevation="4dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/buttonBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/back"
+            android:layout_marginStart="8dp"
+            android:background="?android:attr/selectableItemCircle"
+            android:contentDescription="Back to Friends List"
+            android:padding="8dp"
             android:src="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@android:color/white" />
 
         <ImageView
             android:id="@+id/ivFriendProfile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/rounded_button_no_stroke"
-            android:clipToOutline="true"
             android:contentDescription="Friend Profile"
             android:scaleType="centerCrop"
+            android:src="@drawable/default_avatar_vector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/buttonBack"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvFriendNameDetail"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text=""
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivFriendProfile"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvFriendNameDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvFriendStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="Online"
+                android:textColor="#B0B0B0"
+                android:textSize="14sp" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Messages RecyclerView -->
@@ -59,50 +77,63 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:padding="8dp"
+        android:paddingStart="12dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/messageInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
-    <!-- Message Input Area -->
+    <!-- Enhanced Message Input Area -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/messageInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:elevation="4dp"
-        android:padding="8dp"
+        android:background="#262626"
+        android:elevation="8dp"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <EditText
             android:id="@+id/etMessageInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edit_text"
+            android:background="@drawable/message_input_field"
+            android:fontFamily="sans-serif"
             android:hint="Type a message..."
             android:inputType="textMultiLine"
             android:maxLines="4"
             android:minHeight="48dp"
             android:padding="12dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#808080"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnSendMessage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <Button
             android:id="@+id/btnSendMessage"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
-            android:background="?attr/colorPrimary"
+            android:background="@drawable/send_button_background"
             android:contentDescription="Send Message"
-            android:padding="12dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_send"
+            android:text=""
+            app:icon="@drawable/ic_send"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="24dp"
+            app:iconTint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/etMessageInput"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@android:color/white" />
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

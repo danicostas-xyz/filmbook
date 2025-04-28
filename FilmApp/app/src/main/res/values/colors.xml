@@ -9,28 +9,30 @@
     <color name="secondaryDark">#FFFFFF</color>
     <color name="primaryLight">#F1F0EE</color>
     <color name="secondaryLight">#1A1A1A</color>
-    <color name="accent">#9E2525</color> <!-- Color de acento para botones o interacciones -->
+    <color name="accent">#9E2525</color> 
 
     <color name="secondaryNotSelected">#939393</color>
     <color name="primaryNotSelected">#4F4F4F</color>
 
-    <!-- Colores para la barra de navegación y elementos seleccionados -->
-    <color name="drawerBackground">#FFFFFF</color> <!-- Fondo blanco del Navigation Drawer -->
-    <color name="drawerItemSelected">#3700B3</color> <!-- Color de texto de los items seleccionados en el Drawer -->
-    <color name="drawerItemDefault">#000000</color> <!-- Color de los items del Drawer por defecto -->
+    <color name="drawerBackground">#FFFFFF</color> 
+    <color name="drawerItemSelected">#3700B3</color> 
+    <color name="drawerItemDefault">#000000</color> 
 
-    <!-- Colores para el encabezado del Drawer -->
-    <color name="headerBackground">#6200EE</color> <!-- Fondo en el encabezado del Drawer -->
-    <color name="headerTextColor">#FFFFFF</color> <!-- Texto en el encabezado del Drawer -->
+    <color name="headerBackground">#6200EE</color> 
+    <color name="headerTextColor">#FFFFFF</color> 
 
-    <!-- Colores para los íconos -->
-    <color name="iconColor">#FFFFFF</color> <!-- Color de íconos -->
-    <color name="iconColorSelected">#03DAC5</color> <!-- Color de íconos seleccionados -->
+    <color name="iconColor">#FFFFFF</color> 
+    <color name="iconColorSelected">#03DAC5</color> 
 
-    <!-- Colores adicionales -->
-    <color name="buttonColor">#6200EE</color> <!-- Color para los botones principales -->
-    <color name="buttonTextColor">#FFFFFF</color> <!-- Color del texto en los botones -->
-    <color name="backgroundColor">#F5F5F5</color> <!-- Color de fondo para la mayoría de la app -->
-    <color name="cardBackground">#FFFFFF</color> <!-- Fondo para tarjetas o elementos tipo card -->
-    <color name="errorColor">#B00020</color> <!-- Color para mostrar errores -->
+    <color name="buttonColor">#6200EE</color> 
+    <color name="buttonTextColor">#FFFFFF</color> 
+    <color name="backgroundColor">#F5F5F5</color> 
+    <color name="cardBackground">#FFFFFF</color> 
+    <color name="errorColor">#B00020</color> 
+    <color name="chat_background">#1A1A1A</color>
+    <color name="chat_input_background">#262626</color>
+    <color name="chat_input_field">#333333</color>
+    <color name="chat_text_primary">#FFFFFF</color>
+    <color name="chat_text_secondary">#B0B0B0</color>
+    <color name="chat_hint_text">#808080</color>
 </resources>
