@@ -3,14 +3,18 @@ package xyz.danicostas.filmapp.view.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
@@ -23,6 +27,7 @@ public class ProfileFragment extends Fragment {
     private RecyclerView recyclerView;
     private FilmListAdapter adapter;
     private FilmListsViewModel viewModel;
+    private ImageButton btAddNewList;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -44,6 +49,7 @@ public class ProfileFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         adapter = new FilmListAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
+        btAddNewList = view.findViewById(R.id.btAddNewList);
 
         viewModel = new ViewModelProvider(this).get(FilmListsViewModel.class);
 
@@ -51,9 +57,17 @@ public class ProfileFragment extends Fragment {
         viewModel.getListaPeliculas().observe(getViewLifecycleOwner(), peliculas -> {
             adapter.updateList(peliculas); // Método que actualiza la lista en el adapter
         });
-
-
-
+        setClickListeners();
         return view;
+    }
+
+    public void setClickListeners() {
+        btAddNewList.setOnClickListener(v -> {
+            Log.d("Botón", "Se está pulsando el botón");
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, new NewListFragment());
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
     }
 }

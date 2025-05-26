@@ -20,7 +20,6 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
-            android:background="?android:attr/selectableItemCircle"
             android:contentDescription="Back to Friends List"
             android:padding="8dp"
             android:src="@drawable/ic_back"

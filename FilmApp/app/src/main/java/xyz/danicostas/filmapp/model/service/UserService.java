@@ -68,4 +68,8 @@ public class UserService {
     public void clearUserSessionData() {
         UserSession.getInstance().clearUserData();
     }
+
+    public void addNewList(String filmListTitle, String userId) {
+        dao.addNewList(filmListTitle, userId);
+    }
 }

@@ -52,4 +52,6 @@
     <string name="list_title">Título de la lista</string>
     <string name="rf" />
     <string name="film_poster">Film Poster</string>
+    <string name="newList">Nueva Lista</string>
+    <string name="escribe_un_nombre_para_la_lista">Escribe un nombre para la lista</string>
 </resources>

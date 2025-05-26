@@ -14,7 +14,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
@@ -259,5 +258,36 @@ public class DaoUser {
                     else callback.onFailure("El usuario no existe.");
                 })
                 .addOnFailureListener(e -> Log.e("FirestoreError", "Error al cargar datos", e));
+    }
+
+    public void addNewList(String filmListTitle, String userId) {
+        FilmList filmList = new FilmList(filmListTitle, new ArrayList<Film>());
+        db.collection(COLLECTION_NAME)
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        if (documentSnapshot.contains("listasDeListas")) {
+                            // Ya existe el array, añadimos la lista
+                            db.collection(COLLECTION_NAME)
+                                    .document(userId)
+                                    .update("listasDeListas", FieldValue.arrayUnion(filmList))
+                                    .addOnSuccessListener(aVoid -> {
+                                        Log.d("Firestore", "Lista añadida al array existente");
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Log.e("Firestore", "Error al actualizar la lista", e);
+                                    });
+                        } else {
+                            Log.d("Firestore", "Error al añadir la lista. listasDeListas " +
+                                    "no está dentro del user");
+                        }
+                    } else {
+                        Log.e("Firestore", "El documento del usuario no existe");
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al obtener el documento del usuario", e);
+                });
     }
 }
