@@ -44,4 +44,5 @@
             android:exported="true" />
     </application>
 
+    <!-- Para Everlyn. -->
 </manifest>

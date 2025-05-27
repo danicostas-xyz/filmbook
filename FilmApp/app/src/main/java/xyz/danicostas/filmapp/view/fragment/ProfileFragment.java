@@ -47,7 +47,21 @@ public class ProfileFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rvFilmList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
-        adapter = new FilmListAdapter(new ArrayList<>());
+        adapter = new FilmListAdapter(new ArrayList<>(), list -> {
+            Fragment fragment = new AddFilmFragment();
+
+            Bundle args = new Bundle();
+            args.putSerializable("FilmList", list);
+            fragment.setArguments(args);
+
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        });
+
+       // adapter = new FilmListAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
         btAddNewList = view.findViewById(R.id.btAddNewList);
 

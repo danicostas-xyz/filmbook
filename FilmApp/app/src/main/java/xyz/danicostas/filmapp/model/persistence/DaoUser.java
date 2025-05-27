@@ -290,4 +290,8 @@ public class DaoUser {
                     Log.e("Firestore", "Error al obtener el documento del usuario", e);
                 });
     }
+
+    public void addFilmToList(String filmListTitle, int filmId, String userId) {
+        Log.d("AddFilm", "filmId: " + filmId + " | FilmListTitle: :" + filmListTitle);
+    }
 }

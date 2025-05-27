@@ -37,7 +37,6 @@ import xyz.danicostas.filmapp.viewmodel.FilmListsViewModel;
 public class NewListFragment extends Fragment {
 
     private EditText etNewList;
-    private Runnable searchRunnable;
     private Button btAddNewList;
     private UserService userService = UserService.getInstance();
     private UserSession session = UserSession.getInstance();
@@ -68,7 +67,7 @@ public class NewListFragment extends Fragment {
             userService.addNewList(etNewList.getText().toString(), session.getUserId());
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, new ProfileFragment());
-            transaction.addToBackStack(null); // este lo podés evitar si no querés volver atrás
+            transaction.addToBackStack(null);
             getParentFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE); // limpia todo
             transaction.commit();
         });

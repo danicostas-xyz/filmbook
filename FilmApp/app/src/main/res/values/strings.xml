@@ -54,4 +54,5 @@
     <string name="film_poster">Film Poster</string>
     <string name="newList">Nueva Lista</string>
     <string name="escribe_un_nombre_para_la_lista">Escribe un nombre para la lista</string>
+    <string name="addToList">Añadir a lista</string>
 </resources>

@@ -72,4 +72,8 @@ public class UserService {
     public void addNewList(String filmListTitle, String userId) {
         dao.addNewList(filmListTitle, userId);
     }
+
+    public void addFilmToList(String filmListTitle, int filmId, String userId) {
+        dao.addFilmToList(filmListTitle, filmId, userId);
+    }
 }

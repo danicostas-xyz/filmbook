@@ -3,6 +3,8 @@ package xyz.danicostas.filmapp.view.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,7 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,40 +26,78 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.ApiResponseSearchFilmByTitle;
+import xyz.danicostas.filmapp.model.entity.Film;
+import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.service.ApiFilmService;
 import xyz.danicostas.filmapp.model.service.TMDBApiService;
+import xyz.danicostas.filmapp.model.service.UserService;
+import xyz.danicostas.filmapp.model.service.UserSession;
 import xyz.danicostas.filmapp.view.adapter.SearchResultAdapter;
-import xyz.danicostas.filmapp.viewmodel.FilmListsViewModel;
 
+public class AddFilmFragment extends Fragment {
 
-public class SearchFragment extends Fragment {
-
-    private RecyclerView recyclerView;
-    private SearchResultAdapter adapter;
-    private EditText editTextSearch;
+    private EditText etAddFilmToList;
     private Handler handler = new Handler();
     private Runnable searchRunnable;
+    private RecyclerView rvSearchAddFilm;
+    private SearchResultAdapter adapter;
+    private Button btAddNewFilmToList;
+    private TextView tvLista;
+    private final UserService userService = UserService.getInstance();
+    private final UserSession session = UserSession.getInstance();
+    private FilmList filmList;
+    private Film film;
 
-    public SearchFragment() { /* Required empty public constructor */ }
+    public AddFilmFragment() { /* Required empty public constructor */ }
     @Override
-    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            filmList = (FilmList) getArguments().getSerializable("FilmList");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_film, container, false);
+        initViews(view);
+        setTitle();
+        setOnClickListeners();
 
+        return view;
+    }
+
+    private void initViews(View view) {
         adapter = new SearchResultAdapter(new ArrayList<>());
-        recyclerView = view.findViewById(R.id.rvSearch);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixedSize(true);
-        editTextSearch = view.findViewById(R.id.editTextSearch);
+        etAddFilmToList = view.findViewById(R.id.etAddFilmToList);
+        btAddNewFilmToList = view.findViewById(R.id.btAddNewFilmToList);
+        tvLista = view.findViewById(R.id.tvLista);
+        rvSearchAddFilm =  view.findViewById(R.id.rvSearchAddFilm);
+        rvSearchAddFilm.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        rvSearchAddFilm.setAdapter(adapter);
+        rvSearchAddFilm.setHasFixedSize(true);
+    }
 
-        editTextSearch.addTextChangedListener(new TextWatcher() {
+    private void setTitle () {
+        tvLista.setText(filmList.getListName());
+    }
+
+    private void setOnClickListeners()  {
+        btAddNewFilmToList.setOnClickListener(v -> {
+            Log.d("Botón Add Film To List", "Pulsando botón");
+            //userService.addFilmToList(filmList.getListName(), film.getId(), session.getUserId());
+            userService.addFilmToList(filmList.getListName(), 503168153, session.getUserId());
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, new ProfileFragment());
+            transaction.addToBackStack(null);
+            getParentFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE); // limpia todo
+            transaction.commit();
+        });
+
+        etAddFilmToList.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
@@ -63,14 +105,12 @@ public class SearchFragment extends Fragment {
                 // Cancelamos la búsqueda anterior
                 handler.removeCallbacks(searchRunnable);
                 // Nueva búsqueda con retraso de 500ms
-                searchRunnable = () -> obtainMoviesByTitle(recyclerView, s.toString(), adapter);
+                searchRunnable = () -> obtainMoviesByTitle(rvSearchAddFilm, s.toString(), adapter);
                 handler.postDelayed(searchRunnable, 500);
             }
             @Override
             public void afterTextChanged(Editable s) {}
         });
-
-        return view;
     }
 
     public void obtainMoviesByTitle(RecyclerView recyclerView, String query, SearchResultAdapter adapter){
