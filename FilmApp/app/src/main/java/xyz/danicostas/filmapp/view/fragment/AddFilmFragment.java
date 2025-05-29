@@ -3,8 +3,6 @@ package xyz.danicostas.filmapp.view.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -34,6 +31,7 @@ import xyz.danicostas.filmapp.model.service.TMDBApiService;
 import xyz.danicostas.filmapp.model.service.UserService;
 import xyz.danicostas.filmapp.model.service.UserSession;
 import xyz.danicostas.filmapp.view.adapter.SearchResultAdapter;
+import xyz.danicostas.filmapp.view.adapter.SearchResultAddFilmAdapter;
 
 public class AddFilmFragment extends Fragment {
 
@@ -41,8 +39,7 @@ public class AddFilmFragment extends Fragment {
     private Handler handler = new Handler();
     private Runnable searchRunnable;
     private RecyclerView rvSearchAddFilm;
-    private SearchResultAdapter adapter;
-    private Button btAddNewFilmToList;
+    private SearchResultAddFilmAdapter adapter;
     private TextView tvLista;
     private final UserService userService = UserService.getInstance();
     private final UserSession session = UserSession.getInstance();
@@ -65,15 +62,14 @@ public class AddFilmFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_film, container, false);
         initViews(view);
         setTitle();
-        setOnClickListeners();
+        setListeners();
 
         return view;
     }
 
     private void initViews(View view) {
-        adapter = new SearchResultAdapter(new ArrayList<>());
+        adapter = new SearchResultAddFilmAdapter(new ArrayList<>());
         etAddFilmToList = view.findViewById(R.id.etAddFilmToList);
-        btAddNewFilmToList = view.findViewById(R.id.btAddNewFilmToList);
         tvLista = view.findViewById(R.id.tvLista);
         rvSearchAddFilm =  view.findViewById(R.id.rvSearchAddFilm);
         rvSearchAddFilm.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
@@ -85,17 +81,8 @@ public class AddFilmFragment extends Fragment {
         tvLista.setText(filmList.getListName());
     }
 
-    private void setOnClickListeners()  {
-        btAddNewFilmToList.setOnClickListener(v -> {
-            Log.d("Botón Add Film To List", "Pulsando botón");
-            //userService.addFilmToList(filmList.getListName(), film.getId(), session.getUserId());
-            userService.addFilmToList(filmList.getListName(), 503168153, session.getUserId());
-            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, new ProfileFragment());
-            transaction.addToBackStack(null);
-            getParentFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE); // limpia todo
-            transaction.commit();
-        });
+    private void setListeners()  {
+
 
         etAddFilmToList.addTextChangedListener(new TextWatcher() {
             @Override
@@ -113,7 +100,7 @@ public class AddFilmFragment extends Fragment {
         });
     }
 
-    public void obtainMoviesByTitle(RecyclerView recyclerView, String query, SearchResultAdapter adapter){
+    public void obtainMoviesByTitle(RecyclerView recyclerView, String query, SearchResultAddFilmAdapter adapter){
 
         TMDBApiService api = ApiFilmService.getInstance().getApi();
         Call<ApiResponseSearchFilmByTitle> call = api.getMovieByTitle(ApiFilmService.API_KEY, query, ApiFilmService.LANG_SPANISH);
