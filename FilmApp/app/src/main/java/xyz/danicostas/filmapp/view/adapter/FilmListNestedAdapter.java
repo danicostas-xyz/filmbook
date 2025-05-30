@@ -19,6 +19,7 @@ import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
+import xyz.danicostas.filmapp.model.service.ApiFilmService;
 import xyz.danicostas.filmapp.view.activity.FilmDetailActivity;
 
 public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAdapter.FilmListNestedViewHolder> {
@@ -54,7 +55,7 @@ public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAd
     public void onBindViewHolder(@NonNull FilmListNestedViewHolder holder, int position) {
         Film film = listOfFilms.get(position);
         Glide.with(holder.itemView.getContext())
-                .load(film.getPosterPath())  // La URL de la imagen
+                .load(ApiFilmService.TMDB_API_IMAGE_URL + film.getPosterPath())  // La URL de la imagen
                 .into(holder.imageView);
 
         holder.imageView.setOnClickListener(view -> {
