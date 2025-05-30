@@ -59,7 +59,7 @@ public class ProfileFragment extends Fragment {
                     .replace(R.id.fragment_container, fragment)
                     .addToBackStack(null)
                     .commit();
-        });
+        }, getParentFragmentManager());
 
        // adapter = new FilmListAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);

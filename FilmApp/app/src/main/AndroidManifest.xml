@@ -23,9 +23,6 @@
             android:name=".view.activity.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.FilmGridActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.activity.LoginActivity"
             android:exported="true">
             <intent-filter>
