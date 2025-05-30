@@ -12,8 +12,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
+import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.User;
+import xyz.danicostas.filmapp.model.interfaces.OnFilmCheckListener;
 import xyz.danicostas.filmapp.model.interfaces.OnUserDataCallback;
 import xyz.danicostas.filmapp.model.persistence.DaoUser;
 import xyz.danicostas.filmapp.view.activity.ApplicationActivity;
@@ -73,7 +75,15 @@ public class UserService {
         dao.addNewList(filmListTitle, userId);
     }
 
-    public void addFilmToList(String filmListTitle, int filmId, String userId) {
-        dao.addFilmToList(filmListTitle, filmId, userId);
+    public void addFilmToList(Film film, String userId, FilmList filmList) {
+        dao.addFilmToList(film, userId, filmList);
+    }
+
+    public void removeFilmFromList(Film film, String userId, FilmList filmList) {
+        dao.removeFilmFromList(film, userId, filmList);
+    }
+
+    public void checkIfFilmIsInList(Film film, FilmList filmList, String userId, OnFilmCheckListener onFilmCheckListener) {
+        dao.checkIfFilmIsInList(film, filmList,userId,onFilmCheckListener);
     }
 }

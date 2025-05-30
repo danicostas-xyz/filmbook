@@ -41,10 +41,7 @@ public class AddFilmFragment extends Fragment {
     private RecyclerView rvSearchAddFilm;
     private SearchResultAddFilmAdapter adapter;
     private TextView tvLista;
-    private final UserService userService = UserService.getInstance();
-    private final UserSession session = UserSession.getInstance();
     private FilmList filmList;
-    private Film film;
 
     public AddFilmFragment() { /* Required empty public constructor */ }
     @Override
@@ -68,7 +65,7 @@ public class AddFilmFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        adapter = new SearchResultAddFilmAdapter(new ArrayList<>());
+        adapter = new SearchResultAddFilmAdapter(new ArrayList<>(), filmList);
         etAddFilmToList = view.findViewById(R.id.etAddFilmToList);
         tvLista = view.findViewById(R.id.tvLista);
         rvSearchAddFilm =  view.findViewById(R.id.rvSearchAddFilm);
@@ -82,8 +79,6 @@ public class AddFilmFragment extends Fragment {
     }
 
     private void setListeners()  {
-
-
         etAddFilmToList.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}

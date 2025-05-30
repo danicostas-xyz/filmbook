@@ -14,16 +14,20 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.entity.User;
+import xyz.danicostas.filmapp.model.interfaces.OnFilmCheckListener;
 import xyz.danicostas.filmapp.model.interfaces.OnUserDataCallback;
+import xyz.danicostas.filmapp.model.service.UserSession;
 
 public class DaoUser {
     private static DaoUser instance;
     private static final String COLLECTION_NAME = "usuarios";
     private final FirebaseFirestore db;
+    private final UserSession session = UserSession.getInstance();
 
     private DaoUser() {
         db = FirebaseFirestore.getInstance();
@@ -291,7 +295,129 @@ public class DaoUser {
                 });
     }
 
-    public void addFilmToList(String filmListTitle, int filmId, String userId) {
-        Log.d("AddFilm", "filmId: " + filmId + " | FilmListTitle: :" + filmListTitle);
+    public void addFilmToList(Film film, String userId, FilmList filmList) {
+        Log.d("AddFilm", "filmId: " + film.getId() + " | FilmListTitle: :" + film.getTitle());
+        db.collection(COLLECTION_NAME)
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        User user = documentSnapshot.toObject(User.class);
+
+                        if (user != null && user.getListasDeListas() != null) {
+                            List<FilmList> listasDeListas = user.getListasDeListas();
+
+                            for (FilmList fl : listasDeListas) {
+                                if (fl.getListName().equals(filmList.getListName())) {
+                                    fl.getContent().add(film);
+                                    Log.d("AddFilm", "Película añadida a la lista: " + film.getTitle());
+                                    break;
+                                }
+                            }
+                            // Ahora subimos el usuario actualizado
+                            db.collection(COLLECTION_NAME)
+                                    .document(userId)
+                                    .set(user)
+                                    .addOnSuccessListener(e -> Log.d("Firestore", "Usuario actualizado correctamente"))
+                                    .addOnFailureListener(e -> Log.e("Firestore", "Error al actualizar el usuario", e));
+
+                        } else {
+                            Log.d("FirestoreData", "El usuario no tiene listas.");
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al obtener el documento del usuario", e);
+                });
     }
+
+    public void removeFilmFromList(Film film, String userId, FilmList filmList) {
+        Log.d("RemoveFilm", "filmId: " + film.getId() + " | FilmListTitle: :" + film.getTitle());
+        db.collection(COLLECTION_NAME)
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        User user = documentSnapshot.toObject(User.class);
+                        if (user != null && user.getListasDeListas() != null) {
+                            List<FilmList> listasDeListas = user.getListasDeListas();
+
+                            for (FilmList fl : listasDeListas) {
+                                if (fl.getListName().equals(filmList.getListName())) {
+                                    int i = 0;
+                                    List<Film> list = fl.getContent();
+                                    for (Film f: list) {
+                                        if(f.getId() == film.getId()) {
+                                            list.remove(i);
+                                            Log.d("removeFilmFromList", "Película eliminada de la lista");
+                                            break;
+                                        }
+                                        i++;
+                                    }
+                                }
+                            }
+                            // Ahora subimos el usuario actualizado
+                            db.collection(COLLECTION_NAME)
+                                    .document(userId)
+                                    .set(user)
+                                    .addOnSuccessListener(e -> Log.d("Firestore", "Usuario actualizado correctamente"))
+                                    .addOnFailureListener(e -> Log.e("Firestore", "Error al actualizar el usuario", e));
+
+                        } else {
+                            Log.d("FirestoreData", "El usuario no tiene listas.");
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al obtener el documento del usuario", e);
+                });
+
+    }
+
+
+    public MutableLiveData<FilmList> getFilmList (String userId, String listName) {
+        MutableLiveData<FilmList> filmListLiveData = new MutableLiveData<>();
+        List<FilmList> listOfFilmList = new ArrayList<>();
+        db.collection(COLLECTION_NAME)
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Convierte el documento a User
+                        User user = documentSnapshot.toObject(User.class);
+
+                        if (user != null && user.getListasDeListas() != null) {
+                            // Obtiene la List<FilmList> del User
+                            List<FilmList> listaFirebase = user.getListasDeListas();
+                            for (FilmList fl : listaFirebase) {
+                                if (fl.getListName().equals(listName)) {
+                                    listOfFilmList.add(fl);
+                                }
+                            }
+
+                        } else {
+                            Log.d("FirestoreData", "El usuario no tiene listas.");
+                        }
+                    }
+                    filmListLiveData.setValue(listOfFilmList.get(0));
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al obtener el documento del usuario", e);
+                });
+        return filmListLiveData;
+    }
+
+    public void checkIfFilmIsInList(Film film, FilmList filmList, String userId, OnFilmCheckListener listener) {
+        getFilmList(userId, filmList.getListName()).observeForever(fetchedFilmList -> {
+            boolean exists = false;
+            for (Film f : fetchedFilmList.getContent()) {
+                if (f.getId() == (film.getId())) {
+                    exists = true;
+                    break;
+                }
+            }
+            listener.onCheckCompleted(exists);
+        });
+    }
+
 }

@@ -24,15 +24,23 @@ import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
+import xyz.danicostas.filmapp.model.entity.FilmList;
+import xyz.danicostas.filmapp.model.entity.User;
+import xyz.danicostas.filmapp.model.interfaces.OnFilmCheckListener;
 import xyz.danicostas.filmapp.model.service.ApiFilmService;
+import xyz.danicostas.filmapp.model.service.UserService;
+import xyz.danicostas.filmapp.model.service.UserSession;
 import xyz.danicostas.filmapp.view.activity.FilmDetailActivity;
 
 public class SearchResultAddFilmAdapter extends RecyclerView.Adapter<SearchResultAddFilmAdapter.SearchResultViewHolder> {
     private List<Film> listOfFIlms;
-    public SearchResultAddFilmAdapter(List<Film> listOfFIlms) {
+    public FilmList filmList;
+    public SearchResultAddFilmAdapter(List<Film> listOfFIlms, FilmList filmlist) {
         this.listOfFIlms = listOfFIlms;
+        this.filmList = filmlist;
     }
     public static final String FILM_ID = "Film ID";
+
 
     @NonNull
     @Override
@@ -46,6 +54,7 @@ public class SearchResultAddFilmAdapter extends RecyclerView.Adapter<SearchResul
         TextView tvSearchAddFilm;
         ImageView imgViewSearchFilmPosterAddFilm;
         LinearLayout linearLayoutAddNewFilm;
+
         SearchResultViewHolder(View itemView) {
             super(itemView);
             cbAddFilm = itemView.findViewById(R.id.cbAddFilm);
@@ -64,11 +73,8 @@ public class SearchResultAddFilmAdapter extends RecyclerView.Adapter<SearchResul
     @Override
     public void onBindViewHolder(@NonNull SearchResultViewHolder holder, int position) {
         Film film = listOfFIlms.get(position);
-
         holder.tvSearchAddFilm.setText(film.getTitle());
-        String posterPath = film.getPosterPath();
-        String imageUrl = ApiFilmService.TMDB_API_IMAGE_URL + posterPath;
-
+        String imageUrl = ApiFilmService.TMDB_API_IMAGE_URL + film.getPosterPath();
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .into(holder.imgViewSearchFilmPosterAddFilm);
@@ -78,11 +84,28 @@ public class SearchResultAddFilmAdapter extends RecyclerView.Adapter<SearchResul
             intent.putExtra(FILM_ID, film.getId());
             startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
         });
+
+        UserSession session = UserSession.getInstance();
+        UserService service = UserService.getInstance();
+        handleCheckbox(holder.cbAddFilm, session, service, film);
+    }
+
+    private void handleCheckbox (CheckBox cb, UserSession session, UserService service, Film film) {
+        service.checkIfFilmIsInList(film, filmList, session.getUserId(), exists -> {
+            cb.setOnCheckedChangeListener(null);
+            cb.setChecked(exists);
+            cb.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    service.addFilmToList(film, session.getUserId(), filmList);
+                } else {
+                    service.removeFilmFromList(film, session.getUserId(), filmList);
+                }
+            });
+        });
     }
 
     @Override
     public int getItemCount() {
         return listOfFIlms.size();
     }
-
 }
