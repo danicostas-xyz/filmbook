@@ -86,4 +86,8 @@ public class UserService {
     public void checkIfFilmIsInList(Film film, FilmList filmList, String userId, OnFilmCheckListener onFilmCheckListener) {
         dao.checkIfFilmIsInList(film, filmList,userId,onFilmCheckListener);
     }
+
+    public MutableLiveData<FilmList> getFilmList(String userId, String listName) {
+        return dao.getFilmList(userId, listName);
+    }
 }

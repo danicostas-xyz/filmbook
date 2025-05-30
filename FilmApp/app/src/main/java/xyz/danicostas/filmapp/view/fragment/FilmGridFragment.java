@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.FilmList;
+import xyz.danicostas.filmapp.model.service.UserService;
+import xyz.danicostas.filmapp.model.service.UserSession;
 import xyz.danicostas.filmapp.view.adapter.FilmGridAdapter;
 import xyz.danicostas.filmapp.view.adapter.FilmListAdapter;
 import xyz.danicostas.filmapp.view.fragment.AddFilmFragment;
@@ -26,6 +28,8 @@ public class FilmGridFragment extends Fragment {
     private RecyclerView recyclerView;
     private TextView tvFilmListTitle;
     private ImageButton btAddNewFilmToListFromGrid;
+    private final UserService service = UserService.getInstance();
+    private final UserSession session = UserSession.getInstance();
 
     public FilmGridFragment() {
         // Required empty public constructor
@@ -55,9 +59,17 @@ public class FilmGridFragment extends Fragment {
             tvFilmListTitle.setText(filmList.getListName());
 
             recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
-            recyclerView.setAdapter(new FilmGridAdapter(filmList.getContent()));
             recyclerView.setHasFixedSize(true);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        service.getFilmList(session.getUserId(), filmList.getListName())
+                .observe(getViewLifecycleOwner(), filmListLiveData -> {
+                    recyclerView.setAdapter(new FilmGridAdapter(filmListLiveData.getContent()));
+                });
     }
 
     private void setListeners() {
