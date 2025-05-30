@@ -264,7 +264,7 @@ public class DaoUser {
                 .addOnFailureListener(e -> Log.e("FirestoreError", "Error al cargar datos", e));
     }
 
-    public void addNewList(String filmListTitle, String userId) {
+    public void addNewList(String filmListTitle, String userId, Runnable onComplete) {
         FilmList filmList = new FilmList(filmListTitle, new ArrayList<Film>());
         db.collection(COLLECTION_NAME)
                 .document(userId)
@@ -278,6 +278,7 @@ public class DaoUser {
                                     .update("listasDeListas", FieldValue.arrayUnion(filmList))
                                     .addOnSuccessListener(aVoid -> {
                                         Log.d("Firestore", "Lista añadida al array existente");
+                                        onComplete.run();
                                     })
                                     .addOnFailureListener(e -> {
                                         Log.e("Firestore", "Error al actualizar la lista", e);

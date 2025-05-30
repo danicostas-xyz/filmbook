@@ -75,6 +75,13 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewModel.refreshLists();
+    }
+
+
     public void setClickListeners() {
         btAddNewList.setOnClickListener(v -> {
             Log.d("Botón", "Se está pulsando el botón");

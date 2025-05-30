@@ -14,6 +14,7 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,12 +65,12 @@ public class NewListFragment extends Fragment {
     private void setOnClickListeners()  {
         btAddNewList.setOnClickListener(v -> {
             Log.d("Botón New List", "Pulsando botón new List");
-            userService.addNewList(etNewList.getText().toString(), session.getUserId());
-            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, new ProfileFragment());
-            transaction.addToBackStack(null);
-            getParentFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE); // limpia todo
-            transaction.commit();
+            userService.addNewList(etNewList.getText().toString(), session.getUserId(), () -> {
+                FilmListsViewModel viewModel = new ViewModelProvider(requireActivity()).get(FilmListsViewModel.class);
+                viewModel.refreshLists();
+                requireActivity().runOnUiThread(() -> requireActivity().getSupportFragmentManager().popBackStack());
+            });
+
         });
     }
 

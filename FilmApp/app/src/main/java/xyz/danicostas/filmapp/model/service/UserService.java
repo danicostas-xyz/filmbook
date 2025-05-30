@@ -71,8 +71,8 @@ public class UserService {
         UserSession.getInstance().clearUserData();
     }
 
-    public void addNewList(String filmListTitle, String userId) {
-        dao.addNewList(filmListTitle, userId);
+    public void addNewList(String filmListTitle, String userId, Runnable onComplete) {
+        dao.addNewList(filmListTitle, userId, onComplete);
     }
 
     public void addFilmToList(Film film, String userId, FilmList filmList) {

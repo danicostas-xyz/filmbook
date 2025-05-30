@@ -30,5 +30,9 @@ public class FilmListsViewModel extends ViewModel {
     public static void notifyUserLoggedOut() {
         listaPeliculasLiveData.setValue(new ArrayList<>()); // Borra las listas
     }
+
+    public void refreshLists() {
+        loadUserFilmLists();
+    }
 }
 
