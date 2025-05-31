@@ -48,10 +48,15 @@ public class DiaryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_diary, container, false);
         initViews(view);
-        initData();
         setListeners();
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 
     private void initViews (View view) {
@@ -94,7 +99,8 @@ public class DiaryFragment extends Fragment {
                     nuevaLista.add(r);
                     Log.d("CALENDAR", "coincide");
                 } else {
-                    Log.d("CALENDAR", "setListeners: no coincide" + selectedDateAsDate + normalizedReviewDate);
+                    Log.d("CALENDAR", "setListeners: no coincide" + selectedDateAsDate
+                            + normalizedReviewDate);
                 }
             }
 

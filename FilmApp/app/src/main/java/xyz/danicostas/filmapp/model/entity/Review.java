@@ -12,11 +12,11 @@ public class Review {
 
     private String filmTitle;
     private Date date;
-    private int voteAverage;
+    private double voteAverage;
 
     public Review() {}
 
-    public Review(int id, String userId, String title, String overview, String posterPath, int filmId, String filmTitle, Date date, int voteAverage) {
+    public Review(int id, String userId, String title, String overview, String posterPath, int filmId, String filmTitle, Date date, double voteAverage) {
         this.id = id;
         this.userId = userId;
         this.title = title;
@@ -34,7 +34,7 @@ public class Review {
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
     }
-    public int getVoteAverage() {
+    public double getVoteAverage() {
         return voteAverage;
     }
     public void setVoteAverage(int voteAverage) {
