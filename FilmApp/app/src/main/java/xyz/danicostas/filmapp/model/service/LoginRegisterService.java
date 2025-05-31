@@ -161,7 +161,7 @@ public class LoginRegisterService {
                             user.setId(UserSession.getInstance().getUserId());
                             user.setListasDeListas(filmLists);
                             user.setUsername(UserSession.getInstance().getUsernameLiveData().getValue());
-                            user.setListOfReviews(new ArrayList<Review>());
+                            user.setListOfReviews(listOfReviews);
                             user.setEmail(UserSession.getInstance().getEmail());
                             user.setName(UserSession.getInstance().getName());
                             user.setListaAmigos(new ArrayList<User>());

@@ -15,9 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 
+import kotlin.collections.UCollectionsKt;
 import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
+import xyz.danicostas.filmapp.model.entity.Review;
 import xyz.danicostas.filmapp.model.entity.User;
 import xyz.danicostas.filmapp.model.interfaces.OnFilmCheckListener;
 import xyz.danicostas.filmapp.model.interfaces.OnUserDataCallback;
@@ -421,4 +424,24 @@ public class DaoUser {
         });
     }
 
+    public void getReviewList(String userId, Consumer<List<Review>> callback) {
+        db.collection(COLLECTION_NAME)
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        User user = documentSnapshot.toObject(User.class);
+                        List<Review> reviewList = new ArrayList<>();
+                        try {
+                            reviewList = user.getListOfReviews();
+                        } catch (Exception e) {
+                            Log.d("NullPointerUser.getListOfReviews", e.toString());
+                        }
+                        callback.accept(reviewList);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al obtener el documento del usuario", e);
+                });
+    }
 }

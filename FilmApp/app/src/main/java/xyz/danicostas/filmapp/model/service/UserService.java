@@ -11,9 +11,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
+import xyz.danicostas.filmapp.model.entity.Review;
 import xyz.danicostas.filmapp.model.entity.User;
 import xyz.danicostas.filmapp.model.interfaces.OnFilmCheckListener;
 import xyz.danicostas.filmapp.model.interfaces.OnUserDataCallback;
@@ -89,5 +91,9 @@ public class UserService {
 
     public MutableLiveData<FilmList> getFilmList(String userId, String listName) {
         return dao.getFilmList(userId, listName);
+    }
+
+    public void getReviewList(String userId, Consumer<List<Review>> callback) {
+        dao.getReviewList(userId, callback);
     }
 }
