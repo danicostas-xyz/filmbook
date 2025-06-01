@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,6 +69,7 @@ public class FilmDetailActivity extends AppCompatActivity {
         obtainKeywords(filmId);
         obtainSimilarFilms(filmId);
         progressDialog.dismiss(1000L);
+        setListeners();
     }
 
     private void initViews() {
@@ -227,5 +229,14 @@ public class FilmDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setListeners() {
+        btAddToDiary.setOnClickListener(v -> {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("Film", film);
+            setResult(RESULT_OK, resultIntent);
+            finish();
+        });
     }
 }

@@ -30,9 +30,11 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     private List<Film> listOfFIlms;
     public static final String FILM_ID = "Film ID";
     public Consumer<Film> callback;
-    public SearchResultAdapter(List<Film> listOfFIlms, Consumer<Film> callback) {
+    int option;
+    public SearchResultAdapter(List<Film> listOfFIlms, Consumer<Film> callback, int option) {
         this.listOfFIlms = listOfFIlms;
         this.callback = callback;
+        this.option = option;
     }
 
     @NonNull
@@ -85,17 +87,16 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
                 .load(imageUrl)
                 .into(holder.iVsearchFilmPoster);
 
-        if (callback != null) {
+        if (option == 0) {
             // Si viene desde Review -> Se ejecuta callback que acepta Film y devuelve a NewReviewFragment
             holder.cardViewSearch.setOnClickListener(view -> {
                 callback.accept(film);
             });
-        } else {
-            // Si no viene desde Review -> Se envía a FilmDetailActivity
+        }
+        if (option == 1){
+            // Si no viene desde Review -> Se ejecuta callback que lanza activityForResultLauncher a FilmDetailActivity
             holder.cardViewSearch.setOnClickListener(view -> {
-                Intent intent = new Intent(holder.itemView.getContext(), FilmDetailActivity.class);
-                intent.putExtra(FILM_ID, film.getId());
-                startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
+                callback.accept(film);
             });
         }
     }

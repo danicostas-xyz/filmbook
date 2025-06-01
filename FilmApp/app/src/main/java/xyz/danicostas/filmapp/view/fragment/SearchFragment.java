@@ -1,8 +1,15 @@
 package xyz.danicostas.filmapp.view.fragment;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +34,9 @@ import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.ApiResponseSearchFilmByTitle;
 import xyz.danicostas.filmapp.model.service.ApiFilmService;
 import xyz.danicostas.filmapp.model.service.TMDBApiService;
+import xyz.danicostas.filmapp.view.activity.FilmDetailActivity;
+import xyz.danicostas.filmapp.view.activity.LoginActivity;
+import xyz.danicostas.filmapp.view.activity.RegisterActivity;
 import xyz.danicostas.filmapp.view.adapter.SearchResultAdapter;
 import xyz.danicostas.filmapp.viewmodel.FilmListsViewModel;
 
@@ -37,6 +48,7 @@ public class SearchFragment extends Fragment {
     private EditText editTextSearch;
     private Handler handler = new Handler();
     private Runnable searchRunnable;
+    ActivityResultLauncher<Intent> registerActivityLauncher;
 
     public SearchFragment() { /* Required empty public constructor */ }
     @Override
@@ -53,6 +65,8 @@ public class SearchFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         editTextSearch = view.findViewById(R.id.editTextSearch);
+        setActivityForResultLauncher();
+
 
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -82,9 +96,13 @@ public class SearchFragment extends Fragment {
                 result.putSerializable("Film", film);
                 getParentFragmentManager().setFragmentResult("SelectFilm", result);
                 getParentFragmentManager().popBackStack();
-            });
+            },0);
         } else {
-            adapter = new SearchResultAdapter(new ArrayList<>(), null);
+            adapter = new SearchResultAdapter(new ArrayList<>(), film -> {
+                Intent intent = new Intent(getContext(), FilmDetailActivity.class);
+                intent.putExtra("Film ID", film.getId());
+                registerActivityLauncher.launch(intent);
+            },1);
         }
     }
 
@@ -115,5 +133,24 @@ public class SearchFragment extends Fragment {
                 Log.d("Error", t.toString());
             }
         });
+    }
+
+
+    private void setActivityForResultLauncher() {
+        registerActivityLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                        Film filmFromResult = (Film) result.getData().getSerializableExtra("Film");
+                        Fragment fragment = new NewReviewFragment();
+                        Bundle args = new Bundle();
+                        args.putSerializable("Film", filmFromResult);
+                        fragment.setArguments(args);
+                        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                        transaction.replace(R.id.fragment_container, fragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                });
     }
 }
