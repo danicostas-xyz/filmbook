@@ -11,9 +11,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+import java.util.function.Consumer;
 
+import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
+import xyz.danicostas.filmapp.model.entity.Review;
 import xyz.danicostas.filmapp.model.entity.User;
+import xyz.danicostas.filmapp.model.interfaces.OnFilmCheckListener;
 import xyz.danicostas.filmapp.model.interfaces.OnUserDataCallback;
 import xyz.danicostas.filmapp.model.persistence.DaoUser;
 import xyz.danicostas.filmapp.view.activity.ApplicationActivity;
@@ -67,5 +71,33 @@ public class UserService {
 
     public void clearUserSessionData() {
         UserSession.getInstance().clearUserData();
+    }
+
+    public void addNewList(String filmListTitle, String userId, Runnable onComplete) {
+        dao.addNewList(filmListTitle, userId, onComplete);
+    }
+
+    public void addFilmToList(Film film, String userId, FilmList filmList) {
+        dao.addFilmToList(film, userId, filmList);
+    }
+
+    public void removeFilmFromList(Film film, String userId, FilmList filmList) {
+        dao.removeFilmFromList(film, userId, filmList);
+    }
+
+    public void checkIfFilmIsInList(Film film, FilmList filmList, String userId, OnFilmCheckListener onFilmCheckListener) {
+        dao.checkIfFilmIsInList(film, filmList,userId,onFilmCheckListener);
+    }
+
+    public MutableLiveData<FilmList> getFilmList(String userId, String listName) {
+        return dao.getFilmList(userId, listName);
+    }
+
+    public void getReviewList(String userId, Consumer<List<Review>> callback) {
+        dao.getReviewList(userId, callback);
+    }
+
+    public void addReview (Review review, String userId, Runnable callback){
+        dao.addReview(review, userId, callback);
     }
 }

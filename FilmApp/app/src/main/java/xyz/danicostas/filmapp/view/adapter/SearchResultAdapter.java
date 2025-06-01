@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
@@ -27,10 +28,12 @@ import xyz.danicostas.filmapp.view.activity.FilmDetailActivity;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder> {
     private List<Film> listOfFIlms;
-    public SearchResultAdapter(List<Film> listOfFIlms) {
-        this.listOfFIlms = listOfFIlms;
-    }
     public static final String FILM_ID = "Film ID";
+    public Consumer<Film> callback;
+    public SearchResultAdapter(List<Film> listOfFIlms, Consumer<Film> callback) {
+        this.listOfFIlms = listOfFIlms;
+        this.callback = callback;
+    }
 
     @NonNull
     @Override
@@ -82,11 +85,19 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
                 .load(imageUrl)
                 .into(holder.iVsearchFilmPoster);
 
-        holder.cardViewSearch.setOnClickListener(view -> {
-            Intent intent = new Intent(holder.itemView.getContext(), FilmDetailActivity.class);
-            intent.putExtra(FILM_ID, film.getId());
-            startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
-        });
+        if (callback != null) {
+            // Si viene desde Review -> Se ejecuta callback que acepta Film y devuelve a NewReviewFragment
+            holder.cardViewSearch.setOnClickListener(view -> {
+                callback.accept(film);
+            });
+        } else {
+            // Si no viene desde Review -> Se envía a FilmDetailActivity
+            holder.cardViewSearch.setOnClickListener(view -> {
+                Intent intent = new Intent(holder.itemView.getContext(), FilmDetailActivity.class);
+                intent.putExtra(FILM_ID, film.getId());
+                startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
+            });
+        }
     }
 
     @Override

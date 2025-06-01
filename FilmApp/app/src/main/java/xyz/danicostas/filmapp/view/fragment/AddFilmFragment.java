@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,39 +23,63 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.danicostas.filmapp.R;
-import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.ApiResponseSearchFilmByTitle;
+import xyz.danicostas.filmapp.model.entity.Film;
+import xyz.danicostas.filmapp.model.entity.FilmList;
 import xyz.danicostas.filmapp.model.service.ApiFilmService;
 import xyz.danicostas.filmapp.model.service.TMDBApiService;
+import xyz.danicostas.filmapp.model.service.UserService;
+import xyz.danicostas.filmapp.model.service.UserSession;
 import xyz.danicostas.filmapp.view.adapter.SearchResultAdapter;
-import xyz.danicostas.filmapp.viewmodel.FilmListsViewModel;
+import xyz.danicostas.filmapp.view.adapter.SearchResultAddFilmAdapter;
 
+public class AddFilmFragment extends Fragment {
 
-public class SearchFragment extends Fragment {
-
-    private RecyclerView recyclerView;
-    private SearchResultAdapter adapter;
-    private EditText editTextSearch;
+    private EditText etAddFilmToList;
     private Handler handler = new Handler();
     private Runnable searchRunnable;
+    private RecyclerView rvSearchAddFilm;
+    private SearchResultAddFilmAdapter adapter;
+    private TextView tvLista;
+    private FilmList filmList;
 
-    public SearchFragment() { /* Required empty public constructor */ }
+    public AddFilmFragment() { /* Required empty public constructor */ }
     @Override
-    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            filmList = (FilmList) getArguments().getSerializable("FilmList");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
-        setOrigin();
-        recyclerView = view.findViewById(R.id.rvSearch);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixedSize(true);
-        editTextSearch = view.findViewById(R.id.editTextSearch);
+        View view = inflater.inflate(R.layout.fragment_add_film, container, false);
+        initViews(view);
+        setTitle();
+        setListeners();
 
-        editTextSearch.addTextChangedListener(new TextWatcher() {
+        return view;
+    }
+
+    private void initViews(View view) {
+        adapter = new SearchResultAddFilmAdapter(new ArrayList<>(), filmList);
+        etAddFilmToList = view.findViewById(R.id.etAddFilmToList);
+        tvLista = view.findViewById(R.id.tvLista);
+        rvSearchAddFilm =  view.findViewById(R.id.rvSearchAddFilm);
+        rvSearchAddFilm.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        rvSearchAddFilm.setAdapter(adapter);
+        rvSearchAddFilm.setHasFixedSize(true);
+    }
+
+    private void setTitle () {
+        tvLista.setText(filmList.getListName());
+    }
+
+    private void setListeners()  {
+        etAddFilmToList.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
@@ -62,33 +87,15 @@ public class SearchFragment extends Fragment {
                 // Cancelamos la búsqueda anterior
                 handler.removeCallbacks(searchRunnable);
                 // Nueva búsqueda con retraso de 500ms
-                searchRunnable = () -> obtainMoviesByTitle(recyclerView, s.toString(), adapter);
+                searchRunnable = () -> obtainMoviesByTitle(rvSearchAddFilm, s.toString(), adapter);
                 handler.postDelayed(searchRunnable, 500);
             }
             @Override
             public void afterTextChanged(Editable s) {}
         });
-
-
-        return view;
     }
 
-    public void setOrigin() {
-        String origin = getArguments() != null ? getArguments().getString("Origin") : null;
-
-        if ("Review".equals(origin)) {
-            adapter = new SearchResultAdapter(new ArrayList<>(), film -> {
-                Bundle result = new Bundle();
-                result.putSerializable("Film", film);
-                getParentFragmentManager().setFragmentResult("SelectFilm", result);
-                getParentFragmentManager().popBackStack();
-            });
-        } else {
-            adapter = new SearchResultAdapter(new ArrayList<>(), null);
-        }
-    }
-
-    public void obtainMoviesByTitle(RecyclerView recyclerView, String query, SearchResultAdapter adapter){
+    public void obtainMoviesByTitle(RecyclerView recyclerView, String query, SearchResultAddFilmAdapter adapter){
 
         TMDBApiService api = ApiFilmService.getInstance().getApi();
         Call<ApiResponseSearchFilmByTitle> call = api.getMovieByTitle(ApiFilmService.API_KEY, query, ApiFilmService.LANG_SPANISH);

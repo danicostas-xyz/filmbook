@@ -3,21 +3,18 @@ package xyz.danicostas.filmapp.model.entity;
 import java.util.Date;
 
 public class Review {
-    private int id;
     private String userId;
     private String title;
     private String overview;
     private String posterPath;
     private int filmId;
-
     private String filmTitle;
     private Date date;
-    private int voteAverage;
+    private double voteAverage;
 
     public Review() {}
 
-    public Review(int id, String userId, String title, String overview, String posterPath, int filmId, String filmTitle, Date date, int voteAverage) {
-        this.id = id;
+    public Review(String userId, String title, String overview, String posterPath, int filmId, String filmTitle, Date date, double voteAverage) {
         this.userId = userId;
         this.title = title;
         this.overview = overview;
@@ -34,7 +31,7 @@ public class Review {
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
     }
-    public int getVoteAverage() {
+    public double getVoteAverage() {
         return voteAverage;
     }
     public void setVoteAverage(int voteAverage) {
@@ -76,17 +73,10 @@ public class Review {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Override
     public String toString() {
         return "Review{" +
-                "id=" + id +
                 ", userId='" + userId + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + overview + '\'' +

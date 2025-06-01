@@ -24,6 +24,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Fr
     private List<User> friendList;
     private Context context;
     public static final String FRIEND_NAME = "Friend Name";
+    public static final String FRIEND_PROFILE_URL = "Friend Profile URL";
 
     // Constructor
     public FriendListAdapter(Context context, List<User> friendList) {
@@ -43,7 +44,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Fr
         User friend = friendList.get(position);
         holder.tvFriendName.setText(friend.getUsername());
 
-        // Cargar imagenes etc...
+        // Cargar imagenes.
         if (friend.getProfileImageResId() != 0) {
             holder.ivProfile.setImageResource(friend.getProfileImageResId());
         } else if (friend.getProfileImageUrl() != null && !friend.getProfileImageUrl().isEmpty()) {
@@ -56,15 +57,19 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Fr
             holder.ivProfile.setImageResource(R.drawable.default_profile);
         }
 
-        // Enviar al FriendActivity el usuario
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, FriendActivity.class);
             intent.putExtra(FRIEND_NAME, friend.getUsername());
+            
+            if (friend.getProfileImageUrl() != null && !friend.getProfileImageUrl().isEmpty()) {
+                intent.putExtra(FRIEND_PROFILE_URL, friend.getProfileImageUrl());
+            } else if (friend.getProfileImageResId() != 0) {
+                intent.putExtra(FRIEND_PROFILE_URL, String.valueOf(friend.getProfileImageResId()));
+            }
+            
             context.startActivity(intent);
         });
     }
-
-
 
     @Override
     public int getItemCount() {

@@ -1,21 +1,30 @@
 package xyz.danicostas.filmapp.view.fragment;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
+import android.widget.ImageButton;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Review;
+import xyz.danicostas.filmapp.model.service.UserService;
+import xyz.danicostas.filmapp.model.service.UserSession;
 import xyz.danicostas.filmapp.view.adapter.ReviewAdapter;
 
 
@@ -23,7 +32,11 @@ public class DiaryFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ReviewAdapter adapter;
-    private List<Review> listOfReviews;
+    private final UserService service = UserService.getInstance();
+    private List<Review> reviewList;
+    private CalendarView calendarView;
+    ImageButton btAddNewReviewDiary;
+    Date selectedDateAsDate;
 
     public DiaryFragment() {
         // Required empty public constructor
@@ -39,54 +52,83 @@ public class DiaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_diary, container, false);
+        initViews(view);
+        setListeners();
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
+    private void initViews (View view) {
         recyclerView = view.findViewById(R.id.rvReviews);
-        adapter = new ReviewAdapter(mockListOfReviews());
+        adapter = new ReviewAdapter(new ArrayList<>());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
                 RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
-        return view;
+        calendarView = view.findViewById(R.id.calendarView);
+        btAddNewReviewDiary = view.findViewById(R.id.btAddNewReviewDiary);
     }
 
-    private List<Review> mockListOfReviews() {
-        Review review1 = new Review(
-                1,
-                "user123",
-                "Lynch en su máxima expresión",
-                "Una pesadilla surrealista llena de simbolismo y atmósfera inquietante. Una obra maestra del cine experimental.",
-                "/mxveW3mGVc0DzLdOmtkZsgd7c3B.jpg",
-                985,
-                "Eraserhead",
-                new Date(),
-                9
-        );
-
-        Review review2 = new Review(
-                2,
-                "user456",
-                "Una obra maestra del cine neo-noir",
-                "Un retrato psicológico brutal de la alienación y la locura en una ciudad decadente. De Niro está impresionante.",
-                "/ekstpH614fwDX8DUln1a2Opz0N8.jpg",
-                103,
-                "Taxi Driver",
-                new Date(),
-                10
-        );
-
-        Review review3 = new Review(
-                3,
-                "user789",
-                "El espíritu de la infancia en su máxima expresión",
-                "Una historia encantadora, llena de magia y calidez. Perfecta para todas las edades.",
-                "/rtGDOeG9LzoerkDGZF9dnVeLppL.jpg",
-                8392,
-                "Mi vecino Totoro",
-                new Date(),
-                8
-        );
-
-        return List.of(review1, review2, review3);
-
+    private void initData() {
+        service.getReviewList(UserSession.getInstance().getUserId(), (list) -> {
+            reviewList = list;
+            adapter.updateList(reviewList);
+        });
     }
 
+    private void setListeners() {
+        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+
+            Calendar selectedDate = Calendar.getInstance();
+            selectedDate.set(year, month, dayOfMonth, 0, 0, 0);
+            selectedDate.set(Calendar.MILLISECOND, 0);
+            selectedDateAsDate = selectedDate.getTime();
+
+            List<Review> nuevaLista = new ArrayList<>();
+
+            for (Review r: reviewList) {
+                Calendar reviewDate = Calendar.getInstance();
+                reviewDate.setTime(r.getDate());
+                reviewDate.set(Calendar.HOUR_OF_DAY, 0);
+                reviewDate.set(Calendar.MINUTE, 0);
+                reviewDate.set(Calendar.SECOND, 0);
+                reviewDate.set(Calendar.MILLISECOND, 0);
+                Date normalizedReviewDate = reviewDate.getTime();
+
+                if (selectedDateAsDate.equals(normalizedReviewDate)) {
+                    nuevaLista.add(r);
+                    Log.d("CALENDAR", "coincide");
+                } else {
+                    Log.d("CALENDAR", "setListeners: no coincide" + selectedDateAsDate
+                            + normalizedReviewDate);
+                }
+            }
+
+            adapter.updateList(nuevaLista);
+
+            Log.d("CALENDAR-VIEW", dayOfMonth + "/" + (month+1) + "/" + year);
+        });
+
+        btAddNewReviewDiary.setOnClickListener(v -> {
+            Fragment fragment = new NewReviewFragment();
+            Bundle args = new Bundle();
+            args.putSerializable("Date",
+                    (selectedDateAsDate != null)
+                    ? selectedDateAsDate
+                    : new Date()
+            );
+            fragment.setArguments(args);
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
+
+    }
 }

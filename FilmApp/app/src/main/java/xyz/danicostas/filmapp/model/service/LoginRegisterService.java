@@ -161,7 +161,7 @@ public class LoginRegisterService {
                             user.setId(UserSession.getInstance().getUserId());
                             user.setListasDeListas(filmLists);
                             user.setUsername(UserSession.getInstance().getUsernameLiveData().getValue());
-                            user.setListOfReviews(new ArrayList<Review>());
+                            user.setListOfReviews(listOfReviews);
                             user.setEmail(UserSession.getInstance().getEmail());
                             user.setName(UserSession.getInstance().getName());
                             user.setListaAmigos(new ArrayList<User>());
@@ -193,7 +193,6 @@ public class LoginRegisterService {
 
     private List<Review> mockListOfReviews() {
         Review review1 = new Review(
-                1,
                 "user123",
                 "Lynch en su máxima expresión",
                 "Una pesadilla surrealista llena de simbolismo y atmósfera inquietante. Una obra maestra del cine experimental.",
@@ -205,7 +204,6 @@ public class LoginRegisterService {
         );
 
         Review review2 = new Review(
-                2,
                 "user456",
                 "Una obra maestra del cine neo-noir",
                 "Un retrato psicológico brutal de la alienación y la locura en una ciudad decadente. De Niro está impresionante.",
@@ -217,7 +215,6 @@ public class LoginRegisterService {
         );
 
         Review review3 = new Review(
-                3,
                 "user789",
                 "El espíritu de la infancia en su máxima expresión",
                 "Una historia encantadora, llena de magia y calidez. Perfecta para todas las edades.",

@@ -34,6 +34,7 @@ public class FriendsFragment extends Fragment {
                              Bundle savedInstanceState) {
             // Lista de friends para usuario prueba
         List<User> friendList = Arrays.asList(
+                new User("FilmBot 🤖", R.drawable.chatbot_icon),
                 new User("Guts", R.drawable.gut_pfp),
                 new User("Jane ", R.drawable.test_pfp),
                 new User("Carlos ", R.drawable.default_profile),
