@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.entity.Film;
@@ -24,8 +25,10 @@ import xyz.danicostas.filmapp.view.activity.FilmDetailActivity;
 
 public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAdapter.FilmListNestedViewHolder> {
     private List<Film> listOfFilms;
-    public FilmListNestedAdapter(List<Film> listOfFilms) {
+    private Consumer<Film> callback;
+    public FilmListNestedAdapter(List<Film> listOfFilms, Consumer<Film> callback) {
         this.listOfFilms = listOfFilms;
+        this.callback = callback;
     }
     public static final String FILM_ID = "Film ID";
 
@@ -59,9 +62,7 @@ public class FilmListNestedAdapter extends RecyclerView.Adapter<FilmListNestedAd
                 .into(holder.imageView);
 
         holder.imageView.setOnClickListener(view -> {
-            Intent intent = new Intent(holder.itemView.getContext(), FilmDetailActivity.class);
-            intent.putExtra(FILM_ID, film.getId());
-            startActivity(holder.itemView.getContext(), intent, Bundle.EMPTY);
+            callback.accept(film);
         });
     }
 
