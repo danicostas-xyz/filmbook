@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="CustomButtonEditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
-        <item name="android:width">368dp</item>
-        <item name="android:height">64dp</item>
+        <item name="android:layout_width">368dp</item>
+        <item name="android:layout_height">64dp</item>
         <item name="android:textColor">@color/secondaryDark</item>
     </style>
     <style name="CustomEditText" parent="CustomButtonEditText">
@@ -18,10 +18,25 @@
         <item name="backgroundTint">@color/accent</item>
     </style>
 
+    <style name="CustomButtonSM" parent="CustomButton">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="backgroundTint">?attr/colorSecondary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
     <style name="CustomTextArea">
         <item name="background">@drawable/rounded_textarea_review</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="CustomCardShapeFilmDetail" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
     <style name="h1" parent="">

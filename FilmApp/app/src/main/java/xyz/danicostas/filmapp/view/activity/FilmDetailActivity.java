@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,6 +51,8 @@ public class FilmDetailActivity extends AppCompatActivity {
     private RecyclerView rvGenres, rvKeywords, rvSimilarFilms;
     private ImageView ivFilmDetailCover;
     private TMDBApiService api;
+    private Film film;
+    private Button btAddToDiary;
     private final Context context = this;
 
     @Override
@@ -66,6 +69,7 @@ public class FilmDetailActivity extends AppCompatActivity {
         obtainKeywords(filmId);
         obtainSimilarFilms(filmId);
         progressDialog.dismiss(1000L);
+        setListeners();
     }
 
     private void initViews() {
@@ -79,6 +83,8 @@ public class FilmDetailActivity extends AppCompatActivity {
         rvKeywords = findViewById(R.id.rvKeywords);
         rvSimilarFilms = findViewById(R.id.rvSimilarFilms);
         ivFilmDetailCover = findViewById(R.id.ivFilmDetailCover);
+        btAddToDiary = findViewById(R.id.btAddToDiary);
+
     }
 
     private void getInstances() {
@@ -98,6 +104,20 @@ public class FilmDetailActivity extends AppCompatActivity {
                     ApiResponseFilmDetailsById apiResponse = response.body();
                     assert apiResponse != null;
                     Log.d("OBTAINFILMDETAILS", apiResponse.toString());
+                    film = new Film();
+                    film.setId(apiResponse.getId());
+                    film.setTitle(apiResponse.getTitle());
+                    film.setAdult(apiResponse.isAdult());
+                    film.setBackdropPath(apiResponse.getBackdropPath());
+                    film.setOverview(apiResponse.getOverview());
+                    film.setPopularity(apiResponse.getPopularity());
+                    film.setPosterPath(apiResponse.getPosterPath());
+                    film.setOriginalLanguage(apiResponse.getOriginalLanguage());
+                    film.setReleaseDate(apiResponse.getReleaseDate());
+                    film.setVoteAverage(apiResponse.getVoteAverage());
+                    film.setVoteCount(apiResponse.getVoteCount());
+                    film.setOriginalTitle(apiResponse.getOriginalTitle());
+
                     tvFilmTitle.setText(apiResponse.getTitle());
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         tvFilmTitle.setAutoSizeTextTypeUniformWithConfiguration(
@@ -209,5 +229,14 @@ public class FilmDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setListeners() {
+        btAddToDiary.setOnClickListener(v -> {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("Film", film);
+            setResult(RESULT_OK, resultIntent);
+            finish();
+        });
     }
 }

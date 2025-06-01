@@ -1,5 +1,8 @@
 package xyz.danicostas.filmapp.view.adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,11 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import xyz.danicostas.filmapp.R;
 import xyz.danicostas.filmapp.model.interfaces.OnAddFilmClickListener;
 import xyz.danicostas.filmapp.model.entity.Film;
 import xyz.danicostas.filmapp.model.entity.FilmList;
+import xyz.danicostas.filmapp.view.activity.FilmDetailActivity;
 import xyz.danicostas.filmapp.view.fragment.FilmGridFragment;
 
 public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder> {
@@ -30,18 +35,20 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
     public static final String FILM_LIST_CONTENT = "Film List Content";
     private OnAddFilmClickListener listener;
     private FragmentManager fragmentManager;
+    private Consumer<Film> callback;
 
-    public FilmListAdapter(List<FilmList> listOfFilmLists, OnAddFilmClickListener listener, FragmentManager fragmentManager) {
+    public FilmListAdapter(List<FilmList> listOfFilmLists, OnAddFilmClickListener listener, FragmentManager fragmentManager, Consumer<Film> callback) {
         this.listOfFilmLists = listOfFilmLists;
         this.listener = listener;
         this.fragmentManager = fragmentManager;
+        this.callback = callback;
     }
 
     @NonNull
     @Override
     public FilmListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.film_list, parent, false);
-        return new FilmListViewHolder(view);
+        return new FilmListViewHolder(view, callback);
     }
 
     public void updateList(List<FilmList> newList) {
@@ -57,7 +64,7 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
         FilmListNestedAdapter adapter;
         ImageButton btAddNewFilmToListFromProfile;
 
-        FilmListViewHolder(View itemView) {
+        FilmListViewHolder(View itemView, Consumer<Film> callback) {
             super(itemView);
 
             tvListTitle = itemView.findViewById(R.id.tvListName);
@@ -71,7 +78,9 @@ public class FilmListAdapter extends RecyclerView.Adapter<FilmListAdapter.FilmLi
             nestedList = itemView.findViewById(R.id.rclViewNestedList);
             nestedList.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false));
             nestedList.setHasFixedSize(true);
-            adapter = new FilmListNestedAdapter(new ArrayList<>());
+            adapter = new FilmListNestedAdapter(new ArrayList<>(), film -> {
+                callback.accept(film);
+            });
             nestedList.setAdapter(adapter);
         }
 
