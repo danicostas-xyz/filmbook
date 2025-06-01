@@ -157,7 +157,7 @@ public class LoginRegisterService {
 
                             User user = new User();
                             List<FilmList> filmLists = mockListOfLists();
-                            List<Review> listOfReviews = mockListOfReviews();
+                            List<Review> listOfReviews = new ArrayList<>();
                             user.setId(UserSession.getInstance().getUserId());
                             user.setListasDeListas(filmLists);
                             user.setUsername(UserSession.getInstance().getUsernameLiveData().getValue());

@@ -78,7 +78,32 @@ public class DiaryFragment extends Fragment {
     private void initData() {
         service.getReviewList(UserSession.getInstance().getUserId(), (list) -> {
             reviewList = list;
-            adapter.updateList(reviewList);
+            // Inicializa el filtro por la fecha de hoy al cargar el fragment
+            Calendar today = Calendar.getInstance();
+            today.set(Calendar.HOUR_OF_DAY, 0);
+            today.set(Calendar.MINUTE, 0);
+            today.set(Calendar.SECOND, 0);
+            today.set(Calendar.MILLISECOND, 0);
+            Date todayDate = today.getTime();
+
+            selectedDateAsDate = todayDate;
+
+            List<Review> todayList = new ArrayList<>();
+            for (Review r : reviewList) {
+                Calendar reviewDate = Calendar.getInstance();
+                reviewDate.setTime(r.getDate());
+                reviewDate.set(Calendar.HOUR_OF_DAY, 0);
+                reviewDate.set(Calendar.MINUTE, 0);
+                reviewDate.set(Calendar.SECOND, 0);
+                reviewDate.set(Calendar.MILLISECOND, 0);
+                Date normalizedReviewDate = reviewDate.getTime();
+
+                if (todayDate.equals(normalizedReviewDate)) {
+                    todayList.add(r);
+                }
+            }
+
+            adapter.updateList(todayList);
         });
     }
 
