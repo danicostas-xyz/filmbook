@@ -1,8 +1,10 @@
 package xyz.danicostas.filmapp.view.fragment;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,6 +35,8 @@ public class DiaryFragment extends Fragment {
     private final UserService service = UserService.getInstance();
     private List<Review> reviewList;
     private CalendarView calendarView;
+    ImageButton btAddNewReviewDiary;
+    Date selectedDateAsDate;
 
     public DiaryFragment() {
         // Required empty public constructor
@@ -67,6 +72,7 @@ public class DiaryFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         calendarView = view.findViewById(R.id.calendarView);
+        btAddNewReviewDiary = view.findViewById(R.id.btAddNewReviewDiary);
     }
 
     private void initData() {
@@ -82,7 +88,7 @@ public class DiaryFragment extends Fragment {
             Calendar selectedDate = Calendar.getInstance();
             selectedDate.set(year, month, dayOfMonth, 0, 0, 0);
             selectedDate.set(Calendar.MILLISECOND, 0);
-            Date selectedDateAsDate = selectedDate.getTime();
+            selectedDateAsDate = selectedDate.getTime();
 
             List<Review> nuevaLista = new ArrayList<>();
 
@@ -107,6 +113,21 @@ public class DiaryFragment extends Fragment {
             adapter.updateList(nuevaLista);
 
             Log.d("CALENDAR-VIEW", dayOfMonth + "/" + (month+1) + "/" + year);
+        });
+
+        btAddNewReviewDiary.setOnClickListener(v -> {
+            Fragment fragment = new NewReviewFragment();
+            Bundle args = new Bundle();
+            args.putSerializable("Date",
+                    (selectedDateAsDate != null)
+                    ? selectedDateAsDate
+                    : new Date()
+            );
+            fragment.setArguments(args);
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         });
 
     }

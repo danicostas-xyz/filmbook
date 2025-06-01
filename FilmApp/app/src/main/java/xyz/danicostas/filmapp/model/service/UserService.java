@@ -96,4 +96,8 @@ public class UserService {
     public void getReviewList(String userId, Consumer<List<Review>> callback) {
         dao.getReviewList(userId, callback);
     }
+
+    public void addReview (Review review, String userId, Runnable callback){
+        dao.addReview(review, userId, callback);
+    }
 }

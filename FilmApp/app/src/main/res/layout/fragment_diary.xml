@@ -11,22 +11,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvDiary"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lyDiaryAndButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
             android:layout_marginTop="32dp"
-            android:text="@string/mi_diary"
-            style="@style/h1"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/calendarView">
+
+            <TextView
+                android:id="@+id/tvDiary"
+                style="@style/h1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mi_diary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/flAddReviewDiary"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvDiary"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/btAddNewReviewDiary"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_circle_dark"
+                    android:src="@drawable/ic_add_circle_outline_36" />
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tvDiary" />
+            app:layout_constraintTop_toBottomOf="@+id/lyDiaryAndButton" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvReviews"

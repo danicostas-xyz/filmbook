@@ -444,4 +444,31 @@ public class DaoUser {
                     Log.e("Firestore", "Error al obtener el documento del usuario", e);
                 });
     }
+
+    public void addReview (Review review, String userId, Runnable callback) {
+        db.collection(COLLECTION_NAME)
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        User user = documentSnapshot.toObject(User.class);
+                        List<Review> reviewList = new ArrayList<>();
+                        try {
+                            reviewList = user.getListOfReviews();
+                            reviewList.add(review);
+                        } catch (Exception e) {
+                            Log.d("NullPointerUser.getListOfReviews", e.toString());
+                        }
+                        db.collection(COLLECTION_NAME)
+                                .document(userId)
+                                .set(user)
+                                .addOnSuccessListener(e -> Log.d("Firestore", "Usuario actualizado correctamente"))
+                                .addOnFailureListener(e -> Log.e("Firestore", "Error al actualizar el usuario", e));
+                        callback.run();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al obtener el documento del usuario", e);
+                });
+    }
 }

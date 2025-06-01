@@ -47,8 +47,7 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-
-        adapter = new SearchResultAdapter(new ArrayList<>());
+        setOrigin();
         recyclerView = view.findViewById(R.id.rvSearch);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
@@ -70,7 +69,23 @@ public class SearchFragment extends Fragment {
             public void afterTextChanged(Editable s) {}
         });
 
+
         return view;
+    }
+
+    public void setOrigin() {
+        String origin = getArguments() != null ? getArguments().getString("Origin") : null;
+
+        if ("Review".equals(origin)) {
+            adapter = new SearchResultAdapter(new ArrayList<>(), film -> {
+                Bundle result = new Bundle();
+                result.putSerializable("Film", film);
+                getParentFragmentManager().setFragmentResult("SelectFilm", result);
+                getParentFragmentManager().popBackStack();
+            });
+        } else {
+            adapter = new SearchResultAdapter(new ArrayList<>(), null);
+        }
     }
 
     public void obtainMoviesByTitle(RecyclerView recyclerView, String query, SearchResultAdapter adapter){

@@ -59,4 +59,5 @@
     <string name="reviewTitle">Título de la Review</string>
     <string name="save">Guardar</string>
     <string name="descripci_n_de_la_review">Descripción de la Review</string>
+    <string name="escribe_tu_review">Escribe tu Review...</string>
 </resources>

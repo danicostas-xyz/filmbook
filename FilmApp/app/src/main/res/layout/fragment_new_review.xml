@@ -23,12 +23,12 @@
         style="@style/CustomEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="8dp"
         android:hint="@string/reviewTitle"
         android:inputType="text"
         android:paddingStart="26dp"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintTop_toBottomOf="@+id/clDateAndFilm"
+        tools:layout_editor_absoluteX="38dp" />
 
     <EditText
         android:id="@+id/etNewReviewDescription"
@@ -37,25 +37,50 @@
         android:layout_height="0dp"
         android:layout_marginVertical="16dp"
         android:layout_marginBottom="32dp"
-        android:hint="@string/descripci_n_de_la_review"
+        android:hint="@string/escribe_tu_review"
         android:inputType="text"
         android:paddingStart="26dp"
         app:layout_constraintBottom_toTopOf="@+id/btAddNewReview"
         app:layout_constraintTop_toBottomOf="@+id/etNewReviewTitle"
         tools:layout_editor_absoluteX="0dp" />
 
-    <EditText
-        android:id="@+id/etReviewDate"
-        style="@style/CustomEditText"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clDateAndFilm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:clickable="true"
-        android:focusable="false"
-        android:hint="Selecciona fecha"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/etNewReviewTitle"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar">
+
+        <EditText
+            android:id="@+id/etReviewDate"
+            style="@style/CustomEditText"
+            android:layout_width="0dp"
+            android:layout_marginRight="3dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Fecha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/etSelectFilm"/>
+
+        <EditText
+            android:id="@+id/etSelectFilm"
+            android:layout_marginLeft="3dp"
+            style="@style/CustomEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Película"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/etReviewDate"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RatingBar
         android:id="@+id/ratingBar"
