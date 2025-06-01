@@ -1,269 +1,293 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context=".view.activity.FilmDetailActivity"
-    android:scrollbars="none">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="16dp">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:scrollbars="none"
+        android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/wrapperTitleFilmDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tvRatingFilmDetail">
-
-                <ImageView
-                    android:layout_width="4dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="12dp"
-                    android:background="?attr/colorSecondary" />
-
-                <TextView
-                    android:gravity="center_vertical"
-                    android:id="@+id/tvFilmDetailTitle"
-                    style="@style/h2"
-                    android:layout_width="236sp"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="?attr/colorSecondary" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvRatingFilmDetail"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                android:background="@drawable/button_circle_color_secondary"
-                android:fontFamily="@font/poppins_semibold"
-                android:gravity="center"
-                android:text=""
-                android:textColor="?attr/colorPrimary"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/wrapperTitleFilmDetail"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewFilmDetail"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="24dp"
-            app:cardBackgroundColor="?attr/colorAccent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            tools:layout_editor_absoluteX="0dp">
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="150dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="20dp"
-                    android:paddingTop="24dp"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/primaryDark"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLyFilmDetails"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent">
-
-                        <ImageView
-                            android:id="@+id/ivFilmDetailCover"
-                            android:layout_width="113dp"
-                            android:layout_height="164dp"
-                            android:background="@color/accent"
-                            android:clipToOutline="true"
-                            android:contentDescription="@string/film_poster"
-                            android:outlineProvider="background"
-                            android:scaleType="centerCrop" />
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:paddingHorizontal="12dp"
-                        android:id="@+id/constraintLyFilmDetails"
-                        android:layout_width="164dp"
-                        android:layout_height="match_parent"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/rvGenres"
-                        app:layout_constraintStart_toEndOf="@+id/cardView4"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <TextView
-                            android:id="@+id/tvOriginalTitleA"
-                            style="@style/textMD_Bold"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/original_title"
-                            app:layout_constraintBottom_toTopOf="@id/tvOriginalTitleB"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tvOriginalTitleB"
-                            style="@style/textSM"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            app:layout_constraintBottom_toTopOf="@id/tvDirectorA"
-                            app:layout_constraintTop_toBottomOf="@id/tvOriginalTitleA" />
-
-                        <TextView
-                            android:id="@+id/tvDirectorA"
-                            style="@style/textMD_Bold"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/director"
-                            app:layout_constraintBottom_toTopOf="@id/tvDirectorB"
-                            app:layout_constraintTop_toBottomOf="@id/tvOriginalTitleB" />
-
-                        <TextView
-                            android:id="@+id/tvDirectorB"
-                            style="@style/textSM"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            app:layout_constraintBottom_toTopOf="@id/tvReleaseDateA"
-                            app:layout_constraintTop_toBottomOf="@id/tvDirectorA" />
-
-                        <TextView
-                            android:id="@+id/tvReleaseDateA"
-                            style="@style/textMD_Bold"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/release_date"
-                            app:layout_constraintBottom_toTopOf="@id/tvReleaseDateB"
-                            app:layout_constraintTop_toBottomOf="@id/tvDirectorB" />
-
-                        <TextView
-                            android:id="@+id/tvReleaseDateB"
-                            style="@style/textSM"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            app:layout_constraintBottom_toBottomOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvGenres"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLyFilmDetails"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                    </androidx.recyclerview.widget.RecyclerView>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/tvSinopsisA"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sinopsis"
-                    style="@style/textMD_Bold"
-                    android:paddingHorizontal="32dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@id/constraintLayout2"
-                    app:layout_constraintBottom_toTopOf="@id/tvSinopsisB"/>
-
-                <TextView
-                    android:id="@+id/tvSinopsisB"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:justificationMode="inter_word"
-                    style="@style/textSM"
-                    app:layout_constraintTop_toBottomOf="@id/tvSinopsisA"
-                    android:paddingHorizontal="32dp"
-                    app:layout_constraintBottom_toTopOf="@id/tvKeywords"/>
-
-                <TextView
-                    android:id="@+id/tvKeywords"
-                    android:layout_marginTop="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/keywords"
-                    style="@style/textMD_Bold"
-                    android:paddingHorizontal="32dp"
-                    app:layout_constraintTop_toBottomOf="@id/tvSinopsisB"
-                    app:layout_constraintBottom_toTopOf="@id/rvKeywords"
-                    android:layout_marginBottom="8dp"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:scrollbars="none"
-                    android:id="@+id/rvKeywords"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:paddingHorizontal="32dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvKeywords"
-                    app:layout_constraintBottom_toTopOf="@id/tvSimilarFilms"/>
-
-                <TextView
-                    android:id="@+id/tvSimilarFilms"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/similar_films"
-                    style="@style/textMD_Bold"
-                    android:paddingHorizontal="32dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@id/rvKeywords"
-                    app:layout_constraintBottom_toTopOf="@+id/rvSimilarFilms" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:scrollbars="none"
-                    android:id="@+id/rvSimilarFilms"
+                <LinearLayout
+                    android:id="@+id/wrapperTitleFilmDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/tvSimilarFilms"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tvRatingFilmDetail">
+
+                    <ImageView
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="12dp"
+                        android:background="?attr/colorSecondary" />
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:id="@+id/tvFilmDetailTitle"
+                        style="@style/h2"
+                        android:layout_width="236sp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="?attr/colorSecondary" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvRatingFilmDetail"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/button_circle_color_secondary"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginBottom="32dp"
-                    android:nestedScrollingEnabled="false"/>
+                    app:layout_constraintStart_toEndOf="@+id/wrapperTitleFilmDetail"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardViewFilmDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="4dp"
+                app:shapeAppearanceOverlay="@style/CustomCardShapeFilmDetail"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                app:cardBackgroundColor="?attr/colorAccent"
+                app:strokeWidth="0dp"
+                android:fillViewport="true">
 
-    </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-</androidx.core.widget.NestedScrollView>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="20dp"
+                        android:paddingTop="24dp"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/primaryDark"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:layout_constraintEnd_toStartOf="@+id/constraintLyFilmDetails"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <ImageView
+                                android:id="@+id/ivFilmDetailCover"
+                                android:layout_width="113dp"
+                                android:layout_height="164dp"
+                                android:background="@color/accent"
+                                android:clipToOutline="true"
+                                android:contentDescription="@string/film_poster"
+                                android:outlineProvider="background"
+                                android:scaleType="centerCrop" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:paddingHorizontal="12dp"
+                            android:id="@+id/constraintLyFilmDetails"
+                            android:layout_width="164dp"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/rvGenres"
+                            app:layout_constraintStart_toEndOf="@+id/cardView4"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvOriginalTitleA"
+                                style="@style/textMD_Bold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/original_title"
+                                app:layout_constraintBottom_toTopOf="@id/tvOriginalTitleB"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvOriginalTitleB"
+                                style="@style/textSM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                app:layout_constraintBottom_toTopOf="@id/tvDirectorA"
+                                app:layout_constraintTop_toBottomOf="@id/tvOriginalTitleA" />
+
+                            <TextView
+                                android:id="@+id/tvDirectorA"
+                                style="@style/textMD_Bold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/director"
+                                app:layout_constraintBottom_toTopOf="@id/tvDirectorB"
+                                app:layout_constraintTop_toBottomOf="@id/tvOriginalTitleB" />
+
+                            <TextView
+                                android:id="@+id/tvDirectorB"
+                                style="@style/textSM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                app:layout_constraintBottom_toTopOf="@id/tvReleaseDateA"
+                                app:layout_constraintTop_toBottomOf="@id/tvDirectorA" />
+
+                            <TextView
+                                android:id="@+id/tvReleaseDateA"
+                                style="@style/textMD_Bold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/release_date"
+                                app:layout_constraintBottom_toTopOf="@id/tvReleaseDateB"
+                                app:layout_constraintTop_toBottomOf="@id/tvDirectorB" />
+
+                            <TextView
+                                android:id="@+id/tvReleaseDateB"
+                                style="@style/textSM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                app:layout_constraintBottom_toBottomOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvGenres"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/constraintLyFilmDetails"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/tvSinopsisA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sinopsis"
+                        style="@style/textMD_Bold"
+                        android:paddingHorizontal="32dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/constraintLayout2"
+                        app:layout_constraintBottom_toTopOf="@id/tvSinopsisB"/>
+
+                    <TextView
+                        android:id="@+id/tvSinopsisB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:justificationMode="inter_word"
+                        style="@style/textSM"
+                        app:layout_constraintTop_toBottomOf="@id/tvSinopsisA"
+                        android:paddingHorizontal="32dp"
+                        app:layout_constraintBottom_toTopOf="@id/tvKeywords"/>
+
+                    <TextView
+                        android:id="@+id/tvKeywords"
+                        android:layout_marginTop="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/keywords"
+                        style="@style/textMD_Bold"
+                        android:paddingHorizontal="32dp"
+                        app:layout_constraintTop_toBottomOf="@id/tvSinopsisB"
+                        app:layout_constraintBottom_toTopOf="@id/rvKeywords"
+                        android:layout_marginBottom="8dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvKeywords"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingHorizontal="32dp"
+                        android:scrollbars="none"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/tvSimilarFilms"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvKeywords" />
+
+                    <TextView
+                        android:id="@+id/tvSimilarFilms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/similar_films"
+                        style="@style/textMD_Bold"
+                        android:paddingHorizontal="32dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/rvKeywords"
+                        app:layout_constraintBottom_toTopOf="@+id/rvSimilarFilms" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:scrollbars="none"
+                        android:id="@+id/rvSimilarFilms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        app:layout_constraintTop_toBottomOf="@id/tvSimilarFilms"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginBottom="32dp"
+                        android:nestedScrollingEnabled="false"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btAddToDiary"
+        style="@style/CustomButtonSM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Añadir a Diario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
