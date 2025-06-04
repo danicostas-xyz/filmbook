@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Layout para mensajes enviados por el usuario
+     Características:
+     - Alineado a la derecha
+     - Fondo azul (colorPrimary)
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,6 +14,7 @@
     android:paddingEnd="8dp"
     android:paddingBottom="4dp">
 
+    <!-- Burbuja del mensaje -->
     <TextView
         android:id="@+id/tvSentMessage"
         android:layout_width="wrap_content"
@@ -18,9 +24,9 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Hey there! How are you doing today?" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Hora del mensaje -->
     <TextView
         android:id="@+id/tvMessageTime"
         android:layout_width="wrap_content"
@@ -32,4 +38,4 @@
         app:layout_constraintTop_toBottomOf="@+id/tvSentMessage"
         tools:text="12:45 PM" />
 
-</androidx.constraintlayout.widget.ConstraintLayout> 
+</androidx.constraintlayout.widget.ConstraintLayout>

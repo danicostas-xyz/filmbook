@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo personalizado para mensajes recibidos
+     - Forma rectangular con esquinas redondeadas
+     - Color de fondo: gris oscuro (#333333)
+-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <solid android:color="#333333" />
@@ -7,4 +11,4 @@
         android:bottomRightRadius="16dp"
         android:topLeftRadius="16dp"
         android:topRightRadius="16dp" />
-</shape> 
+</shape>

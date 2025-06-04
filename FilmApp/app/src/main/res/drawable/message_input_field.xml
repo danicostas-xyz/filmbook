@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Campo de entrada de mensajes
+     - Forma redondeada tipo chat moderno
+     - Color de fondo oscuro para modo nocturno
+-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <solid android:color="@color/chat_input_field" />
     <corners android:radius="24dp" />
     <stroke android:width="1dp" android:color="#444444" />
-</shape> 
+</shape>

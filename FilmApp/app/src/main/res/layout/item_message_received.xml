@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Layout para mensajes recibidos (amigos o FilmBot)
+     Características:
+     - Alineado a la izquierda
+     - Fondo gris oscuro (#333333)
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,6 +14,7 @@
     android:paddingEnd="64dp"
     android:paddingBottom="4dp">
 
+    <!-- Burbuja del mensaje -->
     <TextView
         android:id="@+id/tvReceivedMessage"
         android:layout_width="wrap_content"
@@ -21,6 +27,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Hi! I'm good, thanks for asking. What about you?" />
 
+    <!-- Hora del mensaje -->
     <TextView
         android:id="@+id/tvMessageTime"
         android:layout_width="wrap_content"
@@ -32,4 +39,4 @@
         app:layout_constraintTop_toBottomOf="@+id/tvReceivedMessage"
         tools:text="12:46 PM" />
 
-</androidx.constraintlayout.widget.ConstraintLayout> 
+</androidx.constraintlayout.widget.ConstraintLayout>

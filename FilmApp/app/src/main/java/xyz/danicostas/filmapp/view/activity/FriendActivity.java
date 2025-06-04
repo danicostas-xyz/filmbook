@@ -40,6 +40,13 @@ import xyz.danicostas.filmapp.view.adapter.FriendListAdapter;
 import xyz.danicostas.filmapp.view.adapter.MessageAdapter;
 import xyz.danicostas.filmapp.view.fragment.FriendsFragment;
 
+/**
+ * Actividad principal del chat que maneja tanto conversaciones con lista de amigos como con el chatbot FilmBot.
+ * - Interfaz de chat con RecyclerView
+ * - Soporte para mensajes enviados y recibidos
+ * - Persistencia de mensajes usando SharedPreferences
+ * - Funcionalidad especial para FilmBot con respuestas automáticas
+ */
 public class FriendActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -49,9 +56,12 @@ public class FriendActivity extends AppCompatActivity {
     private String friendName;
     private String friendProfileUrl;
     private static final String TAG = "FriendActivity";
+
+    // Lista de mensajes y estado del chat
     private List<Message> messageList = new ArrayList<>();
     private boolean isChatbot = false;
     private OkHttpClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,28 +71,30 @@ public class FriendActivity extends AppCompatActivity {
 
         client = new OkHttpClient();
 
+        // Configuración de la cabecera del chat
         TextView tvFriendName = findViewById(R.id.tvFriendNameDetail);
         friendName = getIntent().getStringExtra(FriendListAdapter.FRIEND_NAME);
         friendProfileUrl = getIntent().getStringExtra(FriendListAdapter.FRIEND_PROFILE_URL);
         tvFriendName.setText(friendName);
 
-
+        // Ver  si es una conversación con FilmBot
         isChatbot = "FilmBot 🤖".equals(friendName);
 
+        // Mostrar estado especial para FilmBot
         TextView tvFriendStatus = findViewById(R.id.tvFriendStatus);
         if (isChatbot) {
             tvFriendStatus.setText("AI Assistant - Always online");
         }
 
-
+        // Configuración y carga de la foto de perfil
         ImageView ivFriendProfile = findViewById(R.id.ivFriendProfile);
-
         try {
             if (friendProfileUrl != null && !friendProfileUrl.isEmpty()) {
                 if (friendProfileUrl.matches("\\d+")) {
                     int resourceId = Integer.parseInt(friendProfileUrl);
                     ivFriendProfile.setImageResource(resourceId);
                 } else {
+                    // Si es una URL
                     Glide.with(this)
                             .load(friendProfileUrl)
                             .placeholder(R.drawable.default_avatar_vector)
@@ -96,29 +108,28 @@ public class FriendActivity extends AppCompatActivity {
             ivFriendProfile.setImageResource(R.drawable.default_avatar_vector);
         }
 
+        // Configuración del botón de retroceso
         ImageButton buttonBack = findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(v -> {
             saveMessages();
-
             finish();
         });
 
+        // Cargar mensajes anteriores y configurar RecyclerView
         loadMessages();
-
-
         recyclerView = findViewById(R.id.recyclerViewMessages);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setStackFromEnd(true); // scroll hacia abajo
+        layoutManager.setStackFromEnd(true); // Scroll automático hacia abajo
         recyclerView.setLayoutManager(layoutManager);
         messageAdapter = new MessageAdapter();
         recyclerView.setAdapter(messageAdapter);
 
-
+        // Cargar mensajes existentes en el adaptador
         for (Message message : messageList) {
             messageAdapter.addMessage(message);
         }
 
-        // Mensaje de welcome si nunca se ha hablado con el chatbot
+        // Mensaje de bienvenida para FilmBot si nunca se ha hablado con el/ella :'v
         if (isChatbot && messageList.isEmpty()) {
             Message welcomeMessage = new Message("🎬 Hola Soy FilmBot, tu asistente de películas. ¿Quieres recomendaciones o hablar sobre cine?", Message.TYPE_RECEIVED);
             messageAdapter.addMessage(welcomeMessage);
@@ -126,28 +137,33 @@ public class FriendActivity extends AppCompatActivity {
             saveMessages();
         }
 
+        // Configuración del input y botón de envío
         messageInput = findViewById(R.id.etMessageInput);
         sendButton = findViewById(R.id.btnSendMessage);
-
         sendButton.setOnClickListener(v -> sendMessage());
     }
 
+    // Guardar mensajes al pausar la actividad
     @Override
     protected void onPause() {
         super.onPause();
         saveMessages();
     }
 
+    /**
+     * Maneja el envío de nuevos mensajes
+     * - Valida que no esté vacío
+     * - Añade el mensaje a la lista
+     * - Si es FilmBot, genera respuesta
+     */
     private void sendMessage() {
         String messageText = messageInput.getText().toString().trim();
         if (!messageText.isEmpty()) {
-            // añadir mensajes
             Message sentMessage = new Message(messageText, Message.TYPE_SENT);
             messageAdapter.addMessage(sentMessage);
             messageList.add(sentMessage);
 
             messageInput.setText("");
-
             scrollToBottom();
             saveMessages();
 
@@ -157,24 +173,27 @@ public class FriendActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Genera y muestra la respuesta del FilmBot
+     * - Muestra indicador de escribiendo
+     * - Simula delay de procesamiento
+     * - Genera respuesta random
+     */
     private void getChatbotResponse(String userMessage) {
-
         runOnUiThread(() -> {
+
             Message typingMessage = new Message("🤖 Escribiendo...", Message.TYPE_RECEIVED);
             messageAdapter.addMessage(typingMessage);
             scrollToBottom();
 
             // Simular pensamiento de IA
             new android.os.Handler().postDelayed(() -> {
-
+                // Remover mensaje de escribiendo
                 if (messageAdapter.getItemCount() > 0) {
                     messageAdapter.removeLastMessage();
                 }
 
-
                 String botResponse = generateIntelligentCinemaResponse(userMessage.toLowerCase());
-
-
                 Message botMessage = new Message("🤖 " + botResponse, Message.TYPE_RECEIVED);
                 messageAdapter.addMessage(botMessage);
                 messageList.add(botMessage);
@@ -186,8 +205,6 @@ public class FriendActivity extends AppCompatActivity {
 
     // Respuestas como si fuera una IA
     private String generateIntelligentCinemaResponse(String userMessage) {
-
-
 
         if (userMessage.matches(".*\\b(hola|hey|saludos|buenas|que tal|como estas)\\b.*")) {
             String[] greetings = {
@@ -202,6 +219,7 @@ public class FriendActivity extends AppCompatActivity {
 
 
         if (userMessage.matches(".*\\b(recomend|suger|aconsej|que.*ver|que.*miro)\\b.*")) {
+            // Terror
             if (userMessage.contains("terror") || userMessage.contains("miedo")) {
                 String[] horror = {
                         "Para terror te recomiendo: 'Hereditary' - terror psicológico brutal",
@@ -327,23 +345,31 @@ public class FriendActivity extends AppCompatActivity {
         return intelligent[(int) (Math.random() * intelligent.length)];
     }
 
+    /**
+     * Hace scroll al último mensaje del chat
+     */
     private void scrollToBottom() {
         if (messageAdapter.getItemCount() > 0) {
             recyclerView.smoothScrollToPosition(messageAdapter.getItemCount() - 1);
         }
     }
 
+    /**
+     * Guarda los mensajes en SharedPreferences
+     * Usa una clave única por usuario y conversación
+     */
     private void saveMessages() {
         SharedPreferences sharedPreferences = getSharedPreferences("ChatMessages", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        // Convertir mensajes a JSON
         Gson gson = new Gson();
         String json = gson.toJson(messageList);
 
-        // Chats únicos
+        // Crear clave única para cada chat
         String currentUserId = UserSession.getInstance().getUserId();
         if (currentUserId == null || currentUserId.isEmpty()) {
-            currentUserId = "anonymous_user"; // Fallback para usuarios no logueados
+            currentUserId = "anonymous_user";
         }
 
         String key = "messages_" + currentUserId + "_" + friendName.replaceAll("\\s+", "_").toLowerCase();
@@ -353,10 +379,13 @@ public class FriendActivity extends AppCompatActivity {
         Log.d(TAG, "Messages saved for user: " + currentUserId + " with friend: " + friendName);
     }
 
+    /**
+     * Carga mensajes previos desde SharedPreferences
+     * Usa la misma clave única que saveMessages()
+     */
     private void loadMessages() {
         SharedPreferences sharedPreferences = getSharedPreferences("ChatMessages", Context.MODE_PRIVATE);
 
-        // Chats únicos
         String currentUserId = UserSession.getInstance().getUserId();
         if (currentUserId == null || currentUserId.isEmpty()) {
             currentUserId = "anonymous_user";
