@@ -21,6 +21,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -141,26 +143,32 @@ public class NewReviewFragment extends Fragment {
     }
 
     private void showDatePicker() {
-        final Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        // Creamos el picker con fecha inicial como hoy
+        MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Selecciona la fecha")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build();
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                getContext(),
-                (view, year1, month1, dayOfMonth1) -> {
-                    // Al seleccionar fecha:
-                    String selectedDate = String.format("%02d/%02d/%04d", dayOfMonth1, month1 + 1, year1);
-                    etReviewDate.setText(selectedDate);
-                    Calendar c1 = Calendar.getInstance();
-                    c1.set(year1, month1, dayOfMonth1);
-                    normalizedReviewDate = c1.getTime();
-                },
-                year, month, day
-        );
-        datePickerDialog.show();
+        // Mostrar el picker (usa el FragmentManager del fragment actual)
+        datePicker.show(getParentFragmentManager(), "MATERIAL_DATE_PICKER");
+
+        // Listener al seleccionar la fecha
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            Calendar calendar1 = Calendar.getInstance();
+            calendar1.setTimeInMillis(selection);
+
+            String selectedDate = String.format("%02d/%02d/%04d",
+                    calendar1.get(Calendar.DAY_OF_MONTH),
+                    calendar1.get(Calendar.MONTH) + 1,
+                    calendar1.get(Calendar.YEAR));
+
+            etReviewDate.setText(selectedDate);
+            normalizedReviewDate = calendar1.getTime();
+        });
+
         setViews();
     }
+
 
     private void selectFilm(View v) {
 

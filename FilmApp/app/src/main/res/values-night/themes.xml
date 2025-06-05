@@ -8,6 +8,8 @@
         <item name="colorSecondary">@color/secondaryDark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="android:textColor">@color/secondaryDark</item>
+        <item name="android:datePickerDialogTheme">@style/MyDatePickerDialogTheme</item>
+
     </style>
     <style name="Theme.Filmbook" parent="Base.Theme.Filmbook" />
 </resources>
