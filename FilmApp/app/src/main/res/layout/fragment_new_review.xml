@@ -26,20 +26,20 @@
         android:layout_marginTop="8dp"
         android:hint="@string/reviewTitle"
         android:inputType="text"
-        android:paddingStart="26dp"
         app:layout_constraintTop_toBottomOf="@+id/clDateAndFilm"
         tools:layout_editor_absoluteX="38dp" />
 
     <EditText
         android:id="@+id/etNewReviewDescription"
         style="@style/CustomTextArea"
+        android:gravity="top"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginVertical="16dp"
         android:layout_marginBottom="32dp"
         android:hint="@string/escribe_tu_review"
-        android:inputType="text"
-        android:paddingStart="26dp"
+        android:paddingStart="12dp"
+        android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/btAddNewReview"
         app:layout_constraintTop_toBottomOf="@+id/etNewReviewTitle"
         tools:layout_editor_absoluteX="0dp" />

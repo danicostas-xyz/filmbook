@@ -80,7 +80,7 @@ public class NewReviewFragment extends Fragment {
         if (normalizedReviewDate != null) {
             @SuppressLint("DefaultLocale") String date = String.format("%02d/%02d/%04d", normalizedReviewDate.getDate(),
                     (normalizedReviewDate.getMonth() + 1),
-                    normalizedReviewDate.getYear());
+                    normalizedReviewDate.getYear() + 1900 );
             etReviewDate.setText(date);
         }
 
@@ -122,7 +122,7 @@ public class NewReviewFragment extends Fragment {
                     film.getId(),
                     film.getTitle(),
                     (normalizedReviewDate != null) ? normalizedReviewDate : new Date(),
-                    ratingBar.getRating()
+                    ratingBar.getRating() * 2
             );
 
             userService.addReview(review, session.getUserId(), () -> {
