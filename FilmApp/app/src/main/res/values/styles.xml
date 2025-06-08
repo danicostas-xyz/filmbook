@@ -39,43 +39,52 @@
         <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
+ <!-- Typography scale · Major Second (ratio 1.125, valores exactos sin redondeo) -->
+
+    <!-- Headings -->
     <style name="h1" parent="">
-        <item name="android:textSize">36sp</item>
+        <item name="android:textSize">24.327438sp</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
     </style>
     <style name="h2" parent="">
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">21.624390sp</item>
         <item name="android:fontFamily">@font/poppins_semibold</item>
     </style>
     <style name="h3" parent="">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">19.221680sp</item>
         <item name="android:fontFamily">@font/poppins_semibold</item>
     </style>
+
+    <!-- Body text -->
     <style name="textMD" parent="">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">15.187500sp</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
     </style>
     <style name="textMD_Bold" parent="">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">15.187500sp</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
     </style>
 
+    <!-- Small text -->
     <style name="textSM_bold" parent="">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">13.500000sp</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
     </style>
     <style name="textSM_detail" parent="">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">13.500000sp</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
     <style name="textSM" parent="">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">13.500000sp</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
     </style>
+
+    <!-- Extra-small text -->
     <style name="textXS" parent="">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">12.000000sp</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
     </style>
+    
     <style name="MyDatePickerDialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="colorPrimary">?attr/colorPrimary</item>
         <item name="colorAccent">?attr/colorAccent</item>
