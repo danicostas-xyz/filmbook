@@ -471,4 +471,186 @@ public class DaoUser {
                     Log.e("Firestore", "Error al obtener el documento del usuario", e);
                 });
     }
+
+    public void searchUsers(String query, Consumer<List<User>> callback) {
+        db.collection(COLLECTION_NAME)
+                .orderBy("username")
+                .startAt(query)
+                .endAt(query + "\uf8ff")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<User> users = new ArrayList<>();
+                    for (DocumentSnapshot document : queryDocumentSnapshots) {
+                        User user = document.toObject(User.class);
+                        if (user != null && !user.getId().equals(UserSession.getInstance().getUserId())) {
+                            users.add(user);
+                        }
+                    }
+                    callback.accept(users);
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al buscar usuarios", e);
+                    callback.accept(new ArrayList<>());
+                });
+    }
+
+    public void addFriend(String userId, User friend, Runnable onSuccess, Consumer<String> onError) {
+        if (friend == null || friend.getId() == null) {
+            onError.accept("Usuario inválido");
+            return;
+        }
+
+        db.collection(COLLECTION_NAME)
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        User user = documentSnapshot.toObject(User.class);
+                        if (user != null) {
+                            List<User> friends = user.getListaAmigos();
+                            if (friends == null) {
+                                friends = new ArrayList<>();
+                                user.setListaAmigos(friends);
+                            }
+
+                            // Verificar si el amigo ya existe
+                            boolean friendExists = false;
+                            for (User existingFriend : friends) {
+                                if (existingFriend.getId() != null && existingFriend.getId().equals(friend.getId())) {
+                                    friendExists = true;
+                                    break;
+                                }
+                            }
+
+                            if (!friendExists) {
+                                // Version simplificada para evitar referencias circulares (ns si es necesario, se recomendaba pero ns si es necesario)
+                                User simplifiedFriend = new User(
+                                        friend.getUsername(),
+                                        friend.getProfileImageResId()
+                                );
+                                simplifiedFriend.setId(friend.getId());
+
+                                friends.add(simplifiedFriend);
+                                user.setListaAmigos(friends);
+
+                                db.collection(COLLECTION_NAME)
+                                        .document(userId)
+                                        .set(user)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Log.d("DaoUser", "Usuario actualizado correctamente");
+                                            addFriendReverse(userId, friend.getId(), onSuccess, onError);
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Log.e("DaoUser", "Error al actualizar usuario", e);
+                                            onError.accept("Error al actualizar usuario: " + e.getMessage());
+                                        });
+                            } else {
+                                Log.d("DaoUser", "El amigo ya existe en la lista");
+                                onError.accept("Este usuario ya es tu amigo");
+                            }
+                        } else {
+                            Log.e("DaoUser", "Usuario es null");
+                            onError.accept("Error al obtener datos del usuario");
+                        }
+                    } else {
+                        Log.e("DaoUser", "Documento de usuario no existe");
+                        onError.accept("Usuario no encontrado");
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("DaoUser", "Error al obtener documento", e);
+                    onError.accept("Error al obtener usuario: " + e.getMessage());
+                });
+    }
+
+    private void addFriendReverse(String userId, String friendId, Runnable onSuccess, Consumer<String> onError) {
+        Log.d("DaoUser", "Iniciando addFriendReverse - userId: " + userId + ", friendId: " + friendId);
+
+        db.collection(COLLECTION_NAME)
+                .document(friendId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        User friendUser = documentSnapshot.toObject(User.class);
+                        if (friendUser != null) {
+                            Log.d("DaoUser", "Usuario amigo encontrado: " + friendUser.getUsername());
+
+                            if (friendUser.getListaAmigos() == null) {
+                                friendUser.setListaAmigos(new ArrayList<>());
+                            }
+
+                            // Obtener el usuario actual
+                            db.collection(COLLECTION_NAME)
+                                    .document(userId)
+                                    .get()
+                                    .addOnSuccessListener(userSnapshot -> {
+                                        User currentUser = userSnapshot.toObject(User.class);
+                                        if (currentUser != null) {
+                                            Log.d("DaoUser", "Usuario actual encontrado: " + currentUser.getUsername());
+
+                                            // Crear una versión simplificada del usuario para evitar referencias circulares
+                                            User simplifiedUser = new User(
+                                                    currentUser.getUsername(),
+                                                    currentUser.getProfileImageResId()
+                                            );
+                                            simplifiedUser.setId(currentUser.getId());
+
+                                            friendUser.getListaAmigos().add(simplifiedUser);
+
+                                            db.collection(COLLECTION_NAME)
+                                                    .document(friendId)
+                                                    .set(friendUser)
+                                                    .addOnSuccessListener(aVoid -> {
+                                                        Log.d("DaoUser", "Amigo añadido correctamente ");
+                                                        onSuccess.run();
+                                                    })
+                                                    .addOnFailureListener(e -> {
+                                                        Log.e("DaoUser", "Error al actualizar amigo", e);
+                                                        onError.accept("Error al añadir amigo: " + e.getMessage());
+                                                    });
+                                        } else {
+                                            Log.e("DaoUser", "Usuario actual es null ");
+                                            onError.accept("Error al obtener datos del usuario actual");
+                                        }
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Log.e("DaoUser", "Error al obtener usuario actual", e);
+                                        onError.accept("Error al obtener usuario actual: " + e.getMessage());
+                                    });
+                        } else {
+                            Log.e("DaoUser", "Usuario amigo es null ");
+                            onError.accept("Error al obtener datos del amigo");
+                        }
+                    } else {
+                        Log.e("DaoUser", "Documento del amigo no existe");
+                        onError.accept("Usuario amigo no encontrado");
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("DaoUser", "Error al obtener documento", e);
+                    onError.accept("Error al obtener amigo: " + e.getMessage());
+                });
+    }
+
+    public void getFriends(String userId, Consumer<List<User>> callback) {
+        db.collection(COLLECTION_NAME)
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        User user = documentSnapshot.toObject(User.class);
+                        if (user != null && user.getListaAmigos() != null) {
+                            callback.accept(user.getListaAmigos());
+                        } else {
+                            callback.accept(new ArrayList<>());
+                        }
+                    } else {
+                        callback.accept(new ArrayList<>());
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al obtener amigos", e);
+                    callback.accept(new ArrayList<>());
+                });
+    }
 }

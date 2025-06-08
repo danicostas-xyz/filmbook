@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -99,5 +100,25 @@ public class UserService {
 
     public void addReview (Review review, String userId, Runnable callback){
         dao.addReview(review, userId, callback);
+    }
+
+    public void searchUsers(String query, Consumer<List<User>> callback) {
+        dao.searchUsers(query, callback);
+    }
+
+    public void addFriend(User friend, Runnable onSuccess, Consumer<String> onError) {
+        if (authUser != null) {
+            dao.addFriend(authUser.getUid(), friend, onSuccess, onError);
+        } else {
+            onError.accept("No hay usuario autenticado");
+        }
+    }
+
+    public void getFriends(Consumer<List<User>> callback) {
+        if (authUser != null) {
+            dao.getFriends(authUser.getUid(), callback);
+        } else {
+            callback.accept(new ArrayList<>());
+        }
     }
 }
