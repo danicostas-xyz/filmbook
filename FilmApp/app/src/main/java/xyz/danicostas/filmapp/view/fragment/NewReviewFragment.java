@@ -129,7 +129,14 @@ public class NewReviewFragment extends Fragment {
 
             userService.addReview(review, session.getUserId(), () -> {
                 Log.d("NewReview.addReview", "Review Añadida");
-                requireActivity().getSupportFragmentManager().popBackStack();
+                Fragment fragment = new DiaryFragment();
+                Bundle args = new Bundle();
+                args.putSerializable("Date", normalizedReviewDate);
+
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .commit();
             });
         });
 

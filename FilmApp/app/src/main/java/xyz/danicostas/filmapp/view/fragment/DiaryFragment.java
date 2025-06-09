@@ -86,7 +86,11 @@ public class DiaryFragment extends Fragment {
             today.set(Calendar.MILLISECOND, 0);
             Date todayDate = today.getTime();
 
-            selectedDateAsDate = todayDate;
+            if (getArguments() != null) {
+                selectedDateAsDate = (Date) getArguments().getSerializable("Date");
+            } else {
+                selectedDateAsDate = todayDate;
+            }
 
             List<Review> todayList = new ArrayList<>();
             for (Review r : reviewList) {
@@ -98,7 +102,7 @@ public class DiaryFragment extends Fragment {
                 reviewDate.set(Calendar.MILLISECOND, 0);
                 Date normalizedReviewDate = reviewDate.getTime();
 
-                if (todayDate.equals(normalizedReviewDate)) {
+                if (selectedDateAsDate.equals(normalizedReviewDate)) {
                     todayList.add(r);
                 }
             }
