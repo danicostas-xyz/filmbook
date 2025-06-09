@@ -14,7 +14,6 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">@font/poppins_semibold</item>
-        <item name="android:background">@drawable/rounded_button_no_stroke</item>
         <item name="backgroundTint">@color/accent</item>
     </style>
 
@@ -22,6 +21,16 @@
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="backgroundTint">?attr/colorSecondary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="CustomButtonXS" parent="CustomButton">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="backgroundTint">?attr/colorSecondary</item>
+        <item name="android:background">@drawable/rounded_button_no_stroke_xs</item>
         <item name="android:textColor">?attr/colorPrimary</item>
     </style>
 
@@ -81,5 +90,16 @@
         <item name="colorAccent">?attr/colorAccent</item>
         <item name="android:background">?attr/colorPrimary</item>
     </style>
+
+    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorSurface">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
+    </style>
+
+    <style name="CustomAlertDialogTheme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">?attr/colorSecondary</item>
+    </style>
+
 
 </resources>

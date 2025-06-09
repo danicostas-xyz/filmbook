@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,7 @@ import xyz.danicostas.filmapp.view.adapter.SearchFriendAdapter;
 
 public class AddFriendFragment extends Fragment implements SearchFriendAdapter.OnFriendAddClickListener {
 
-    private TextInputEditText etSearchFriend;
+    private EditText etSearchFriend;
     private RecyclerView rvSearchResults;
     private SearchFriendAdapter adapter;
     private final UserService userService = UserService.getInstance();

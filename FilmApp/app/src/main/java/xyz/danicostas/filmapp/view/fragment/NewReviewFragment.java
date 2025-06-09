@@ -147,6 +147,7 @@ public class NewReviewFragment extends Fragment {
         MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Selecciona la fecha")
                 .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .setTheme(R.style.ThemeOverlay_App_DatePicker)
                 .build();
 
         // Mostrar el picker (usa el FragmentManager del fragment actual)

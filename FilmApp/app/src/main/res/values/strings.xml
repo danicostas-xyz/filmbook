@@ -60,4 +60,7 @@
     <string name="save">Guardar</string>
     <string name="descripci_n_de_la_review">Descripción de la Review</string>
     <string name="escribe_tu_review">Escribe tu Review...</string>
+    <string name="search_by_username">Search by username</string>
+    <string name="nuevo_t_tulo">Nuevo título</string>
+
 </resources>

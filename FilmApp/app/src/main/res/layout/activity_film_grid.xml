@@ -6,6 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.FilmGridFragment">
 
+
+        <FrameLayout
+            android:id="@+id/btDeleteList"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="top|end"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/rounded_button_no_stroke"
+            android:backgroundTint="@color/accent"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toTopOf="@+id/RVFilmGrid"
+            app:layout_constraintEnd_toStartOf="@+id/btEditList"
+            app:layout_constraintTop_toTopOf="@+id/tvFilmListTitle">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/delete_24dp"
+                    app:tint="@color/primaryLight" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btEditList"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="top|end"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_button_no_stroke"
+            android:backgroundTint="@color/accent"
+            app:layout_constraintBottom_toTopOf="@+id/RVFilmGrid"
+            app:layout_constraintEnd_toEndOf="@+id/tvFilmListTitle"
+            app:layout_constraintTop_toTopOf="@+id/tvFilmListTitle"
+            android:clickable="true"
+            android:focusable="true">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/edit_24dp"
+                    app:tint="@color/primaryLight" />
+        </FrameLayout>
+
         <TextView
             android:layout_marginTop="32dp"
             android:id="@+id/tvFilmListTitle"

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragment.FilmGridFragment">
+
+        <Button
+            android:id="@+id/btGuardarCambios"
+            style="@style/CustomButtonXS"
+            android:layout_width="120dp"
+
+            android:layout_height="60dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Guardar"
+            app:layout_constraintBottom_toTopOf="@+id/etEditarNombreLista"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btCancelarCambios"
+            style="@style/CustomButtonXS"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="68dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/accent"
+            android:text="Cancelar"
+            app:layout_constraintBottom_toTopOf="@+id/etEditarNombreLista"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btGuardarCambios" />
+
+        <EditText
+            android:id="@+id/etEditarNombreLista"
+            style="@style/h2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dp"
+            android:hint="@string/nuevo_t_tulo"
+            android:paddingVertical="8dp"
+            android:text="@string/list_title"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="26dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:scrollbars="none"
+            android:id="@+id/RVFilmGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etEditarNombreLista" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

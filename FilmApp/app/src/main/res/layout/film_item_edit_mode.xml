@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:layout_margin="8dp"
+    android:background="@color/primaryDark"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="113dp"
+        android:layout_height="164dp"
+        android:background="?attr/colorPrimary"
+        android:scaleType="centerCrop"
+        android:contentDescription="TODO"
+        android:clipToOutline="true"
+        android:outlineProvider="background"
+        />
+
+    <FrameLayout
+        android:id="@+id/btDeleteFilm"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="top|end"
+        android:backgroundTint="@color/accent"
+        android:background="@drawable/rounded_button_no_stroke"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/delete_24dp"
+            app:tint="@color/primaryLight" />
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>

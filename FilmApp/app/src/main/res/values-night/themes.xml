@@ -9,6 +9,10 @@
         <item name="colorAccent">@color/accent</item>
         <item name="android:textColor">@color/secondaryDark</item>
         <item name="android:datePickerDialogTheme">@style/MyDatePickerDialogTheme</item>
+        <item name="colorTertiary">@color/accent</item>
+        <item name="colorOnPrimary">@color/secondaryDark</item>
+        <item name="colorSurface">@color/primaryDark</item>
+        <item name="colorOnSurface">@color/white</item>
 
     </style>
     <style name="Theme.Filmbook" parent="Base.Theme.Filmbook" />

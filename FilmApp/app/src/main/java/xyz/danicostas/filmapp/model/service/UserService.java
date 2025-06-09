@@ -121,4 +121,12 @@ public class UserService {
             callback.accept(new ArrayList<>());
         }
     }
+
+    public void updateList(FilmList list, FilmList newList, Consumer<FilmList> callback) {
+        dao.updateList(list, newList, callback);
+    }
+
+    public void deleteList(FilmList filmList, Runnable callback) {
+        dao.deleteList(filmList, callback);
+    }
 }

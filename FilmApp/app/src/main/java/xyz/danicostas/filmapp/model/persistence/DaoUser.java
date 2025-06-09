@@ -653,4 +653,62 @@ public class DaoUser {
                     callback.accept(new ArrayList<>());
                 });
     }
+
+    public void updateList(FilmList originalList, FilmList newList, Consumer<FilmList> callback) {
+        db.collection(COLLECTION_NAME)
+                .document(UserSession.getInstance().getUserId())
+                .get()
+                .addOnSuccessListener(command -> {
+                    if(command.exists()) {
+                        User user = command.toObject(User.class);
+                        List<FilmList> lista = user.getListasDeListas();
+                        int i = 0;
+                        for(FilmList fl : lista) {
+                            if (fl.getListName().equals(originalList.getListName())){
+                                lista.set(i, newList);
+                                break;
+                            }
+                            i++;
+                        }
+                        db.collection(COLLECTION_NAME)
+                            .document(UserSession.getInstance().getUserId())
+                                .set(user)
+                                .addOnSuccessListener(e -> Log.d("Firestore", "Usuario actualizado correctamente"))
+                                .addOnFailureListener(e -> Log.e("Firestore", "Error al actualizar el usuario", e));
+                        callback.accept(newList);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al updatear lista", e);
+                });
+    }
+
+    public void deleteList(FilmList filmList, Runnable callback) {
+        db.collection(COLLECTION_NAME)
+                .document(UserSession.getInstance().getUserId())
+                .get()
+                .addOnSuccessListener(command -> {
+                    if (command.exists()) {
+                        User u = command.toObject(User.class);
+                        List<FilmList> listas = u.getListasDeListas();
+                        int i = 0;
+                        for (FilmList fl : listas) {
+                            if (fl.getListName().equals(filmList.getListName())){
+                                listas.remove(i);
+                                break;
+                            }
+                            i++;
+                        }
+                        db.collection(COLLECTION_NAME)
+                                .document(UserSession.getInstance().getUserId())
+                                .set(u)
+                                .addOnSuccessListener(e -> Log.d("Firestore", "Usuario actualizado correctamente"))
+                                .addOnFailureListener(e -> Log.e("Firestore", "Error al actualizar el usuario", e));
+                        callback.run();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore", "Error al borrar la lista", e);
+                });
+    }
 }
